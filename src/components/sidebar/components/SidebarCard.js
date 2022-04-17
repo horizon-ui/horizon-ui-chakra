@@ -65,7 +65,7 @@ export default function SidebarDocs() {
           PRO!
         </Text>
       </Flex>
-      <Link href='https://horizon-ui.com/pro'>
+      <Link href='https://horizon-ui.com/pro?ref=horizon-chakra-free'>
         <Button
           bg='whiteAlpha.300'
           _hover={{ bg: "whiteAlpha.200" }}

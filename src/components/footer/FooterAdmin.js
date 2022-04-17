@@ -42,7 +42,7 @@ export default function Footer() {
           <Link
             mx='3px'
             color={textColor}
-            href='https://www.simmmple.com'
+            href='https://www.simmmple.com?ref=horizon-chakra-free'
             target='_blank'
             fontWeight='700'>
             Simmmple!
@@ -70,7 +70,7 @@ export default function Footer() {
           <Link
             fontWeight='500'
             color={textColor}
-            href='https://www.simmmple.com/licenses'>
+            href='https://www.simmmple.com/licenses?ref=horizon-chakra-free'>
             License
           </Link>
         </ListItem>
@@ -82,7 +82,7 @@ export default function Footer() {
           <Link
             fontWeight='500'
             color={textColor}
-            href='https://simmmple.com/terms-of-service'>
+            href='https://simmmple.com/terms-of-service?ref=horizon-chakra-free'>
             Terms of Use
           </Link>
         </ListItem>
@@ -90,7 +90,7 @@ export default function Footer() {
           <Link
             fontWeight='500'
             color={textColor}
-            href='https://www.blog.simmmple.com/'>
+            href='https://www.blog.simmmple.com/?ref=horizon-chakra-free'>
             Blog
           </Link>
         </ListItem>

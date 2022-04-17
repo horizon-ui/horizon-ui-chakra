@@ -21,19 +21,178 @@
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
+    <!-- Anti-flicker snippet (recommended) -->
+    <style>
+      .async-hide {
+        opacity: 0 !important;
+      }
+    </style>
+    <script>
+      (function (a, s, y, n, c, h, i, d, e) {
+        s.className += " " + y;
+        h.start = 1 * new Date();
+        h.end = i = function () {
+          s.className = s.className.replace(RegExp(" ?" + y), "");
+        };
+        (a[n] = a[n] || []).hide = h;
+        setTimeout(function () {
+          i();
+          h.end = null;
+        }, c);
+        h.timeout = c;
+      })(window, document.documentElement, "async-hide", "dataLayer", 4000, {
+        "GTM-KC7D56Q": true,
+      });
+    </script>
+    <!-- Analytics-Optimize Snippet -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "https://www.google-analytics.com/analytics.js",
+        "ga"
+      );
+      ga("create", "UA-226179263-1", "auto", { allowLinker: true });
+      ga("set", "anonymizeIp", true);
+      ga("require", "GTM-KC7D56Q");
+      ga("require", "displayfeatures");
+      ga("require", "linker");
+    </script>
+    <!-- end Analytics-Optimize Snippet -->
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-KC7D56Q");
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <meta name="theme-color" content="#000000" />
-    <title itemprop="name">Horizon UI Dashboard PRO</title>
-    <!-- Manifest and apple icon -->
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+          manifest.json provides metadata used when your web app is added to the
+          homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+        -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="https://www.horizon-ui.com/" />
+
+    <!--  Social tags      -->
+    <meta
+      name="keywords"
+      content="horizon ui, open source, react dashboard, react admin, react chakra admin, react chakra dashboard, react panel, react chakra template, react admin template, react free, react premium, react free dashboard, react premium dashboard, dashboard, react free chakra dashboard, free admin template, premium admin template, react chakra, react chakra dashboard, react chakra free, react free premium, react chakra free dashboard, react free premium dashboard, chakra admin dashboard, admin dashboard, admin template, free admin template, chakra ui free template, chakra ui admin template"
+    />
+    <meta
+      name="description"
+      content="Horizon UI is the trendiest open-source admin template built on top of Chakra UI. Horizon UI comes with over 70+ dark/light frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining. "
+    />
+
+    <!-- Schema.org markup for Google+ -->
+    <meta
+      itemprop="name"
+      content="Horizon UI - Trendiest Open Source Admin Template for Chakra UI & React"
+    />
+    <meta
+      itemprop="description"
+      content="Horizon UI is the trendiest open-source admin template built on top of Chakra UI. Horizon UI comes with over 70+ dark/light frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining. "
+    />
+
+    <meta
+      itemprop="image"
+      content="https://i.ibb.co/fdyTwz1/introduction-image-2.png"
+    />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="product" />
+    <meta name="twitter:site" content="@simmmple_web" />
+    <meta
+      name="twitter:title"
+      content="Horizon UI - Trendiest Open Source Admin Template for Chakra UI & React"
+    />
+
+    <meta
+      name="twitter:description"
+      content="Horizon UI is the trendiest open-source admin template built on top of Chakra UI. Horizon UI comes with over 70+ dark/light frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining. "
+    />
+    <meta name="twitter:creator" content="@simmmple_web" />
+    <meta
+      name="twitter:image"
+      content="https://i.ibb.co/fdyTwz1/introduction-image-2.png"
+    />
+
+    <!-- Open Graph data -->
+    <meta
+      property="og:title"
+      content="Horizon UI - Trendiest Open Source Admin Template for Chakra UI & React"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://horizon-ui.com/chakra-free/#/" />
+    <meta
+      property="og:image"
+      content="https://i.ibb.co/fdyTwz1/introduction-image-2.png"
+    />
+    <meta
+      property="og:description"
+      content="Horizon UI is the trendiest open-source admin template built on top of Chakra UI. Horizon UI comes with over 70+ dark/light frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining. "
+    />
+    <meta property="og:site_name" content="Horizon UI" />
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <!--
+          Notice the use of %PUBLIC_URL% in the tags above.
+          It will be replaced with the URL of the `public` folder during the build.
+          Only files inside the `public` folder can be referenced from the HTML.
+          Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+          work correctly both with client-side routing and a non-root public URL.
+          Learn how to configure a non-root public URL by running `npm run build`.
+        -->
+    <title>Horizon UI Dashboard</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KC7D56Q"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root"></div>
+    <!--
+          This HTML file is a template.
+          If you open it directly in the browser, you will see an empty page.
+          You can add webfonts, meta tags, or analytics to this file.
+          The build step will place the bundled scripts into the <body> tag.
+          To begin the development, run `npm start` or `yarn start`.
+          To create a production bundle, use `npm run build` or `yarn build`.
+        -->
   </body>
 </html>
