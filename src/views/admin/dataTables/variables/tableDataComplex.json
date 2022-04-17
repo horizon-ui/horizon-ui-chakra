@@ -1,0 +1,26 @@
+[
+  {
+    "name":"Marketplace",
+    "status": "Approved",
+    "date": "24.Jan.2021",
+    "progress": 75.5  
+  },
+  {
+    "name":"Marketplace",
+    "status": "Disable",
+    "date": "30.Dec.2021",
+    "progress": 25.5  
+  },
+  {
+    "name":"Marketplace",
+    "status": "Error",
+    "date": "20.May.2021",
+    "progress": 90  
+  },
+  {
+    "name":"Marketplace",
+    "status": "Approved",
+    "date": "12.Jul.2021",
+    "progress": 50.5  
+  }
+]

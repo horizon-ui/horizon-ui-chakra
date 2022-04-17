@@ -1,0 +1,21 @@
+/* React Kanban */
+body.chakra-ui-light .react-kanban-column {
+  background-color: #fff; /* Gray/Gray-100 */
+  box-shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.08);
+  border-radius: 30px;
+}
+body.chakra-ui-dark .react-kanban-column {
+  background-color: #111c44; /* Gray/Gray-100 */
+  border-radius: 30px;
+}
+.react-kanban-column {
+  width: 500px;
+}
+.react-kanban-card-adder-form {
+  width: 100%;
+  border-radius: 15px;
+}
+.react-kanban-card-adder-button {
+  display: none;
+  border-radius: 15px;
+}
