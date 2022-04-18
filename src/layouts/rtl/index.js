@@ -156,7 +156,7 @@ export default function Dashboard(props) {
               pt='50px'>
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from='/' to='/rtl/default' />
+                <Redirect from='/' to='/rtl/rtl-default' />
               </Switch>
             </Box>
           ) : null}
