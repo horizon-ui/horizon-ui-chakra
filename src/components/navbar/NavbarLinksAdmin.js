@@ -176,7 +176,9 @@ export default function HeaderLinks(props) {
                 Buy Horizon UI PRO
               </Button>
             </Link>
-            <Link w='100%' href='https://horizon-ui.com/docs'>
+            <Link
+              w='100%'
+              href='https://horizon-ui.com/documentation/docs/introduction'>
               <Button
                 w='100%'
                 h='44px'
@@ -187,7 +189,9 @@ export default function HeaderLinks(props) {
                 See Documentation
               </Button>
             </Link>
-            <Link w='100%' href='https://horizon-ui.com/'>
+            <Link
+              w='100%'
+              href='https://github.com/horizon-ui/horizon-ui-chakra'>
               <Button
                 w='100%'
                 h='44px'
