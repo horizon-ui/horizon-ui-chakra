@@ -110,6 +110,7 @@ export default function Dashboard(props) {
     });
   };
   const { onOpen } = useDisclosure();
+  document.documentElement.dir = "ltr";
   return (
     <Box>
       <SidebarContext.Provider
