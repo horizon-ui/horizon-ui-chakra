@@ -38,6 +38,7 @@ export default function Auth() {
     });
   };
   const authBg = useColorModeValue("white", "navy.900");
+  document.documentElement.dir = "ltr";
   return (
     <Box>
       <SidebarContext.Provider
