@@ -81,7 +81,7 @@ pages here.</a>
 
 Horizon UI is available in Figma format as well! Check it out on Figma
 Community! 🎨
-[See the Horizon UI Figma design files](https://horizon-ui.com/figma/)
+[See the Horizon UI Figma design files](https://bit.ly/horizon-figma)
 
 ### Reporting Issues
 
