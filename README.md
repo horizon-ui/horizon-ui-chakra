@@ -5,6 +5,13 @@
 [![GitHub issues open](https://img.shields.io/github/issues/horizon-ui/horizon-ui-chakra.svg?maxAge=2592000)](https://github.com/horizon-ui/horizon-ui-chakra/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/horizon-ui/horizon-ui-chakra.svg?maxAge=2592000)](https://github.com/horizon-ui/horizon-ui-chakra/issues?q=is%3Aissue+is%3Aclosed)
 
+<p>&nbsp;</p>
+
+[<img alt="Horizon UI" src="https://i.ibb.co/fdyTwz1/introduction-image-2.png" /> ](https://github.com/horizon-ui/horizon-ui-chakra)
+
+<p>&nbsp;</p>
+
+
 Get started and build your dream web app with Horizon UI, the most trendiest &
 innovative Open Source Admin Template for Chakra UI & React!
 
@@ -22,12 +29,6 @@ The fastest, most responsive & trendiest dashboard is here. Seriously.
 With Horizon UI you will find many examples for pages like NFTs Pages,
 Authentication Pages, Profile and so on. Just choose between a Basic Design or a
 cover and you are good to go!
-
-<p>&nbsp;</p>
-
-[<img alt="Horizon UI" src="https://i.ibb.co/fdyTwz1/introduction-image-2.png" /> ](https://github.com/horizon-ui/horizon-ui-chakra)
-
-<p>&nbsp;</p>
 
 ### Documentation
 
