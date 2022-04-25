@@ -24,7 +24,9 @@ export default function Banner(props) {
   const box = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
   return (
     <Card mb={{ base: "0px", lg: "20px" }} align='center'>
-      <Menu ms='auto' />
+      <Flex w='100%'>
+        <Menu ms='auto' />
+      </Flex>
       <IconBox
         mx='auto'
         h='100px'
