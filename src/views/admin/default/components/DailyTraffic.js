@@ -23,9 +23,15 @@ export default function DailyTraffic(props) {
     <Card align='center' direction='column' w='100%' {...rest}>
       <Flex justify='space-between' align='start' px='10px' pt='5px'>
         <Flex flexDirection='column' align='start' me='20px'>
-          <Text color='secondaryGray.600' fontSize='sm' fontWeight='500'>
-            Daily Traffic
-          </Text>
+          <Flex w='100%'>
+            <Text
+              me='auto'
+              color='secondaryGray.600'
+              fontSize='sm'
+              fontWeight='500'>
+              Daily Traffic
+            </Text>
+          </Flex>
           <Flex align='end'>
             <Text
               color={textColor}

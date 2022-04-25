@@ -42,7 +42,7 @@ export default function Upload(props) {
             </Box>
           }
         />
-        <Flex direction='column' align='start' pe='44px'>
+        <Flex direction='column' pe='44px'>
           <Text
             color={textColorPrimary}
             fontWeight='bold'
@@ -60,13 +60,18 @@ export default function Upload(props) {
             Stay on the pulse of distributed projects with an anline whiteboard
             to plan, coordinate and discuss
           </Text>
-          <Button
-            mb='50px'
-            mt={{ base: "20px", "2xl": "auto" }}
-            variant='brand'
-            fontWeight='500'>
-            Publish now
-          </Button>
+          <Flex w='100%'>
+            <Button
+              me='100%'
+              mb='50px'
+              w='140px'
+              minW='140px'
+              mt={{ base: "20px", "2xl": "auto" }}
+              variant='brand'
+              fontWeight='500'>
+              Publish now
+            </Button>
+          </Flex>
         </Flex>
       </Flex>
     </Card>

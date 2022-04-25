@@ -93,7 +93,7 @@ export default function HeaderLinks(props) {
       <Menu>
         <MenuButton p='0px'>
           <Icon
-            display='flex'
+            mt='6px'
             as={MdNotificationsNone}
             color={navbarIcon}
             w='18px'
@@ -151,7 +151,7 @@ export default function HeaderLinks(props) {
       <Menu>
         <MenuButton p='0px'>
           <Icon
-            display='flex'
+            mt='6px'
             as={MdInfoOutline}
             color={navbarIcon}
             w='18px'
