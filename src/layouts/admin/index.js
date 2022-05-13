@@ -11,7 +11,6 @@ import routes from "routes.js";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
-  let location = useLocation();
   const { ...rest } = props;
   // states and functions
   const [fixed] = useState(false);
