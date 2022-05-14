@@ -6,7 +6,8 @@
   "dependencies": {
     "@asseinfo/react-kanban": "^2.2.0",
     "@chakra-ui/icons": "^1.1.5",
-    "@chakra-ui/react": "^1.6.10",
+    "@chakra-ui/react": "1.8.8",
+    "@chakra-ui/system": "^1.12.1",
     "@chakra-ui/theme-tools": "^1.3.6",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.4.1",
