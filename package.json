@@ -1,7 +1,7 @@
 {
   "homepage": "https://horizon-ui.com/horizon-ui-chakra",
   "name": "horizon-ui-chakra",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@asseinfo/react-kanban": "^2.2.0",
