@@ -21,10 +21,13 @@ export default function Limited(props) {
     <Card p='20px'>
       <Flex direction={{ base: "column" }} justify='center'>
         <Box mb={{ base: "20px", "2xl": "20px" }} position='relative'>
-          <Image
-            src={image}
-            w={{ base: "100%", "3xl": "100%" }}
-            h={{ base: "100%", "3xl": "100%" }}
+          <Flex
+            bg={`url(${image})`}
+            bgSize='cover'
+            bgPosition={{ base: "center", "3xl": "unset" }}
+            maxW='100%'
+            w={{ base: "100%", lg: "343px" }}
+            h={{ base: "100%", lg: "185px" }}
             borderRadius='20px'
           />
           <Flex
@@ -48,7 +51,7 @@ export default function Limited(props) {
             />
           </Flex>
         </Box>
-        <Avatar src={avatar} mt='-50px' ms='15px' mb='15px' />
+        <Avatar src={avatar} h='60px' w='60px' mt='-50px' ms='15px' mb='15px' />
         <Flex ms='10px' flexDirection='column' justify='space-between' h='100%'>
           <Flex
             justify='space-between'
