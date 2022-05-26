@@ -26,8 +26,8 @@ export default function Limited(props) {
             bgSize='cover'
             bgPosition={{ base: "center", "3xl": "unset" }}
             maxW='100%'
-            w={{ base: "100%", lg: "343px" }}
-            h={{ base: "100%", lg: "185px" }}
+            w={{ base: "343px", lg: "343px" }}
+            h={{ base: "185px", lg: "185px" }}
             borderRadius='20px'
           />
           <Flex

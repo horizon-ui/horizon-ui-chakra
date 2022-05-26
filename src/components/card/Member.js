@@ -18,6 +18,10 @@ export default function Default(props) {
   const { avatar, name, job, ...rest } = props;
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const bg = useColorModeValue("white", "#1B254B");
+  const shadow = useColorModeValue(
+    "0px 18px 40px rgba(112, 144, 176, 0.12)",
+    "none"
+  );
 
   return (
     <Card py='10px' bg={bg} {...rest}>

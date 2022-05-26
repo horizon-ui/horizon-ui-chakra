@@ -2,68 +2,66 @@
 import {
   AvatarGroup,
   Avatar,
-  Box,
   Button,
   Flex,
   Icon,
-  Image,
-  Link,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card.js";
+import IconBox from "components/icons/IconBox";
 // Assets
 import React, { useState } from "react";
-import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import {
   MdLocalFireDepartment,
-  MdFastfood,
-  MdOutlineWatchLater,
   MdTimer,
   MdOutlineSlowMotionVideo,
+  MdSlowMotionVideo,
 } from "react-icons/md";
 
 export default function Limited(props) {
-  const { image, name, author, bidders, download, currentBid } = props;
-  const [like, setLike] = useState(false);
+  const { attendants, ...rest } = props;
   const textColor = useColorModeValue("navy.700", "white");
   const textColorBid = useColorModeValue("brand.500", "white");
+  const box = useColorModeValue("red.100", "navy.700");
+  const icon = useColorModeValue("red.500", "white");
+  const down = useColorModeValue("gray.100", "navy.700");
   return (
-    <Card p='20px'>
+    <Card p='0px' {...rest}>
       <Flex direction={{ base: "column" }} justify='center'>
-        <Box mb={{ base: "20px", "2xl": "20px" }} position='relative'>
-          <Image
-            src={image}
-            w={{ base: "100%", "3xl": "100%" }}
-            h={{ base: "100%", "3xl": "100%" }}
-            borderRadius='20px'
-          />
-          <Button
-            position='absolute'
-            bg='white'
-            _hover={{ bg: "whiteAlpha.900" }}
-            _active={{ bg: "white" }}
-            _focus={{ bg: "white" }}
-            p='0px !important'
-            top='14px'
-            right='14px'
-            borderRadius='50%'
-            minW='36px'
-            h='36px'
-            onClick={() => {
-              setLike(!like);
-            }}>
-            <Icon
-              transition='0.2s linear'
-              w='20px'
-              h='20px'
-              as={like ? IoHeart : IoHeartOutline}
-              color='brand.500'
+        <Flex direction='column' pt='32px' px='17px'>
+          <Flex align='center' mb={{ base: "40px", xl: "20px", "2xl": "40px" }}>
+            <IconBox
+              me={{ base: "12px", xl: "8px", "2xl": "12px" }}
+              h={{ base: "48px", xl: "38px", "2xl": "48px" }}
+              w={{ base: "48px", xl: "38px", "2xl": "48px" }}
+              borderRadius={{ base: "16px", xl: "12px", "2xl": "16px" }}
+              bg={box}
+              icon={
+                <Icon
+                  h={{ base: "28px", xl: "20px", "2xl": "28px" }}
+                  w={{ base: "28px", xl: "20px", "2xl": "28px" }}
+                  as={MdLocalFireDepartment}
+                  color={icon}
+                />
+              }
             />
-          </Button>
-        </Box>
-        <Flex flexDirection='column' justify='space-between' h='100%'>
+            <Flex direction='column' align='start'>
+              <Text
+                color='secondaryGray.600'
+                fontSize={{ base: "sm" }}
+                fontWeight='400'>
+                Business Design
+              </Text>
+              <Text
+                color={textColor}
+                fontSize={{ base: "md" }}
+                fontWeight='700'>
+                New lession is available
+              </Text>
+            </Flex>
+          </Flex>
           <Flex
             justify='space-between'
             direction={{
@@ -74,83 +72,99 @@ export default function Limited(props) {
               "2xl": "row",
             }}
             mb='auto'>
-            <Flex direction='column'>
+            <Text
+              color={textColor}
+              fontSize={{
+                base: "xl",
+                "2xl": "md",
+                "3xl": "xl",
+              }}
+              mb='5px'
+              fontWeight='bold'
+              me='14px'>
+              What do you need to know to create better products?
+            </Text>
+          </Flex>
+        </Flex>
+        <Flex
+          direction='column'
+          mt='40px'
+          borderBottomRightRadius='20px'
+          borderBottomLeftRadius='20px'
+          pb='30px'
+          pt='15px'
+          px={{ base: "28px", xl: "20px", "2xl": "28px" }}
+          bg={down}
+          h='150px'
+          w='100%'>
+          <Flex>
+            <Flex align='center' me='26px'>
+              <Icon as={MdTimer} h='24px' w='24px' me='6px' color='green.500' />
               <Text
                 color={textColor}
-                fontSize={{
-                  base: "xl",
-                  md: "lg",
-                  lg: "lg",
-                  xl: "lg",
-                  "2xl": "md",
-                  "3xl": "lg",
-                }}
-                mb='5px'
-                fontWeight='bold'
-                me='14px'>
-                {name}
-              </Text>
-              <Text
-                color='secondaryGray.600'
-                fontSize={{
-                  base: "sm",
-                }}
-                fontWeight='400'
-                me='14px'>
-                {author}
+                fontSize={{ base: "sm", xl: "xs", "2xl": "sm" }}
+                fontWeight='700'>
+                85 mins
               </Text>
             </Flex>
+            <Flex align='center'>
+              <Icon
+                as={MdSlowMotionVideo}
+                h='24px'
+                w='24px'
+                me='6px'
+                color='red.500'
+              />
+              <Text
+                color={textColor}
+                fontSize={{ base: "sm", xl: "xs", "2xl": "sm" }}
+                fontWeight='700'>
+                Video format
+              </Text>
+            </Flex>
+          </Flex>
+          <Flex
+            w='100%'
+            align={{
+              base: "center",
+              xl: "start",
+              "2xl": "center",
+            }}
+            justifyContent='space-between'
+            mt='auto'
+            direction={{
+              base: "row",
+              xl: "column",
+              "2xl": "row",
+            }}>
             <AvatarGroup
-              max={3}
+              mb={{
+                base: "0px",
+                xl: "10px",
+                "2xl": "0px",
+              }}
+              max={4}
               color={textColorBid}
               size='sm'
               mt={{
                 base: "0px",
                 md: "10px",
-                lg: "0px",
-                xl: "10px",
                 "2xl": "0px",
               }}
               fontSize='12px'>
-              {bidders.map((avt, key) => (
+              {attendants.map((avt, key) => (
                 <Avatar key={key} src={avt} />
               ))}
             </AvatarGroup>
-          </Flex>
-          <Flex
-            align='start'
-            justify='space-between'
-            direction={{
-              base: "row",
-              md: "column",
-              lg: "row",
-              xl: "column",
-              "2xl": "row",
-            }}
-            mt='25px'>
-            <Text fontWeight='700' fontSize='sm' color={textColorBid}>
-              Current Bid: {currentBid}
-            </Text>
-            <Link
-              href={download}
-              mt={{
-                base: "0px",
-                md: "10px",
-                lg: "0px",
-                xl: "10px",
-                "2xl": "0px",
-              }}>
-              <Button
-                variant='darkBrand'
-                color='white'
-                fontSize='sm'
-                fontWeight='500'
-                borderRadius='70px'
-                px='24px'
-                py='5px'>
-                Place Bid
-              </Button>
-            </Link>
+            <Button
+              h='46px'
+              w='100%'
+              maxW='128px'
+              py='10px'
+              variant='brand'
+              fontWeight='500'>
+              Get Started
+            </Button>
           </Flex>
         </Flex>
       </Flex>

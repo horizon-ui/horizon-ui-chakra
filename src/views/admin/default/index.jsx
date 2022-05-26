@@ -58,6 +58,7 @@ import Tasks from "views/admin/default/components/Tasks";
 import TotalSpent from "views/admin/default/components/TotalSpent";
 import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue";
 import Limited from "components/card/Limited";
+import Lesson from "views/admin/default/components/Lesson";
 import Security from "views/admin/default/components/Security";
 import Team from "views/admin/default/components/Team";
 import {
@@ -177,10 +178,10 @@ export default function UserReports() {
         </SimpleGrid>
       </SimpleGrid>
       <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px' mb='20px'>
-        <Limited
+        <Lesson
           name='ETH AI Brain'
           author='By Nick Wilson'
-          bidders={[
+          attendants={[
             Avatar1,
             Avatar2,
             Avatar3,
