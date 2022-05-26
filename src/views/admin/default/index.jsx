@@ -33,6 +33,12 @@ import {
 } from "@chakra-ui/react";
 // Assets
 import Usa from "assets/img/dashboards/usa.png";
+import Coffee from "assets/img/dashboards/coffee.png";
+import Starbucks from "assets/img/dashboards/starbucks.png";
+import Avatar1 from "assets/img/avatars/avatar1.png";
+import Avatar2 from "assets/img/avatars/avatar2.png";
+import Avatar3 from "assets/img/avatars/avatar3.png";
+import Avatar4 from "assets/img/avatars/avatar4.png";
 // Custom components
 import MiniCalendar from "components/calendar/MiniCalendar";
 import MiniStatistics from "components/card/MiniStatistics";
@@ -51,6 +57,10 @@ import PieCard from "views/admin/default/components/PieCard";
 import Tasks from "views/admin/default/components/Tasks";
 import TotalSpent from "views/admin/default/components/TotalSpent";
 import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue";
+import Limited from "components/card/Limited";
+import Lesson from "views/admin/default/components/Lesson";
+import Security from "views/admin/default/components/Security";
+import Team from "views/admin/default/components/Team";
 import {
   columnsDataCheck,
   columnsDataComplex,
@@ -166,6 +176,35 @@ export default function UserReports() {
           <Tasks />
           <MiniCalendar h='100%' minW='100%' selectRange={false} />
         </SimpleGrid>
+      </SimpleGrid>
+      <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap='20px' mb='20px'>
+        <Lesson
+          name='ETH AI Brain'
+          author='By Nick Wilson'
+          attendants={[
+            Avatar1,
+            Avatar2,
+            Avatar3,
+            Avatar4,
+            Avatar1,
+            Avatar1,
+            Avatar1,
+            Avatar1,
+          ]}
+          image={Coffee}
+          currentBid='0.91 ETH'
+          download='#'
+        />
+        <Team />
+        <Security name='ETH AI Brain' author='By Nick Wilson' />
+        <Limited
+          name='Starbucks'
+          offer='10% cashback & off'
+          image={Coffee}
+          avatar={Starbucks}
+          currentBid='0.91 ETH'
+          download='#'
+        />
       </SimpleGrid>
     </Box>
   );
