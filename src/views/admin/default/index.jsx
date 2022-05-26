@@ -59,6 +59,7 @@ import TotalSpent from "views/admin/default/components/TotalSpent";
 import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue";
 import Limited from "components/card/Limited";
 import Security from "views/admin/default/components/Security";
+import Team from "views/admin/default/components/Team";
 import {
   columnsDataCheck,
   columnsDataComplex,
@@ -193,23 +194,7 @@ export default function UserReports() {
           currentBid='0.91 ETH'
           download='#'
         />
-        <Limited
-          name='ETH AI Brain'
-          author='By Nick Wilson'
-          bidders={[
-            Avatar1,
-            Avatar2,
-            Avatar3,
-            Avatar4,
-            Avatar1,
-            Avatar1,
-            Avatar1,
-            Avatar1,
-          ]}
-          image={Coffee}
-          currentBid='0.91 ETH'
-          download='#'
-        />
+        <Team />
         <Security name='ETH AI Brain' author='By Nick Wilson' />
         <Limited
           name='Starbucks'
