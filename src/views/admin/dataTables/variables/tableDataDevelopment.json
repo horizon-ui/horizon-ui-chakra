@@ -64,17 +64,5 @@
     "tech": ["apple", "windows"], 
     "date": "Oct 24, 2022",
     "progress": 75.5  
-  },
-  {
-    "name":"Marketplace",
-    "tech": ["apple","android","windows"], 
-    "date": "Oct 24, 2022",
-    "progress": 75.5  
-  },
-  {
-    "name":"Marketplace",
-    "tech": ["apple","android","windows"], 
-    "date": "Oct 24, 2022",
-    "progress": 75.5  
   }
 ]
