@@ -12,11 +12,10 @@ import {
 import Card from "components/card/Card.js";
 import IconBox from "components/icons/IconBox";
 // Assets
-import React, { useState } from "react";
+import React from "react";
 import {
   MdLocalFireDepartment,
   MdTimer,
-  MdOutlineSlowMotionVideo,
   MdSlowMotionVideo,
 } from "react-icons/md";
 

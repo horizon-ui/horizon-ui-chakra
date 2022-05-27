@@ -3,11 +3,9 @@ import { Button, Flex, Text, Icon, useColorModeValue } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card.js";
 import Member from "components/card/Member.js";
-import Menu from "components/menu/MainMenu";
-import IconBox from "components/icons/IconBox";
 
 // Assets
-import { MdCheckBox, MdAddCircle } from "react-icons/md";
+import { MdAddCircle } from "react-icons/md";
 import Avatar2 from "assets/img/avatars/avatar2.png";
 import Avatar3 from "assets/img/avatars/avatar3.png";
 import Avatar5 from "assets/img/avatars/avatar5.png";
@@ -18,8 +16,6 @@ export default function Conversion(props) {
 
   // Chakra Color Mode
   const textColor = useColorModeValue("secondaryGray.900", "white");
-  const boxBg = useColorModeValue("secondaryGray.300", "navy.700");
-  const brandColor = useColorModeValue("brand.500", "brand.400");
 
   const iconColor = useColorModeValue("brand.500", "white");
   const bgButton = useColorModeValue("secondaryGray.300", "whiteAlpha.100");

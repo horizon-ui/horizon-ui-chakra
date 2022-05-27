@@ -1,13 +1,6 @@
 // Chakra imports
 import React from "react";
-import {
-  Avatar,
-  Box,
-  Flex,
-  useColorModeValue,
-  Icon,
-  Text,
-} from "@chakra-ui/react";
+import { Avatar, Flex, useColorModeValue, Icon, Text } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card.js";
 import TransparentMenu from "components/menu/TransparentMenu";
@@ -24,7 +17,7 @@ export default function Default(props) {
   );
 
   return (
-    <Card py='10px' bg={bg} {...rest}>
+    <Card boxShadow={shadow} py='10px' bg={bg} {...rest}>
       <Flex align='center'>
         <Flex justifyContent='center' alignItems='center'>
           <Avatar
