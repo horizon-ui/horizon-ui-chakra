@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/horizon-ui-chakra/static/css/main.32c6686f.css",
-    "main.js": "/horizon-ui-chakra/static/js/main.2226f0fe.js",
+    "main.css": "/horizon-ui-chakra/static/css/main.3a59fb47.css",
+    "main.js": "/horizon-ui-chakra/static/js/main.9fee8740.js",
     "static/media/auth.png": "/horizon-ui-chakra/static/media/auth.20d5979b439e1531640d.png",
     "static/media/NftBanner1.png": "/horizon-ui-chakra/static/media/NftBanner1.87062366f75bedd52bd2.png",
     "static/media/coffee.png": "/horizon-ui-chakra/static/media/coffee.b129e893c262f6fd48d9.png",
@@ -24,11 +24,11 @@
     "static/media/Project2.png": "/horizon-ui-chakra/static/media/Project2.90f702366422b52138b1.png",
     "static/media/Project1.png": "/horizon-ui-chakra/static/media/Project1.d5952144f76e2cb9e5d6.png",
     "index.html": "/horizon-ui-chakra/index.html",
-    "main.32c6686f.css.map": "/horizon-ui-chakra/static/css/main.32c6686f.css.map",
-    "main.2226f0fe.js.map": "/horizon-ui-chakra/static/js/main.2226f0fe.js.map"
+    "main.3a59fb47.css.map": "/horizon-ui-chakra/static/css/main.3a59fb47.css.map",
+    "main.9fee8740.js.map": "/horizon-ui-chakra/static/js/main.9fee8740.js.map"
   },
   "entrypoints": [
-    "static/css/main.32c6686f.css",
-    "static/js/main.2226f0fe.js"
+    "static/css/main.3a59fb47.css",
+    "static/js/main.9fee8740.js"
   ]
 }
