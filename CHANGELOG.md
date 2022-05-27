@@ -1,3 +1,17 @@
+## [1.1.0] 2022-05-26
+
+### New cards added + bugs solved
+
+🟢 Added new cards to main dashboard screen:
+- Course CTA card
+- Team members list card
+- Safety control CTA card
+- Cashback company card
+
+🐛 Bugs solved:
+- Calendar card - Card border bug on dark mode 
+- Development Table - Missing content bug
+
 ## [1.0.1] 2022-04-25
 
 ### Multiple design bugs on mobile solved
