@@ -35,6 +35,7 @@ export default function Default(props) {
             </Text>
             <Text
               color='secondaryGray.600'
+              textAlign='left'
               fontSize={{ base: "sm", xl: "xs", "3xl": "sm" }}
               fontWeight='400'>
               {job}

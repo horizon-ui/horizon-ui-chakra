@@ -34,7 +34,8 @@ export default function Upload(props) {
           color={textColorSecondary}
           fontSize='md'
           ps='10px'
-          my={{ base: "auto", "2xl": "10px" }}
+          mt={{ base: "0px", lg: "0px", "2xl": "10px" }}
+          mb={{ base: "auto", lg: "auto", "2xl": "10px" }}
           textAlign='start'>
           Discover our cards benefits, with one tap.
         </Text>
