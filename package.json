@@ -33,7 +33,7 @@
     "react-scripts": "5.0.0",
     "react-table": "^7.7.0",
     "stylis": "^4.1.1",
-    "stylis-plugin-rtl": "^2.0.2",
+    "stylis-plugin-rtl": "2.0.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
