@@ -36,30 +36,3 @@ export const renderView = ({ style, ...props }) => {
     />
   );
 };
-
-export const kanbanRenderTrack = ({ style, ...props }) => {
-  const trackStyle = {
-    width: 6,
-    transition: "opacity 200ms ease 0s",
-    opacity: 0,
-    bottom: 2,
-    top: 2,
-    borderRadius: 3,
-    right: 0,
-  };
-  return <div style={{ ...style, ...trackStyle }} {...props} />;
-};
-export const kanbanRenderThumb = ({ style, ...props }) => {
-  const thumbStyle = {
-    borderRadius: 15,
-    background: "rgba(222, 222, 222, .1)",
-  };
-  return <div style={{ ...style, ...thumbStyle }} {...props} />;
-};
-export const kanbanRenderView = ({ style, ...props }) => {
-  const viewStyle = {
-    position: "relative",
-    marginRight: -15,
-  };
-  return <div style={{ ...style, ...viewStyle }} {...props} />;
-};

@@ -1,24 +1,11 @@
-## [1.1.1] 2022-06-02
-
-🐛 Errors fixed:
-
-- Solved the warnings regarding stylis-plugin-rtl
-
-## [1.1.0] 2022-05-26
-
-### New cards added + bugs solved
-
-🟢 Added new cards to main dashboard screen:
-
-- Course CTA card
-- Team members list card
-- Safety control CTA card
-- Cashback company card
+## [1.1.0] 2022-06-08
 
 🐛 Bugs solved:
 
 - Calendar card - Card border bug on dark mode
 - Development Table - Missing content bug
+- Solved the warnings regarding stylis-plugin-rtl
+- Fixed console warnings
 
 ## [1.0.1] 2022-04-25
 

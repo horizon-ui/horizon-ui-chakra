@@ -3,8 +3,7 @@
   "name": "horizon-ui-chakra",
   "version": "1.0.1",
   "private": true,
-  "dependencies": {
-    "@asseinfo/react-kanban": "^2.2.0",
+  "dependencies": { 
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "1.8.8",
     "@chakra-ui/system": "^1.12.1",
