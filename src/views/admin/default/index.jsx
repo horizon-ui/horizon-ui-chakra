@@ -192,7 +192,7 @@ export default function UserReports() {
             Avatar1,
           ]}
           image={Coffee}
-          currentBid='0.91 ETH'
+          currentbid='0.91 ETH'
           download='#'
         />
         <Team />
@@ -202,7 +202,7 @@ export default function UserReports() {
           offer='10% cashback & off'
           image={Coffee}
           avatar={Starbucks}
-          currentBid='0.91 ETH'
+          currentbid='0.91 ETH'
           download='#'
         />
       </SimpleGrid>
