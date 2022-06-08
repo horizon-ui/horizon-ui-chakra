@@ -52,7 +52,7 @@ export function SidebarLinks(props) {
         route.layout === "/rtl"
       ) {
         return (
-          <NavLink to={route.layout + route.path}>
+          <NavLink key={index} to={route.layout + route.path}>
             {route.icon ? (
               <Box>
                 <HStack

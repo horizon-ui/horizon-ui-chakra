@@ -3,8 +3,7 @@
   "name": "horizon-ui-chakra",
   "version": "1.0.1",
   "private": true,
-  "dependencies": {
-    "@asseinfo/react-kanban": "^2.2.0",
+  "dependencies": { 
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "1.8.8",
     "@chakra-ui/system": "^1.12.1",
@@ -33,7 +32,7 @@
     "react-scripts": "5.0.0",
     "react-table": "^7.7.0",
     "stylis": "^4.1.1",
-    "stylis-plugin-rtl": "^2.1.1",
+    "stylis-plugin-rtl": "2.0.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

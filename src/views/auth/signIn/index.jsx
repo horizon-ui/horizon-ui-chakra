@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*!
   _   _  ___  ____  ___ ________  _   _   _   _ ___   
  | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
@@ -152,7 +153,6 @@ function SignIn() {
               fontSize='sm'
               fontWeight='500'
               color={textColor}
-              isRequired={true}
               display='flex'>
               Password<Text color={brandStars}>*</Text>
             </FormLabel>
