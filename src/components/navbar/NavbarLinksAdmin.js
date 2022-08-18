@@ -22,10 +22,11 @@ import PropTypes from "prop-types";
 import React from "react";
 // Assets
 import navImage from "assets/img/layout/Navbar.png";
-import { MdNotificationsNone, MdInfoOutline } from "react-icons/md";
+import { MdNotificationsNone, MdInfoOutline, MdPalette } from "react-icons/md";
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa";
 import routes from "routes.js";
+import { ThemeEditor } from "./ThemeEditor";
 export default function HeaderLinks(props) {
   const { secondary } = props;
   const { colorMode, toggleColorMode } = useColorMode();
@@ -205,7 +206,7 @@ export default function HeaderLinks(props) {
         </MenuList>
       </Menu>
 
-      <Button
+      {/* <Button
         variant='no-hover'
         bg='transparent'
         p='0px'
@@ -221,7 +222,10 @@ export default function HeaderLinks(props) {
           color={navbarIcon}
           as={colorMode === "light" ? IoMdMoon : IoMdSunny}
         />
-      </Button>
+      </Button> */}
+
+      <ThemeEditor navbarIcon={navbarIcon} /> 
+
       <Menu>
         <MenuButton p='0px'>
           <Avatar
