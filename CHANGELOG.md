@@ -1,3 +1,8 @@
+## [1.2.0] 2022-08-23
+
+🚀 HyperTheme Editor
+
+- With the help of the guys from Hyperting, we added HyperTheme Editor. You can check the docs [here](https://www.hyperthe.me/documentation/getting-started/community)!
 ## [1.1.0] 2022-06-08
 
 🐛 Bugs solved:
