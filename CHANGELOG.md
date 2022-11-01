@@ -1,3 +1,9 @@
+
+## [1.2.1] 2022-11-01
+
+🚀 Feature:
+-Added TimelineRow
+
 ## [1.2.0] 2022-08-23
 
 🚀 HyperTheme Editor
