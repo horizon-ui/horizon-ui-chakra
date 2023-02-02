@@ -10,13 +10,14 @@ export default function Notifications(props) {
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   return (
-    <Card mb='20px' {...rest}>
-      <Flex align='center' w='100%' justify='space-between' mb='30px'>
+    <Card mb="20px" mt="40px" mx="auto" maxW="410px" {...rest}>
+      <Flex align="center" w="100%" justify="space-between" mb="30px">
         <Text
           color={textColorPrimary}
-          fontWeight='bold'
-          fontSize='2xl'
-          mb='4px'>
+          fontWeight="bold"
+          fontSize="2xl"
+          mb="4px"
+        >
           Notifications
         </Text>
         <Menu />
@@ -24,73 +25,76 @@ export default function Notifications(props) {
       <SwitchField
         isChecked={true}
         reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='1'
-        label='Item update notifications'
+        fontSize="sm"
+        mb="20px"
+        id="1"
+        label="Item update notifications"
       />
       <SwitchField
         reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='2'
-        label='Item comment notifications'
+        fontSize="sm"
+        mb="20px"
+        id="2"
+        label="Item comment notifications"
+      />
+      <SwitchField
+        isChecked={true}
+        reversed={true}
+        fontSize="sm"
+        mb="20px"
+        id="3"
+        label="Buyer review notifications"
+      />
+      <SwitchField
+        isChecked={true}
+        reversed={true}
+        fontSize="sm"
+        mb="20px"
+        id="4"
+        label="Rating reminders notifications"
       />
       <SwitchField
         reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='3'
-        label='Buyer review notifications'
+        fontSize="sm"
+        mb="20px"
+        id="5"
+        label="Meetups near you notifications"
       />
       <SwitchField
         reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='4'
-        label='Rating reminders notifications'
+        fontSize="sm"
+        mb="20px"
+        id="6"
+        label="Company news notifications"
+      />
+      <SwitchField
+        isChecked={true}
+        reversed={true}
+        fontSize="sm"
+        mb="20px"
+        id="7"
+        label="New launches and projects"
       />
       <SwitchField
         reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='5'
-        label='Meetups near you notifications'
+        fontSize="sm"
+        mb="20px"
+        id="8"
+        label="Monthly product changes"
+      />
+      <SwitchField
+        isChecked={true}
+        reversed={true}
+        fontSize="sm"
+        mb="20px"
+        id="9"
+        label="Subscribe to newsletter"
       />
       <SwitchField
         reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='6'
-        label='Company news notifications'
-      />
-      <SwitchField
-        reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='7'
-        label='New launches and projects'
-      />
-      <SwitchField
-        reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='8'
-        label='Monthly product changes'
-      />
-      <SwitchField
-        reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='9'
-        label='Subscribe to newsletter'
-      />
-      <SwitchField
-        reversed={true}
-        fontSize='sm'
-        mb='20px'
-        id='10'
-        label='Email me when someone follows me'
+        fontSize="sm"
+        id="10"
+        label="Email me when someone follows me"
       />
     </Card>
   );
