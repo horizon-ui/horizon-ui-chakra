@@ -49,7 +49,8 @@ export function SidebarLinks(props) {
       } else if (
         route.layout === "/admin" ||
         route.layout === "/auth" ||
-        route.layout === "/rtl"
+        route.layout === "/rtl" ||
+        route.layout === "/attestation"
       ) {
         return (
           <NavLink key={index} to={route.layout + route.path}>
