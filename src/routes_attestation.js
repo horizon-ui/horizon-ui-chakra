@@ -15,13 +15,6 @@ import RankingTables from "views/admin/rankingTables";
 
 const routes = [
   {
-    name: "Main Dashboard",
-    layout: "/attestation",
-    path: "/default",
-    icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
-    component: MainDashboard,
-  },
-  {
     name: "Profile Rankings",
     layout: "/attestation",
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,

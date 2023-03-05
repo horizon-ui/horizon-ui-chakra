@@ -4,15 +4,15 @@ export const columnsDataRankings = [
     accessor: "publisher",
   },
   {
-    Header: "FROM",
+    Header: "ATTESTOR",
     accessor: "from",
   },
   {
-    Header: "RECIPIENT",
+    Header: "ATTESTEE",
     accessor: "recipient",
   },
   {
-    Header: "DATA",
+    Header: "SCORE",
     accessor: "data",
   },
 ];

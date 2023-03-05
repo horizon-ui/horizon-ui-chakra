@@ -96,6 +96,12 @@ export const fetchAttestationDataOld = async () => {
   return formattedAttestationData
 }
 
+const sortAttestationData = (data) => {
+  data = [...data]
+  var sortedData = data.sort(function(a, b) { return parseFloat(b[4]) - parseFloat(a[4]); });
+  return sortedData
+}
+
 export const fetchAttestationData = async (schemaIdList) => {
   const RPC_URL='https://polygon-mumbai.g.alchemy.com/v2/wFBwYJxCyZ7dNJg7WW4CJf46E2yk4Hqi'
   const CONTRACT_ADDRESS='0x61e8b9729741466811456540B1DFE3cA660C7925'
@@ -112,12 +118,13 @@ export const fetchAttestationData = async (schemaIdList) => {
   for (let i = 0; i < schemaIdList.length; i++) {
     const schemaId = schemaIdList[i]
     const attestationData = await contractInstance.getAttestationsBySchemaId(schemaId)
+    const sortedAttestationData = sortAttestationData(attestationData)
     const attestationDataFormatted = {
       "top100Data": [],
       "bottom100Data": []
     }
-    for (let j = 0; j < attestationData.length; j++) {
-      const rowData = attestationData[j]
+    for (let j = 0; j < sortedAttestationData.length; j++) {
+      const rowData = sortedAttestationData[j]
       if (j < 100) {
         attestationDataFormatted["top100Data"].push({
           schemaId: rowData[0],

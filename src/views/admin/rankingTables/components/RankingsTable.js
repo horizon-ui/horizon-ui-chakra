@@ -101,7 +101,7 @@ export default function RankingsTable(props) {
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "FROM") {
+                  } else if (cell.column.Header === "ATTESTOR") {
                     data = (
                       <Flex align='center'>
                         <Text color={textColor} fontSize={{ sm: "10px", lg: "12px" }} fontWeight='700'>
@@ -109,7 +109,7 @@ export default function RankingsTable(props) {
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "RECIPIENT") {
+                  } else if (cell.column.Header === "ATTESTEE") {
                     data = (
                       <Flex align='center'>
                         <Text color={textColor} fontSize={{ sm: "10px", lg: "12px" }} fontWeight='700'>
@@ -117,7 +117,7 @@ export default function RankingsTable(props) {
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "DATA") {
+                  } else if (cell.column.Header === "SCORE") {
                     data = (
                       <Flex align='center'>
                         <Text color={textColor} fontSize={{ sm: "10px", lg: "12px" }} fontWeight='700'>
