@@ -67,6 +67,10 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "alchemy-sdk": "2.5.0",
+    "ethers": "5.7.2",
+    "lodash": "4.17.21",
+    "buffer": "6.0.3"
   }
 }

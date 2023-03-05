@@ -1,5 +1,5 @@
 import {
-  Flex, Select,
+  Flex,
   Table,
   Tbody,
   Td,
@@ -7,6 +7,8 @@ import {
   Th,
   Thead,
   Tr,
+  Select,
+  Box,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useMemo, useState } from "react";
@@ -19,14 +21,11 @@ import {
 
 // Custom components
 import Card from "components/card/Card";
-import RankingsOptions from "./RankingOptions";
 export default function RankingsTable(props) {
   const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
-  const [schemaId, setSchemaId] = useState(-1);
-  const [direction, setDirection] = useState(null);
 
   const tableInstance = useTable(
     {
@@ -46,7 +45,7 @@ export default function RankingsTable(props) {
     prepareRow,
     initialState,
   } = tableInstance;
-  initialState.pageSize = 5;
+  initialState.pageSize = 100;
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
@@ -64,14 +63,6 @@ export default function RankingsTable(props) {
           lineHeight='100%'>
           Profile Rankings
         </Text>
-        <RankingsOptions
-          placeholder={"Select Schema"}
-          options={[0,1,2]}
-        />
-        <RankingsOptions
-          placeholder={"Select Direction"}
-          options={["Top 100", "Bottom 100"]}
-        />
       </Flex>
       <Table {...getTableProps()} variant='simple' color='gray.500' mb='24px'>
         <Thead>
@@ -105,7 +96,7 @@ export default function RankingsTable(props) {
                   if (cell.column.Header === "PUBLISHER") {
                     data = (
                       <Flex align='center'>
-                        <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        <Text color={textColor} fontSize={{ sm: "10px", lg: "12px" }} fontWeight='700'>
                           {cell.value}
                         </Text>
                       </Flex>
@@ -113,26 +104,26 @@ export default function RankingsTable(props) {
                   } else if (cell.column.Header === "FROM") {
                     data = (
                       <Flex align='center'>
-                        <Text
-                          me='10px'
-                          color={textColor}
-                          fontSize='sm'
-                          fontWeight='700'>
-                          {cell.value}%
+                        <Text color={textColor} fontSize={{ sm: "10px", lg: "12px" }} fontWeight='700'>
+                          {cell.value}
                         </Text>
                       </Flex>
                     );
                   } else if (cell.column.Header === "RECIPIENT") {
                     data = (
-                      <Text color={textColor} fontSize='sm' fontWeight='700'>
-                        {cell.value}
-                      </Text>
+                      <Flex align='center'>
+                        <Text color={textColor} fontSize={{ sm: "10px", lg: "12px" }} fontWeight='700'>
+                          {cell.value}
+                        </Text>
+                      </Flex>
                     );
                   } else if (cell.column.Header === "DATA") {
                     data = (
-                      <Text color={textColor} fontSize='sm' fontWeight='700'>
-                        {cell.value}
-                      </Text>
+                      <Flex align='center'>
+                        <Text color={textColor} fontSize={{ sm: "10px", lg: "12px" }} fontWeight='700'>
+                          {cell.value}
+                        </Text>
+                      </Flex>
                     );
                   }
                   return (
