@@ -34,6 +34,7 @@ export default function Dashboard(props) {
         }
       } else {
         if (
+          
           window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
         ) {
           return routes[i].name;

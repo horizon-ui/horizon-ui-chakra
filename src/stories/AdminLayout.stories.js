@@ -1,5 +1,5 @@
 import { userEvent, within } from '@storybook/testing-library';
-import { App } from './App';
+import { App } from './AdminLayout';
 
 export default {
   title: 'Example/App',
@@ -13,7 +13,7 @@ export const Dashboard = {
     const canvas = within(canvasElement);
     const marketplaceBtn = await canvas.getByText('Main Dashboard');
     await userEvent.click(marketplaceBtn);
-  },
+  }
 };
 
 export const MarketPlace = {
@@ -40,10 +40,11 @@ export const Profile = {
   },
 };
 
-export const RTLAdmin = {
+export const RTLLayout = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const marketplaceBtn = await canvas.getByText('RTL Admin');
     await userEvent.click(marketplaceBtn);
   },
 };
+
