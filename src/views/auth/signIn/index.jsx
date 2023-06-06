@@ -11,7 +11,7 @@
 =========================================================
 
 * Product Page: https://www.horizon-ui.com/
-* Copyright 2022 Horizon UI (https://www.horizon-ui.com/)
+* Copyright 2023 Horizon UI (https://www.horizon-ui.com/)
 
 * Designed and Coded by Simmmple
 

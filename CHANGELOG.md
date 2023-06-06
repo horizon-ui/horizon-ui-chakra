@@ -1,3 +1,9 @@
+## [1.3.0] 2023-05-06
+
+🐛 Bugs solved:
+
+- Sidebar content design bug solved
+
 
 ## [1.2.1] 2022-11-01
 

@@ -14,8 +14,8 @@ export default function FixedPlugin(props) {
       {...rest}
       h='60px'
       w='60px'
-      bg={bgButton}
       zIndex='99'
+      bg={bgButton}
       position='fixed'
       variant='no-effects'
       left={document.documentElement.dir === "rtl" ? "35px" : ""}
