@@ -7,7 +7,6 @@ import Sidebar from 'components/sidebar/Sidebar.js';
 import { SidebarContext } from 'contexts/SidebarContext';
 import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Announcement from 'assets/img/AnnouncementWinter.png';
 import routes from 'routes.js';
 
 // Custom Chakra theme
@@ -103,38 +102,7 @@ export default function Dashboard(props) {
 	document.documentElement.dir = 'ltr';
 	return (
 		<Box>
-			<Box
-				display={{ sm: 'none', lg: 'flex' }}
-				zIndex='1000'
-				bgImage={`url(${Announcement})`}
-				position='fixed'
-				h='50px'
-				width='100%'
-				alignItems='center'
-				justifyContent='center'>
-				<Text size='md' fontWeight='700' color='white'>
-					{/* This is a live preview of the PRO Version - Get access to all those
-          features with Horizon PRO! */}
-					{/* Cyber Monday 50% Discount to Horizon PRO | Limited offer - Lifetime
-          access */}
-					Winter Special 35% Discount to Horizon PRO | Limited offer - Lifetime access
-				</Text>
-				<Button
-					ms='10px'
-					h='30px'
-					isExtert
-					w='110px'
-					href
-					bg='whiteAlpha.300'
-					_hover={{ bg: 'whiteAlpha.400' }}
-					_active={{ bg: 'whiteAlpha.400' }}
-					color='white'>
-					<Link isExternal='true' href='https://horizon-ui.com/pro?ref=bf-live-preview-pro-announcement'>
-						Grab Offer
-					</Link>
-				</Button>
-			</Box>
-			<Box pt={{ sm: '0px', lg: '50px' }}>
+			<Box>
 				<SidebarContext.Provider
 					value={{
 						toggleSidebar,
