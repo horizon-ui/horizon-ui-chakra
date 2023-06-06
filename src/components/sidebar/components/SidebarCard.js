@@ -20,7 +20,6 @@ export default function SidebarDocs() {
       align='center'
       bg={bgColor}
       borderRadius='30px'
-      me='20px'
       position='relative'>
       <Flex
         border='5px solid'
