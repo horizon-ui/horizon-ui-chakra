@@ -41,7 +41,7 @@ export default function WeeklyRevenue(props) {
           fontSize='xl'
           fontWeight='700'
           lineHeight='100%'>
-          Weekly Revenue
+          Ingresos semanales
         </Text>
         <Button
           align='center'
