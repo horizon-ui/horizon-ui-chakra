@@ -2,6 +2,8 @@ name: Pruebas generadas por actions
 
 on:
   pull_request:
+    types:
+      - opened
     branches:
       - main
 
