@@ -17,7 +17,7 @@ import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
 import RTL from "views/admin/rtl";
 import AccountManage from "views/admin/accounts";
-
+import MofifyAccountPage from "views/admin/accounts/ModifyAccountPage";
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
 
@@ -28,6 +28,7 @@ const routes = [
     path: "/default",
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
     component: MainDashboard,
+    display: "true",
   },
   {
     name: "Accounts",
@@ -37,6 +38,14 @@ const routes = [
       <Icon as={MdManageAccounts} width="20px" height="20px" color="inherit" />
     ),
     component: AccountManage,
+    display: "true",
+  },
+  {
+    name: "account edit",
+    layout: "/admin",
+    path: "/account/edit",
+    display: "true",
+    component: MofifyAccountPage,
   },
   {
     name: "NFT Marketplace",
@@ -52,6 +61,7 @@ const routes = [
     ),
     component: NFTMarketplace,
     secondary: true,
+    display: "true",
   },
   {
     name: "Data Tables",
@@ -59,6 +69,7 @@ const routes = [
     icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
     path: "/data-tables",
     component: DataTables,
+    display: "true",
   },
   {
     name: "Profile",
@@ -66,6 +77,7 @@ const routes = [
     path: "/profile",
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
     component: Profile,
+    display: "true",
   },
   {
     name: "Sign In",
@@ -73,6 +85,7 @@ const routes = [
     path: "/sign-in",
     icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
     component: SignInCentered,
+    display: "true",
   },
   {
     name: "RTL Admin",
@@ -80,6 +93,7 @@ const routes = [
     path: "/rtl-default",
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
     component: RTL,
+    display: "true",
   },
 ];
 
