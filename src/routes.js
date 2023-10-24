@@ -8,6 +8,8 @@ import {
   MdLock,
   MdOutlineShoppingCart,
   MdManageAccounts,
+  MdBookOnline,
+  MdBook,
 } from "react-icons/md";
 
 // Admin Imports
@@ -17,7 +19,9 @@ import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
 import RTL from "views/admin/rtl";
 import AccountManage from "views/admin/accounts";
+import BookManage from "views/admin/books";
 import MofifyAccountPage from "views/admin/accounts/ModifyAccountPage";
+import ModifyBookPage from "views/admin/books/ModifyBookPage";
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
 
@@ -46,6 +50,21 @@ const routes = [
     path: "/account/edit",
     display: "true",
     component: MofifyAccountPage,
+  },
+  {
+    name: "Books",
+    layout: "/admin",
+    path: "/books",
+    icon: <Icon as={MdBook} width="20px" height="20px" color="inherit" />,
+    component: BookManage,
+    display: "true",
+  },
+  {
+    name: "book edit",
+    layout: "/admin",
+    path: "/book/edit",
+    display: "true",
+    component: ModifyBookPage,
   },
   {
     name: "NFT Marketplace",
