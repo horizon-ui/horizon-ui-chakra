@@ -10,6 +10,8 @@ import {
   MdManageAccounts,
   MdBookOnline,
   MdBook,
+  MdTag,
+  MdLogout,
 } from "react-icons/md";
 
 // Admin Imports
@@ -20,20 +22,22 @@ import DataTables from "views/admin/dataTables";
 import RTL from "views/admin/rtl";
 import AccountManage from "views/admin/accounts";
 import BookManage from "views/admin/books";
+import TagManage from "views/admin/tags";
 import MofifyAccountPage from "views/admin/accounts/ModifyAccountPage";
 import ModifyBookPage from "views/admin/books/ModifyBookPage";
+import ModifyTagPage from "views/admin/tags/ModifyTagPage";
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
 
 const routes = [
-  {
-    name: "Main Dashboard",
-    layout: "/admin",
-    path: "/default",
-    icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
-    component: MainDashboard,
-    display: "true",
-  },
+  // {
+  //   name: "Main Dashboard",
+  //   layout: "/admin",
+  //   path: "/default",
+  //   icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
+  //   component: MainDashboard,
+  //   display: "true",
+  // },
   {
     name: "Accounts",
     layout: "/admin",
@@ -67,53 +71,76 @@ const routes = [
     component: ModifyBookPage,
   },
   {
-    name: "NFT Marketplace",
+    name: "Tags",
     layout: "/admin",
-    path: "/nft-marketplace",
-    icon: (
-      <Icon
-        as={MdOutlineShoppingCart}
-        width="20px"
-        height="20px"
-        color="inherit"
-      />
-    ),
-    component: NFTMarketplace,
-    secondary: true,
+    path: "/tags",
+    icon: <Icon as={MdTag} width="20px" height="20px" color="inherit" />,
+    component: TagManage,
     display: "true",
   },
   {
-    name: "Data Tables",
+    name: "tag edit",
     layout: "/admin",
-    icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
-    path: "/data-tables",
-    component: DataTables,
+    path: "/tag/edit",
     display: "true",
+    component: ModifyTagPage,
   },
   {
-    name: "Profile",
-    layout: "/admin",
-    path: "/profile",
-    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
-    component: Profile,
-    display: "true",
-  },
-  {
-    name: "Sign In",
+    name: "Log out",
     layout: "/auth",
     path: "/sign-in",
-    icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={MdLogout} width="20px" height="20px" color="inherit" />,
     component: SignInCentered,
     display: "true",
   },
-  {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "/rtl-default",
-    icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
-    component: RTL,
-    display: "true",
-  },
+  // {
+  //   name: "NFT Marketplace",
+  //   layout: "/admin",
+  //   path: "/nft-marketplace",
+  //   icon: (
+  //     <Icon
+  //       as={MdOutlineShoppingCart}
+  //       width="20px"
+  //       height="20px"
+  //       color="inherit"
+  //     />
+  //   ),
+  //   component: NFTMarketplace,
+  //   secondary: true,
+  //   display: "true",
+  // },
+  // {
+  //   name: "Data Tables",
+  //   layout: "/admin",
+  //   icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
+  //   path: "/data-tables",
+  //   component: DataTables,
+  //   display: "true",
+  // },
+  // {
+  //   name: "Profile",
+  //   layout: "/admin",
+  //   path: "/profile",
+  //   icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  //   component: Profile,
+  //   display: "true",
+  // },
+  // {
+  //   name: "Sign In",
+  //   layout: "/auth",
+  //   path: "/sign-in",
+  //   icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
+  //   component: SignInCentered,
+  //   display: "true",
+  // },
+  // {
+  //   name: "RTL Admin",
+  //   layout: "/rtl",
+  //   path: "/rtl-default",
+  //   icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
+  //   component: RTL,
+  //   display: "true",
+  // },
 ];
 
 export default routes;

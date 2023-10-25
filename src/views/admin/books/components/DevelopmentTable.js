@@ -148,7 +148,7 @@ export default function DevelopmentTable(props) {
             <Td>cdsfd</Td>
             <Td>cdsfd</Td>
             <Td>
-              <Link href="/book/edit">
+              <Link href="/#/admin/book/edit">
                 <Icon
                   as={MdEdit}
                   width="20px"

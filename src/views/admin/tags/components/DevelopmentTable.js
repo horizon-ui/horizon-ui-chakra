@@ -86,7 +86,7 @@ export default function DevelopmentTable(props) {
           fontWeight="700"
           lineHeight="100%"
         >
-          Account Manage
+          Tag Manage
         </Text>
         <Button>
           <Icon
@@ -96,7 +96,7 @@ export default function DevelopmentTable(props) {
             color="inherit"
             cursor="pointer"
           />
-          Add new Account
+          Add new tag
         </Button>
       </Flex>
       <Table {...getTableProps()} variant="simple" color="gray.500" mb="24px">
@@ -139,94 +139,37 @@ export default function DevelopmentTable(props) {
             </Tr>
           ))}
         </Thead>
-        <Tbody {...getTableBodyProps()}>
-          {page.map((row, index) => {
-            prepareRow(row);
-            return (
-              <Tr {...row.getRowProps()} key={index}>
-                {row.cells.map((cell, index) => {
-                  let data = "";
-                  if (cell.column.Header === "Email") {
-                    data = (
-                      <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
-                      </Text>
-                    );
-                  } else if (cell.column.Header === "Display name") {
-                    data = (
-                      <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
-                      </Text>
-                    );
-                  } else if (cell.column.Header === "Phone number") {
-                    data = (
-                      <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
-                      </Text>
-                    );
-                  } else if (cell.column.Header === "Avatar") {
-                    data = (
-                      <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
-                      </Text>
-                    );
-                  } else if (cell.column.Header === "Role") {
-                    data = (
-                      <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
-                      </Text>
-                    );
-                  } else if (cell.column.Header === "Is member") {
-                    data = (
-                      <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
-                      </Text>
-                    );
-                  } else if (cell.column.Header === "Is blocked") {
-                    data = (
-                      <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
-                      </Text>
-                    );
-                  }
-
-                  return (
-                    <>
-                      <Td
-                        {...cell.getCellProps()}
-                        key={index}
-                        fontSize={{ sm: "14px" }}
-                        minW={{ sm: "150px", md: "200px", lg: "auto" }}
-                        borderColor="transparent"
-                      >
-                        {data}
-                      </Td>
-                    </>
-                  );
-                })}
-                <Td>
-                  <Link href="/#/admin/account/edit">
-                    <Icon
-                      as={MdEdit}
-                      width="20px"
-                      height="20px"
-                      color="inherit"
-                      cursor="pointer"
-                    />
-                  </Link>
-                </Td>
-                <Td>
-                  <Icon
-                    as={MdRemoveCircle}
-                    width="20px"
-                    height="20px"
-                    color="inherit"
-                    cursor="pointer"
-                  />
-                </Td>
-              </Tr>
-            );
-          })}
+        <Tbody>
+          <Tr>
+            <Td>cdsfd</Td>
+            <Td>cdsfd</Td>
+            <Td>cdsfd</Td>
+            <Td>cdsfd</Td>
+            <Td>cdsfd</Td>
+            <Td>cdsfd</Td>
+            <Td>
+              <Link href="/book/edit">
+                <Icon
+                  as={MdEdit}
+                  width="20px"
+                  height="20px"
+                  color="inherit"
+                  cursor="pointer"
+                />
+              </Link>
+            </Td>
+            <Td>
+              <Link href="/#/admin/tag/edit">
+                <Icon
+                  as={MdRemoveCircle}
+                  width="20px"
+                  height="20px"
+                  color="inherit"
+                  cursor="pointer"
+                />
+              </Link>
+            </Td>
+          </Tr>
         </Tbody>
       </Table>
     </Card>
