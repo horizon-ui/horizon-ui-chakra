@@ -4,19 +4,13 @@ import {
   Text,
   FormLabel,
   Input,
-  Avatar,
-  Select,
   Button,
-  Image,
-  Textarea,
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React from "react";
 
 const ModifyTag = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
-  const iconColor = useColorModeValue("secondaryGray.500", "white");
-  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
   return (
     <div>
       <Card direction="column" w="100%" px="0px" pb="60px">

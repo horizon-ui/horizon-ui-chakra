@@ -13,7 +13,7 @@ import {
 import Card from "components/card/Card";
 import React from "react";
 
-const ModifyBook = () => {
+const NewBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const iconColor = useColorModeValue("secondaryGray.500", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
@@ -27,7 +27,7 @@ const ModifyBook = () => {
             fontWeight="700"
             lineHeight="100%"
           >
-            Book Information
+            New Book Information
           </Text>
         </Flex>
         <Flex
@@ -221,4 +221,4 @@ const ModifyBook = () => {
   );
 };
 
-export default ModifyBook;
+export default NewBook;

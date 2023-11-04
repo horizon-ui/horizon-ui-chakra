@@ -88,16 +88,18 @@ export default function DevelopmentTable(props) {
         >
           Tag Manage
         </Text>
-        <Button>
-          <Icon
-            as={MdAdd}
-            width="20px"
-            height="20px"
-            color="inherit"
-            cursor="pointer"
-          />
-          Add new tag
-        </Button>
+        <Link href="/#/admin/tag/new">
+          <Button>
+            <Icon
+              as={MdAdd}
+              width="20px"
+              height="20px"
+              color="inherit"
+              cursor="pointer"
+            />
+            Add new tag
+          </Button>
+        </Link>
       </Flex>
       <Table {...getTableProps()} variant="simple" color="gray.500" mb="24px">
         <Thead>

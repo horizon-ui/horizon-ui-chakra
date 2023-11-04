@@ -1,25 +1,7 @@
 import React from "react";
-
 import { Icon } from "@chakra-ui/react";
-import {
-  MdBarChart,
-  MdPerson,
-  MdHome,
-  MdLock,
-  MdOutlineShoppingCart,
-  MdManageAccounts,
-  MdBookOnline,
-  MdBook,
-  MdTag,
-  MdLogout,
-} from "react-icons/md";
+import { MdManageAccounts, MdBook, MdTag, MdLogout } from "react-icons/md";
 
-// Admin Imports
-import MainDashboard from "views/admin/default";
-import NFTMarketplace from "views/admin/marketplace";
-import Profile from "views/admin/profile";
-import DataTables from "views/admin/dataTables";
-import RTL from "views/admin/rtl";
 import AccountManage from "views/admin/accounts";
 import BookManage from "views/admin/books";
 import TagManage from "views/admin/tags";
@@ -28,16 +10,10 @@ import ModifyBookPage from "views/admin/books/ModifyBookPage";
 import ModifyTagPage from "views/admin/tags/ModifyTagPage";
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
+import NewAccountPage from "views/admin/accounts/NewAccountPage";
+import NewBookPage from "views/admin/books/NewBookPage";
 
 const routes = [
-  // {
-  //   name: "Main Dashboard",
-  //   layout: "/admin",
-  //   path: "/default",
-  //   icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
-  //   component: MainDashboard,
-  //   display: "true",
-  // },
   {
     name: "Accounts",
     layout: "/admin",
@@ -52,8 +28,15 @@ const routes = [
     name: "account edit",
     layout: "/admin",
     path: "/account/edit",
-    display: "true",
+    display: "false",
     component: MofifyAccountPage,
+  },
+  {
+    name: "account new",
+    layout: "/admin",
+    path: "/account/new",
+    display: "false",
+    component: NewAccountPage,
   },
   {
     name: "Books",
@@ -67,8 +50,15 @@ const routes = [
     name: "book edit",
     layout: "/admin",
     path: "/book/edit",
-    display: "true",
+    display: "false",
     component: ModifyBookPage,
+  },
+  {
+    name: "book new",
+    layout: "/admin",
+    path: "/book/new",
+    display: "false",
+    component: NewBookPage,
   },
   {
     name: "Tags",
@@ -82,7 +72,14 @@ const routes = [
     name: "tag edit",
     layout: "/admin",
     path: "/tag/edit",
-    display: "true",
+    display: "false",
+    component: ModifyTagPage,
+  },
+  {
+    name: "tag new",
+    layout: "/admin",
+    path: "/tag/new",
+    display: "false",
     component: ModifyTagPage,
   },
   {

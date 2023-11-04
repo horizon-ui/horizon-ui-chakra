@@ -1,14 +1,12 @@
 
-import { Box } from "@chakra-ui/react";
-
+import { Box, } from "@chakra-ui/react";
 import React from "react";
-
-import ModifyTag from "./components/ModifyTag";
+import NewTag from "./components/NewTag";
 
 export default function ModifyTagPage() {
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-      <ModifyTag
+      <NewTag
       />
     </Box>
   );

@@ -1,14 +1,13 @@
 
 import { Box } from "@chakra-ui/react";
-import DevelopmentTable from "views/admin/books/components/DevelopmentTable";
-
 import React from "react";
+import NewAccount from "./components/NewAccount";
 
-export default function Settings() {
+export default function NewAccountPage() {
+  // Chakra Color Mode
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-
-      <DevelopmentTable
+      <NewAccount
       />
     </Box>
   );
