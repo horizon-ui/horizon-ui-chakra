@@ -13,3 +13,14 @@ export function* getAllBooksHandler() {
     yield put({ type: types.GET_BOOKS_FAILED, message: e.message });
   }
 }
+export function* getBookByIdHandler({ payload }) {
+  try {
+    const book = yield call(bookRequest.getBookByIdRequest, payload);
+    yield put({
+      type: types.GET_BOOK_SUCCESS,
+      book: book.book,
+    });
+  } catch (e) {
+    yield put({ type: types.GET_BOOK_FAILED, message: e.message });
+  }
+}

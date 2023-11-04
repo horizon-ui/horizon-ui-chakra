@@ -1,5 +1,6 @@
 
 import {
+  Avatar,
   Button,
   Flex,
   Link,
@@ -147,7 +148,12 @@ export default function DevelopmentTable() {
                 accounts.map((acct) => (
                   <Tr>
                     <Td>
-                      <img src={acct.avatar} alt="img" width={60} height={60} />
+                      <Avatar
+                        name={acct.name}
+                        src={acct.avatar}
+                        marginRight="20px"
+                      />
+
                     </Td>
                     <Td>{acct.email}</Td>
                     <Td>{acct.displayName}</Td>
@@ -156,7 +162,7 @@ export default function DevelopmentTable() {
                     <Td>{acct.is_member ? "true" : "false"}</Td>
                     <Td>{acct.is_blocked ? "true" : "false"}</Td>
                     <Td>
-                      <Link href="/#/admin/book/edit">
+                      <Link href={`/#/admin/account/edit/${acct._id}`}>
                         <Icon
                           as={MdEdit}
                           width="20px"

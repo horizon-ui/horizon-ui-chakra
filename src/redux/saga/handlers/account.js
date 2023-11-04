@@ -13,3 +13,14 @@ export function* getAllAccountsHandler() {
     yield put({ type: types.GET_ACCOUNTS_FAILED, message: e.message });
   }
 }
+export function* getAccountByIdHandler({ payload }) {
+  try {
+    const account = yield call(accountRequest.getAccountByIdRequest, payload);
+    yield put({
+      type: types.GET_ACCOUNT_SUCCESS,
+      account: account.account,
+    });
+  } catch (e) {
+    yield put({ type: types.GET_ACCOUNT_FAILED, message: e.message });
+  }
+}

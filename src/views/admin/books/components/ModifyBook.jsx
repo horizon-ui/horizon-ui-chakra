@@ -12,9 +12,27 @@ import {
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React from "react";
+import Loading from "components/loading/Loading";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { getAccountById } from "redux/actions/account";
+import { getBookById } from "redux/actions/book";
 
 const ModifyBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
+
+  const params = useParams()
+  const dispatch = useDispatch();
+  const book = useSelector(state => state.books.book)
+  const isLoading = useSelector(state => state.books.loading)
+  const id = params.id;
+
+  console.log("book:", book)
+
+  useEffect(() => {
+    dispatch(getBookById(id))
+  }, [dispatch])
 
   return (
     <div>
@@ -37,12 +55,12 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <Image
-            src="https://docsachhay.net/images/e-book/tuyen-tap-hat-giong-tam-hon.jpg"
+            src={book.image}
             width="120px"
             height="auto"
           />
           <FormLabel w="auto" marginLeft="30px" fontSize="30px">
-            hat giong tam hon
+            {book.name}
           </FormLabel>
         </Flex>
         <Flex
@@ -53,7 +71,7 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Name</FormLabel>
-          <Input value="hihi" />
+          <Input value={book.name} />
         </Flex>
 
         <Flex
@@ -64,7 +82,7 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Author</FormLabel>
-          <Input value="" />
+          <Input value={book.author} />
         </Flex>
         <Flex
           mx="25px"
@@ -83,8 +101,18 @@ const ModifyBook = () => {
           flexDirection="row"
           alignItems="center"
         >
-          <FormLabel w="150px">Content</FormLabel>
-          <Textarea value="" />
+          <FormLabel w="150px">Intro</FormLabel>
+          <Textarea value={book.intro} height={200} />
+        </Flex>
+        <Flex
+          mx="25px"
+          my="5px"
+          justifyContent="center"
+          flexDirection="row"
+          alignItems="center"
+        >
+          <FormLabel w="150px">pdf</FormLabel>
+          <Input value="" />
         </Flex>
         <Flex
           mx="25px"
@@ -96,16 +124,6 @@ const ModifyBook = () => {
           <FormLabel w="150px">audio</FormLabel>
           <Input value="" />
         </Flex>
-        <Flex
-          mx="25px"
-          my="5px"
-          justifyContent="center"
-          flexDirection="row"
-          alignItems="center"
-        >
-          <FormLabel w="150px">Intro</FormLabel>
-          <Textarea value="" />
-        </Flex>
 
         <Flex
           mx="25px"
@@ -115,7 +133,7 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Total pages</FormLabel>
-          <Input value="" />
+          <Input value={book.totalPages} />
         </Flex>
         <Flex
           mx="25px"
@@ -125,7 +143,7 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Total read</FormLabel>
-          <Input value="" />
+          <Input value={book.totalRead} />
         </Flex>
         <Flex
           mx="25px"
@@ -135,7 +153,7 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Total saved</FormLabel>
-          <Input value="" />
+          <Input value={book.totalSaved} />
         </Flex>
         <Flex
           mx="25px"
@@ -145,7 +163,7 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Total hearted</FormLabel>
-          <Input value="" />
+          <Input value={book.totalHearted} />
         </Flex>
         <Flex
           mx="25px"
@@ -155,7 +173,7 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Rating</FormLabel>
-          <Input value="2" disabled="true" />
+          <Input value={book.rating} />
         </Flex>
         <Flex
           mx="25px"
@@ -165,18 +183,10 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Tags</FormLabel>
-          <Input value="" />
+          <Input value={book.tags} disabled={true} />
+          <Button>Add new tag</Button>
         </Flex>
-        <Flex
-          mx="25px"
-          my="5px"
-          justifyContent="center"
-          flexDirection="row"
-          alignItems="center"
-        >
-          <FormLabel w="150px">Liked</FormLabel>
-          <Input value="" />
-        </Flex>
+
         <Flex
           mx="25px"
           my="5px"
@@ -185,9 +195,9 @@ const ModifyBook = () => {
           alignItems="center"
         >
           <FormLabel w="150px">Access level</FormLabel>
-          <Select placeholder="">
-            <option value="0">0</option>
-            <option value="1">1</option>
+          <Select value={book.accessLevel}>
+            <option value="0">0 (For free user)</option>
+            <option value="1">1 (For member)</option>
           </Select>
         </Flex>
         <Flex
@@ -197,11 +207,6 @@ const ModifyBook = () => {
           flexDirection="row"
           alignItems="center"
         >
-          <FormLabel w="150px">Is active</FormLabel>
-          <Select placeholder="">
-            <option value="0">True</option>
-            <option value="1">False</option>
-          </Select>
         </Flex>
 
         <Button

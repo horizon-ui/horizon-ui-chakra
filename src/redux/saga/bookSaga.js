@@ -5,4 +5,5 @@ import * as type from "../types";
 
 export default function* bookSaga() {
   yield takeEvery(type.GET_BOOKS_REQUESTED, handler.getAllBooksHandler);
+  yield takeEvery(type.GET_BOOK_REQUESTED, handler.getBookByIdHandler);
 }

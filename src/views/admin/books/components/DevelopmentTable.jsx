@@ -144,7 +144,7 @@ export default function DevelopmentTable() {
                     <Td>{book.totalRead}</Td>
                     <Td>{book.rating}</Td>
                     <Td>
-                      <Link href="/#/admin/book/edit">
+                      <Link href={`/#/admin/book/edit/${book._id}`}>
                         <Icon
                           as={MdEdit}
                           width="20px"

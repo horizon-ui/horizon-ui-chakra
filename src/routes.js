@@ -27,7 +27,7 @@ const routes = [
   {
     name: "account edit",
     layout: "/admin",
-    path: "/account/edit",
+    path: "/account/edit/:id",
     display: "false",
     component: MofifyAccountPage,
   },
@@ -49,7 +49,7 @@ const routes = [
   {
     name: "book edit",
     layout: "/admin",
-    path: "/book/edit",
+    path: "/book/edit/:id",
     display: "false",
     component: ModifyBookPage,
   },
@@ -71,7 +71,7 @@ const routes = [
   {
     name: "tag edit",
     layout: "/admin",
-    path: "/tag/edit",
+    path: "/tag/edit/:id",
     display: "false",
     component: ModifyTagPage,
   },
