@@ -1,5 +1,6 @@
 import React from "react";
 
+import  { useState, useEffect } from 'react';
 // chakra imports
 import {
   Box,
@@ -28,6 +29,25 @@ import { IoMenuOutline } from "react-icons/io5";
 function Sidebar(props) {
   const { routes } = props;
 
+	const [ scrolled, setScrolled ] = useState(false);
+
+	const changeNavbar = () => {
+		if (window.scrollY > 1) {
+  console.log(`${90-window.scrollY
+   }px`)
+			setScrolled(true);
+		} else {
+			setScrolled(false);
+		}
+	};
+	useEffect(() => {
+		window.addEventListener('scroll', changeNavbar);
+
+		return () => {
+			window.removeEventListener('scroll', changeNavbar);
+		};
+	});
+
   let variantChange = "0.2s linear";
   let shadow = useColorModeValue(
     "14px 17px 40px 4px rgba(112, 144, 176, 0.08)",
@@ -46,6 +66,7 @@ function Sidebar(props) {
         w='300px'
         h='100vh'
         m={sidebarMargins}
+        mt={scrolled ? `0px` :`90px`}
         minH='100%'
         overflowX='hidden'
         boxShadow={shadow}>

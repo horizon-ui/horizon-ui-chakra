@@ -1,5 +1,6 @@
 // Chakra imports
-import { Portal, Box, useDisclosure, Text, Button, Link } from '@chakra-ui/react';
+import { Portal, Box, useDisclosure,  } from '@chakra-ui/react';
+import Announcement from 'components/announcement';
 import Footer from 'components/footer/FooterAdmin.js';
 // Layout components
 import Navbar from 'components/navbar/NavbarAdmin.js';
@@ -103,6 +104,7 @@ export default function Dashboard(props) {
 	return (
 		<Box>
 			<Box>
+      <Announcement date="24 november 2023" />
 				<SidebarContext.Provider
 					value={{
 						toggleSidebar,
@@ -121,7 +123,9 @@ export default function Dashboard(props) {
 						transition='all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)'
 						transitionDuration='.2s, .2s, .35s'
 						transitionProperty='top, bottom, width'
-						transitionTimingFunction='linear, linear, ease'>
+						transitionTimingFunction='linear, linear, ease'
+						pt="90px">
+							
 						<Portal>
 							<Box>
 								<Navbar
