@@ -59,12 +59,14 @@ function Sidebar(props) {
 
   // SIDEBAR
   return (
-    <Box display={{ sm: "none", xl: "block" }} w="100%" position='fixed' minH='100%'>
+    <Box display={{ sm: "none", xl: "block" }} w="100%" position='fixed' minH='calc(100%-90px)'>
       <Box
         bg={sidebarBg}
         transition={variantChange}
         w='300px'
-        h='100vh'
+        // h='100vh'
+        h={scrolled ? `100vh` :`calc(100vh - 90px)`}
+        
         m={sidebarMargins}
         mt={scrolled ? `0px` :`90px`}
         minH='100%'
