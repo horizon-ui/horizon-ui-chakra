@@ -1,5 +1,7 @@
+import * as type from "../../types";
+
 export const getAccountsRequest = async () => {
-  return fetch(`http://localhost:8080/api/account/get-account`, {
+  return fetch(`${type.BACKEND_URL_DEV}/api/account/get-account`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +13,7 @@ export const getAccountsRequest = async () => {
     });
 };
 export const getAccountByIdRequest = async (id) => {
-  return fetch(`http://localhost:8080/api/account/get-account/${id}`, {
+  return fetch(`${type.BACKEND_URL_DEV}/api/account/get-account/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

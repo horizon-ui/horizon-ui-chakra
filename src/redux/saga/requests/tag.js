@@ -1,5 +1,7 @@
+import * as type from "../../types";
+
 export const getAllTagsRequest = async () => {
-  return fetch(`http://localhost:8080/api/tag/get-tags`, {
+  return fetch(`${type.BACKEND_URL_DEV}/api/tag/get-tags`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +13,7 @@ export const getAllTagsRequest = async () => {
     });
 };
 export const getTagByIdRequest = async (id) => {
-  return fetch(`http://localhost:8080/api/tag/${id}`, {
+  return fetch(`${type.BACKEND_URL_DEV}/api/tag/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

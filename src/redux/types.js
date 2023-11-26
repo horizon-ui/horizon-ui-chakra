@@ -1,3 +1,5 @@
+export const BACKEND_URL_DEV = "http://localhost:8080";
+
 // *Accounts
 export const GET_ACCOUNTS_REQUESTED = "GET_ACCOUNTS_REQUESTED";
 export const GET_ACCOUNTS_SUCCESS = "GET_ACCOUNTS_SUCCESS";
