@@ -24,3 +24,30 @@ export const getAccountByIdRequest = async (id) => {
       throw error;
     });
 };
+export const updateAccountRequest = async (id, request) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/account/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const createAccountRequest = async (request) => {
+  return fetch(`${type.BACKEND_URL_DEV}/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};

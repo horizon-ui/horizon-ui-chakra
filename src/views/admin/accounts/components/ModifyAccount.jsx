@@ -10,30 +10,87 @@ import {
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import Loading from "components/loading/Loading";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getAccountById } from "redux/actions/account";
+import { getAccountByIdRequest } from "redux/saga/requests/account";
+import { Toaster, toast } from "react-hot-toast";
+import { updateAccountRequest } from "redux/saga/requests/account";
+
 
 const ModifyAccount = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
 
   const params = useParams()
   const dispatch = useDispatch();
-  const account = useSelector(state => state.accounts.account)
-  const isLoading = useSelector(state => state.accounts.loading)
+  const [account, setAccount] = useState(null)
   const id = params.id;
 
-  console.log("account:", account)
-  console.log("account:", account)
+  const [avatar, setAvatar] = useState("")
+  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
+  const [displayName, setDisplayName] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [password, setPassword] = useState("")
+  const [retypePassword, setRetypePassword] = useState("")
+  const [role, setRole] = useState(0)
+  const [isBlocked, setIsBlocked] = useState("")
+
+  const handleUpdateAccount = async () => {
+    const request = {
+      account: {
+        avatar, email, username, displayName, phoneNumber, role, isBlocked
+      }
+    }
+    console.log("request:", request)
+    toast.promise(
+      new Promise((resolve, reject) => {
+        updateAccountRequest(id, request)
+          .then((resp) => {
+            if (resp.updatedAccount) {
+              resolve("Cập nhật thành công!")
+              console.log("resp", resp)
+            }
+            else {
+              reject("Cập nhật thất bại!");
+            }
+          })
+          .catch(err => {
+            console.log("err", err)
+          })
+
+      }),
+      {
+        loading: "Processing...",
+        success: (message) => message,
+        error: (error) => error.message,
+      }
+    );
+  }
+
   useEffect(() => {
-    dispatch(getAccountById(id))
-  }, [dispatch])
+    getAccountByIdRequest(id).then(res => {
+      setAccount(res.account)
+    })
+  }, [])
+  useEffect(() => {
+    if (account) {
+      setAvatar(account.avatar)
+      setEmail(account.email)
+      setDisplayName(account.displayName)
+      setUsername(account.username)
+      setPhoneNumber(account.phoneNumber)
+      setRole(account.role)
+      setIsBlocked(account.isBlocked)
+    }
+  }, [account])
 
   return (
     <div>
-      <Card direction="column" w="100%" px="0px" pb="60px">
-        {isLoading ? <Loading /> :
+      {account ?
+        <Card direction="column" w="100%" px="0px" pb="60px">
+
           <>
             <Flex px="25px" justify="space-between" mb="20px" align="center">
               <Text
@@ -54,20 +111,10 @@ const ModifyAccount = () => {
             >
               <Avatar
                 name="Dan Abrahmov"
-                src={account.avatar}
+                src={avatar}
                 marginRight="20px"
               />
-              <FormLabel w="auto">{account.displayName}</FormLabel>
-            </Flex>
-            <Flex
-              mx="25px"
-              my="5px"
-              justifyContent="center"
-              flexDirection="row"
-              alignItems="center"
-            >
-              <FormLabel w="150px">Email</FormLabel>
-              <Input value={account.email} disabled="true" />
+              <FormLabel w="auto">{displayName}</FormLabel>
             </Flex>
 
             <Flex
@@ -77,8 +124,38 @@ const ModifyAccount = () => {
               flexDirection="row"
               alignItems="center"
             >
+              <FormLabel w="150px">Email</FormLabel>
+              <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+            </Flex>
+            <Flex
+              mx="25px"
+              my="5px"
+              justifyContent="center"
+              flexDirection="row"
+              alignItems="center"
+            >
+              <FormLabel w="150px">Username</FormLabel>
+              <Input value={username} onChange={(e) => setUsername(e.target.value)} />
+            </Flex>
+            <Flex
+              mx="25px"
+              my="5px"
+              justifyContent="center"
+              flexDirection="row"
+              alignItems="center"
+            >
+              <FormLabel w="150px">Display name</FormLabel>
+              <Input value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
+            </Flex>
+            <Flex
+              mx="25px"
+              my="5px"
+              justifyContent="center"
+              flexDirection="row"
+              alignItems="center"
+            >
               <FormLabel w="150px">Phone Number</FormLabel>
-              <Input value={account.phoneNumber} />
+              <Input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
             </Flex>
             <Flex
               mx="25px"
@@ -88,12 +165,12 @@ const ModifyAccount = () => {
               alignItems="center"
             >
               <FormLabel w="150px">Role</FormLabel>
-              <Select value={account.role == 0 ? "User" : "Admin"}>
+              <Select value={role} onChange={e => setRole(e.target.value)}>
                 <option value="0">User</option>
                 <option value="1">Admin</option>
               </Select>
             </Flex>
-            <Flex
+            {/* <Flex
               mx="25px"
               my="5px"
               justifyContent="center"
@@ -101,11 +178,11 @@ const ModifyAccount = () => {
               alignItems="center"
             >
               <FormLabel w="150px">Is member</FormLabel>
-              <Select value={account.is_member}>
+              <Select value={is_member}>
                 <option value="0">True</option>
                 <option value="1">False</option>
               </Select>
-            </Flex>
+            </Flex> */}
             <Flex
               mx="25px"
               my="5px"
@@ -114,9 +191,9 @@ const ModifyAccount = () => {
               alignItems="center"
             >
               <FormLabel w="150px">Is blocked</FormLabel>
-              <Select value={account.is_blocked}>
-                <option value="0">True</option>
-                <option value="1">False</option>
+              <Select value={isBlocked} onChange={e => setIsBlocked(e.target.value)}>
+                <option value={true}>True</option>
+                <option value={false}>False</option>
               </Select>
             </Flex>
             <Button
@@ -127,11 +204,13 @@ const ModifyAccount = () => {
               marginRight="25px"
               marginBottom="25px"
               bottom="-10px"
+              onClick={handleUpdateAccount}
             >
               Update
             </Button>
-          </>}
-      </Card>
+          </>
+        </Card> : <Loading />}
+      <Toaster />
     </div>
   );
 };

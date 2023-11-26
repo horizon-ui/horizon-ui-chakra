@@ -123,14 +123,7 @@ export default function DevelopmentTable() {
                     color="gray.400"
                   >role</Flex>
                 </Th>
-                <Th pe="10px" borderColor={borderColor}>
-                  <Flex
-                    justify="space-between"
-                    align="center"
-                    fontSize={{ sm: "10px", lg: "12px" }}
-                    color="gray.400"
-                  >is member</Flex>
-                </Th>
+
                 <Th pe="10px" borderColor={borderColor}>
                   <Flex
                     justify="space-between"
@@ -159,7 +152,6 @@ export default function DevelopmentTable() {
                     <Td>{acct.displayName}</Td>
                     <Td>{acct.phoneNumber}</Td>
                     <Td>{acct.role}</Td>
-                    <Td>{acct.is_member ? "true" : "false"}</Td>
                     <Td>{acct.is_blocked ? "true" : "false"}</Td>
                     <Td>
                       <Link href={`/#/admin/account/edit/${acct._id}`}>
