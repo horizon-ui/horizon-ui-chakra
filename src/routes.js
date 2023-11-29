@@ -5,13 +5,18 @@ import { MdManageAccounts, MdBook, MdTag, MdLogout } from "react-icons/md";
 import AccountManage from "views/admin/accounts";
 import BookManage from "views/admin/books";
 import TagManage from "views/admin/tags";
+import BookCategoryManage from "views/admin/bookCategories";
+
 import MofifyAccountPage from "views/admin/accounts/ModifyAccountPage";
 import ModifyBookPage from "views/admin/books/ModifyBookPage";
 import ModifyTagPage from "views/admin/tags/ModifyTagPage";
+import ModifyBookCategoryPage from "views/admin/bookCategories/ModifyBookCategoryPage";
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
 import NewAccountPage from "views/admin/accounts/NewAccountPage";
 import NewBookPage from "views/admin/books/NewBookPage";
+import NewTagPage from "views/admin/tags/NewTagPage";
+import NewBookCategoryPage from "views/admin/bookCategories/NewBookCategoryPage"
 
 const routes = [
   {
@@ -61,6 +66,28 @@ const routes = [
     component: NewBookPage,
   },
   {
+    name: "Categories",
+    layout: "/admin",
+    path: "/bookCategories",
+    icon: <Icon as={MdBook} width="20px" height="20px" color="inherit" />,
+    component: BookCategoryManage,
+    display: "true",
+  },
+  {
+    name: "category edit",
+    layout: "/admin",
+    path: "/bookCategory/edit/:id",
+    display: "false",
+    component: ModifyBookCategoryPage,
+  },
+  {
+    name: "category new",
+    layout: "/admin",
+    path: "/bookCategory/new",
+    display: "false",
+    component: NewBookCategoryPage,
+  },
+  {
     name: "Tags",
     layout: "/admin",
     path: "/tags",
@@ -80,7 +107,7 @@ const routes = [
     layout: "/admin",
     path: "/tag/new",
     display: "false",
-    component: ModifyTagPage,
+    component: NewTagPage,
   },
   {
     name: "Log out",
