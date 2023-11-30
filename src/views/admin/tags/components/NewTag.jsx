@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { addNewTagRequest } from "redux/saga/requests/tag";
 import { Toaster, toast } from "react-hot-toast";
 
@@ -41,10 +42,10 @@ const NewTag = () => {
         new Promise((resolve, reject) => {
           addNewTagRequest(request)
             .then((resp) => {
-              console.log(resp.message );
+              console.log(resp.message);
               if (resp.message == "Tag added successfully!") {
                 resolve("Thêm tag thành công!");
-              } else if(resp.message == "Tag already exists"){
+              } else if (resp.message == "Tag already exists") {
                 reject("Tag đã tồn tại!");
               }
             })
