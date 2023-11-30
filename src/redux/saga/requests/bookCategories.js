@@ -38,3 +38,28 @@ export const addNewBookCategoryRequest = async (request) => {
       throw error;
     });
 };
+export const updateBookCategoryRequest = async (id, request) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/bookCategory/update/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
+export const deleteBookCategoryByIdRequest = async (id) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/bookCategory/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};

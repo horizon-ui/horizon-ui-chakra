@@ -54,8 +54,6 @@ const ModifyTag = () => {
                 resolve("Cập nhật thành công!");
               } else if (resp.message == "Tag not found") {
                 reject("Không tìm thấy tag!");
-              } else if (resp.message === "Name and description are required") {
-                reject("Name and description are required");
               }
             })
             .catch((err) => {
