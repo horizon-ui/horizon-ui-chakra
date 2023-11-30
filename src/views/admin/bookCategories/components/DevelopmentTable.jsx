@@ -83,7 +83,7 @@ export default function DevelopmentTable() {
                     align="center"
                     fontSize={{ sm: "10px", lg: "12px" }}
                     color="gray.400"
-                  >Name</Flex>
+                  >Tag</Flex>
                 </Th>
                 <Th pe="10px" borderColor={borderColor}>
                   <Flex
@@ -91,7 +91,7 @@ export default function DevelopmentTable() {
                     align="center"
                     fontSize={{ sm: "10px", lg: "12px" }}
                     color="gray.400"
-                  >Description</Flex>
+                  >Name</Flex>
                 </Th>
 
               </Tr>
@@ -102,8 +102,8 @@ export default function DevelopmentTable() {
               {
                 bookCategories.map((bookCategory) => (
                   <Tr>
+                    <Td>{bookCategory.tag}</Td>
                     <Td>{bookCategory.name}</Td>
-                    <Td>{bookCategory.description}</Td>
                     <Td>
                       <Link href={`/#/admin/bookCategory/edit/${bookCategory._id}`}>
                         <Icon

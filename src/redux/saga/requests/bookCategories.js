@@ -24,3 +24,17 @@ export const getBookCategoryByIdRequest = async (id) => {
       throw error;
     });
 };
+
+export const addNewBookCategoryRequest = async (request) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/bookCategory/add-category`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "@chakra-ui/react";
-import { MdManageAccounts, MdBook, MdTag, MdLogout } from "react-icons/md";
+import { MdManageAccounts, MdBook, MdTag, MdLogout, MdCategory } from "react-icons/md";
 
 import AccountManage from "views/admin/accounts";
 import BookManage from "views/admin/books";
@@ -69,7 +69,7 @@ const routes = [
     name: "Categories",
     layout: "/admin",
     path: "/bookCategories",
-    icon: <Icon as={MdBook} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={MdCategory} width="20px" height="20px" color="inherit" />,
     component: BookCategoryManage,
     display: "true",
   },
