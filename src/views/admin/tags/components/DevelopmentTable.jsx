@@ -60,7 +60,7 @@ export default function DevelopmentTable() {
             >
               Tag Manage
             </Text>
-            <Link href="/#/admin/book/new">
+            <Link href="/#/admin/tag/new">
               <Button>
                 <Icon
                   as={MdAdd}

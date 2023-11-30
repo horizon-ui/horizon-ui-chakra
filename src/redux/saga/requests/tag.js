@@ -24,3 +24,17 @@ export const getTagByIdRequest = async (id) => {
       throw error;
     });
 };
+
+export const addNewTagRequest = async (request) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/tag/add-tag`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
