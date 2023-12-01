@@ -14,7 +14,6 @@ export function* getAllTagsHandler() {
   }
 }
 export function* getTagByIdHandler({ payload }) {
-  console.log("handler");
   try {
     const tag = yield call(tagRequest.getTagByIdRequest, payload);
     yield put({

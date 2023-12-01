@@ -1,4 +1,5 @@
-export const BACKEND_URL_DEV = process.env.BACKEND_URL_DEV;
+export const BACKEND_URL_DEV = process.env.REACT_APP_BACKEND_URL;
+export const PORT = process.env.PORT;
 
 // *Accounts
 export const GET_ACCOUNTS_REQUESTED = "GET_ACCOUNTS_REQUESTED";

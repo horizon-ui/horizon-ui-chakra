@@ -12,6 +12,7 @@ import ModifyTagPage from "views/admin/tags/ModifyTagPage";
 import SignInCentered from "views/auth/signIn";
 import NewAccountPage from "views/admin/accounts/NewAccountPage";
 import NewBookPage from "views/admin/books/NewBookPage";
+import NewTagPage from "views/admin/tags/NewTagPage";
 
 const routes = [
   {
@@ -80,7 +81,7 @@ const routes = [
     layout: "/admin",
     path: "/tag/new",
     display: "false",
-    component: ModifyTagPage,
+    component: NewTagPage,
   },
   {
     name: "Log out",
