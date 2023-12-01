@@ -1,4 +1,4 @@
-export const BACKEND_URL_DEV = "http://localhost:8080";
+export const BACKEND_URL_DEV = process.env.BACKEND_URL_DEV;
 
 // *Accounts
 export const GET_ACCOUNTS_REQUESTED = "GET_ACCOUNTS_REQUESTED";
