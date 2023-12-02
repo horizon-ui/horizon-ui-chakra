@@ -40,7 +40,7 @@ const ModifyAccount = () => {
   const handleUpdateAccount = async () => {
     const request = {
       account: {
-        avatar, email, username, displayName, phoneNumber, role, isBlocked
+        avatar, email, username, displayName, phoneNumber, role, is_blocked: isBlocked
       }
     }
     console.log("request:", request)
@@ -82,7 +82,7 @@ const ModifyAccount = () => {
       setUsername(account.username)
       setPhoneNumber(account.phoneNumber)
       setRole(account.role)
-      setIsBlocked(account.isBlocked)
+      setIsBlocked(account.is_blocked)
     }
   }, [account])
 
