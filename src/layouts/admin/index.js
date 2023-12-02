@@ -12,8 +12,9 @@ import Footer from "components/footer/FooterAdmin.js";
 import Navbar from "components/navbar/NavbarAdmin.js";
 import Sidebar from "components/sidebar/Sidebar.js";
 import { SidebarContext } from "contexts/SidebarContext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import routes from "routes.js";
 
 // Custom Chakra theme
@@ -22,6 +23,11 @@ export default function Dashboard(props) {
   // states and functions
   const [fixed] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [authenticated, setAuthenticated] = useState(
+    localStorage.getItem("authenticated")
+  );
+  const history = useHistory();
+
   // functions for changing the states from components
   const getRoute = () => {
     return window.location.pathname !== "/admin/full-screen-maps";
@@ -116,6 +122,11 @@ export default function Dashboard(props) {
       }
     });
   };
+  useEffect(() => {
+    if (authenticated) {
+      history.replace("/");
+    }
+  }, []);
   document.documentElement.dir = "ltr";
   const { onOpen } = useDisclosure();
   document.documentElement.dir = "ltr";

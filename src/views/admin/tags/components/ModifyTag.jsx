@@ -4,93 +4,76 @@ import {
   Text,
   FormLabel,
   Input,
-  Textarea,
   Button,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import Loading from "components/loading/Loading";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { getTagByIdRequest } from "redux/saga/requests/tag";
-import { updateTagRequest } from "redux/saga/requests/tag";
-import { Toaster, toast } from "react-hot-toast";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { getTagById } from "redux/actions/tag";
+import { Toaster, toast } from "react-hot-toast";
+import { updateTagByIdRequest } from "redux/saga/requests/tag";
+
 
 const ModifyTag = () => {
+
   const textColor = useColorModeValue("secondaryGray.900", "white");
-  const params = useParams();
+  const params = useParams()
   const dispatch = useDispatch();
-  const [tag, setTag] = useState(null);
-  const [name, setTagName] = useState(null);
-  const [description, setTagDescription] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const tag = useSelector(state => state.tags.tag)
+  const isLoading = useSelector(state => state.tags.loading)
   const id = params.id;
+  const [name, setName] = useState(null)
+  const [description, setDescription] = useState(null)
+
 
   const handleUpdateTag = async () => {
-    if (name === "" || description === "") {
-      toast.error("Vui lòng nhập đầy đủ!");
-    } else {
-      const request = {
-          name: name,
-          description: description,
-      };
+    const request = {
+      name: name,
+      description: description,
 
-      toast.promise(
-        new Promise((resolve, reject) => {
-          updateTagRequest(id, request)
-            .then((resp) => {
-              console.log("updatedTag: ",resp.updatedTag);
-              if (resp.updatedTag) {
-                resolve("Cập nhật thành công!");
-              } else if (resp.message == "Tag not found") {
-                reject("Không tìm thấy tag!");
-              }
-            })
-            .catch((err) => {
-              console.error("Cập nhật thất bại!", err);
-              reject("Cập nhật thất bại!");
-            });
-        }),
-        {
-          loading: "Processing...",
-          success: (message) => message,
-          error: (error) => error,
-        }
-      );
-
-      console.log("request", request);
-      setTagName("");
-      setTagDescription("");
     }
-  };
+    console.log("request:", request)
+    toast.promise(
+      new Promise((resolve, reject) => {
+        updateTagByIdRequest(id, request)
+          .then((resp) => {
+            if (resp.updatedTag) {
+              resolve("Cập nhật thành công!")
+              console.log("resp", resp)
+            }
+            else {
+              reject("Cập nhật thất bại!");
+            }
+          })
+          .catch(err => {
+            console.log("err", err)
+          })
 
-  console.log("tag:", tag);
+      }),
+      {
+        loading: "Processing...",
+        success: (message) => message,
+        error: (error) => error.message,
+      }
+    );
+
+  }
   useEffect(() => {
-    getTagByIdRequest(id).then((res) => setTag(res.tag));
-  }, []);
+    dispatch(getTagById(params.id))
+  }, [dispatch])
   useEffect(() => {
     if (tag) {
-      setTagName(tag.name);
-      setTagDescription(tag.description);
+      setName(tag.name)
+      setDescription(tag.description)
     }
-  }, [tag]);
+  }, [tag])
 
   return (
     <div>
       <Card direction="column" w="100%" px="0px" pb="60px">
-        {isLoading ? (
-          <Loading />
-        ) : (
+        {!tag ? <Loading /> :
           <>
             <Flex px="25px" justify="space-between" mb="20px" align="center">
               <Text
@@ -111,10 +94,7 @@ const ModifyTag = () => {
               alignItems="center"
             >
               <FormLabel w="150px">Name</FormLabel>
-              <Input
-                value={name}
-                onChange={(e) => setTagName(e.target.value)}
-              />
+              <Input value={name} onChange={(e) => setName(e.target.value)} />
             </Flex>
 
             <Flex
@@ -125,10 +105,7 @@ const ModifyTag = () => {
               alignItems="center"
             >
               <FormLabel w="150px">Description</FormLabel>
-              <Input
-                value={description}
-                onChange={(e) => setTagDescription(e.target.value)}
-              />
+              <Input value={description} onChange={(e) => setDescription(e.target.value)} />
             </Flex>
 
             <Button
@@ -140,34 +117,13 @@ const ModifyTag = () => {
               marginBottom="25px"
               bottom="-10px"
               onClick={handleUpdateTag}
+
             >
               Update
             </Button>
-          </>
-        )}
+          </>}
       </Card>
-
       <Toaster />
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Update Tag:</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>{name}</Text>
-            <Text>{description}</Text>
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="red" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button colorScheme="blue" onClick={onClose}>
-              Update Tag
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </div>
   );
 };

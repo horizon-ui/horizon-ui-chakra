@@ -36,9 +36,10 @@ import { useEffect } from "react";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { deleteBookByIdRequest } from "redux/saga/requests/book";
 import { Toaster, toast } from "react-hot-toast";
-
+import * as type from '../../../../redux/types'
 
 export default function DevelopmentTable() {
+  console.log("type:", type)
   const dispatch = useDispatch()
   const books = useSelector(state => state.books.books)
   const isLoading = useSelector(state => state.books.loading)

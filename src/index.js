@@ -11,24 +11,27 @@ import { ThemeEditorProvider } from "@hypertheme-editor/chakra-ui";
 import MofifyAccountPage from "views/admin/accounts/ModifyAccountPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { AuthContextProvider } from "contexts/AuthContext";
 
 ReactDOM.render(
   <Provider store={store}>
-    <ChakraProvider theme={theme}>
-      <React.StrictMode>
-        <ThemeEditorProvider>
-          <HashRouter>
-            <Switch>
-              <Route path={`/auth`} component={AuthLayout} />
+    <AuthContextProvider>
+      <ChakraProvider theme={theme}>
+        <React.StrictMode>
+          <ThemeEditorProvider>
+            <HashRouter>
+              <Switch>
+                <Route path={`/auth`} component={AuthLayout} />
 
-              <Route path={`/admin`} component={AdminLayout} />
-              <Route path={`/rtl`} component={RtlLayout} />
-              <Redirect from="/" to="/admin" />
-            </Switch>
-          </HashRouter>
-        </ThemeEditorProvider>
-      </React.StrictMode>
-    </ChakraProvider>
+                <Route path={`/admin`} component={AdminLayout} />
+                <Route path={`/rtl`} component={RtlLayout} />
+                <Redirect from="/" to="/admin" />
+              </Switch>
+            </HashRouter>
+          </ThemeEditorProvider>
+        </React.StrictMode>
+      </ChakraProvider>
+    </AuthContextProvider>
   </Provider>,
   document.getElementById("root")
 );
