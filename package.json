@@ -24,6 +24,7 @@
     "babel-register": "^6.26.0",
     "dotenv": "^16.3.1",
     "dotenv-webpack": "^8.0.1",
+    "firebase": "^10.7.0",
     "framer-motion": "^4.1.17",
     "node-env-file": "^0.1.8",
     "react": "17.0.2",
