@@ -81,6 +81,27 @@ export default function DevelopmentTable() {
     dispatch(getTags())
   }, [reload])
 
+  const [tagList, setTagList] = useState(null)
+  const [searchValue, setSearchValue] = useState("")
+  const handleValueChange = (value) => {
+    setSearchValue(value)
+    const result = tagList.filter((tag) => {
+      return tag.name?.toLowerCase().includes(value) ||
+        tag.description?.toLowerCase().includes(value)
+    })
+    setTagList(result)
+    console.log("tagList", tagList)
+    if (value === "") {
+      setTagList(tags)
+    }
+  }
+
+  useEffect(() => {
+    if (tags) {
+      setTagList(tags)
+    }
+  }, [tags])
+
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
   return (
@@ -91,8 +112,8 @@ export default function DevelopmentTable() {
       overflowX={{ sm: "scroll" }}
       overflowY={{ sm: "scroll" }}
     >
-      <SearchBar mx="20px" mb="10px" />
-      {isLoading ? <Loading />
+      <SearchBar mx="20px" mb="10px" onValueChange={handleValueChange} />
+      {!tagList ? <Loading />
         : <>
           <Flex px="25px" justify="space-between" mb="20px" align="center">
             <Text
@@ -143,7 +164,7 @@ export default function DevelopmentTable() {
 
             <Tbody>
               {
-                tags.map((tag) => (
+                tagList.map((tag) => (
                   <Tr>
                     <Td>{tag.name}</Td>
                     <Td>{tag.description}</Td>

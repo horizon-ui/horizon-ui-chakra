@@ -308,7 +308,7 @@ function SignIn() {
                 />
               </InputRightElement>
             </InputGroup>
-            <Flex justifyContent='space-between' align='center' mb='24px'>
+            {/* <Flex justifyContent='space-between' align='center' mb='24px'>
               <FormControl display='flex' alignItems='center'>
                 <Checkbox
                   id='remember-login'
@@ -322,7 +322,7 @@ function SignIn() {
                   color={textColor}
                   fontSize='sm'>
                   Keep me logged in
-                </FormLabel>
+                </FormLabel> 
               </FormControl>
               <NavLink to='/auth/forgot-password'>
                 <Text
@@ -333,7 +333,7 @@ function SignIn() {
                   Forgot password?
                 </Text>
               </NavLink>
-            </Flex>
+            </Flex>  */}
             <Button
               fontSize='sm'
               variant='brand'
@@ -344,7 +344,7 @@ function SignIn() {
               Sign In
             </Button>
           </FormControl>
-          <Flex
+          {/* <Flex
             flexDirection='column'
             justifyContent='center'
             alignItems='start'
@@ -362,7 +362,7 @@ function SignIn() {
                 </Text>
               </NavLink>
             </Text>
-          </Flex>
+          </Flex> */}
         </Flex>
       </Flex>
     </DefaultAuth >
