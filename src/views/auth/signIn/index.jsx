@@ -21,7 +21,7 @@
 
 */
 
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 // Chakra imports
 import {
@@ -38,6 +38,7 @@ import {
   InputRightElement,
   Text,
   useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
 // Custom components
 import { HSeparator } from "components/separator/Separator";
@@ -47,6 +48,12 @@ import illustration from "assets/img/auth/auth.png";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
+import { UserAuth } from "contexts/AuthContext";
+import { useDispatch } from "react-redux";
+import { createAccountRequest } from "redux/saga/requests/account";
+import { getCurrentAccountRequest } from "redux/saga/requests/account";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import * as type from '../../../redux/types'
 
 function SignIn() {
   // Chakra color mode
@@ -65,8 +72,128 @@ function SignIn() {
     { bg: "secondaryGray.300" },
     { bg: "whiteAlpha.200" }
   );
+  const { user, googleSignIn } = UserAuth();
+  const [authenticated, setAuthenticated] = useState(null)
+  const dispatch = useDispatch()
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("")
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+  async function handleSignInGoogle() {
+    try {
+      const googleLogin = await googleSignIn()
+
+    }
+    catch (err) {
+      toast(err, {
+        autoClose: 2000,
+        type: "error",
+      });
+      console.log("err:", err)
+    }
+
+  }
+  const handleSignInKeyPressed = (e) => {
+    if (e.key === "Enter") {
+      handleSignIn()
+    }
+  }
+
+  const handleSignIn = () => {
+    if (username == "" || password == "") {
+      toast.error("Vui lòng nhập đủ thông tin!", {
+        duration: 2000, position: 'top-center',
+      })
+    }
+    else {
+      const account = {
+        username: username,
+        password: password
+      }
+      toast.promise(
+        new Promise((resolve, reject) => {
+          loginAccountRequest(account)
+            .then((resp) => {
+              if (resp.msg) {
+                // Kiểm tra account có bị khóa không
+                if (resp.user.is_blocked) {
+                  reject(new Error("Tài khoản này đã bị khóa!"));
+
+                }
+                // trường hợp account không bị khóa
+                else {
+                  //  trường hợp account là admin
+                  if (resp.user.role === 1) {
+                    resolve("Đăng nhập thành công!");
+                    localStorage.setItem("authenticated", true);
+                    localStorage.setItem("user", JSON.stringify({
+                      _id: resp.user._id,
+                      username: resp.user.username,
+                      email: resp.user.email,
+                      displayName: resp.user.displayName,
+                      phoneNumber: resp.user.phoneNumber,
+                      avatar: resp.user.avatar
+                    }));
+                    window.location.replace(type.ADMIN_URL_DEV);
+                    localStorage.setItem("authenticated", true);
+
+                  }
+
+                }
+              }
+              else {
+                console.log("resp:", resp)
+                reject(new Error(resp));
+              }
+            })
+        }),
+        {
+          loading: "Processing...",
+          success: (message) => message,
+          error: (error) => error.message,
+        }
+      );
+
+    }
+  }
+  const getUserInfo = useCallback(() => {
+    console.log("callback")
+    if (user) {
+      console.log("callback has user")
+      let newAccount = {
+        email: user.email,
+        displayName: user.displayName,
+        avatar: user.photoURL,
+      };
+      createAccountRequest(newAccount)
+        .then(() => {
+          getCurrentAccountRequest(newAccount)
+            .then(res => {
+              console.log("currentAccount", res.account)
+              localStorage.setItem("user", JSON.stringify(res.account))
+              localStorage.setItem("authenticated", true);
+              setAuthenticated(localStorage.getItem("authenticated"))
+            })
+        })
+    }
+  }, [user])
+
+  useEffect(() => {
+    setAuthenticated(localStorage.getItem("authenticated"))
+  }, [])
+
+  useEffect(() => {
+    if (authenticated) {
+      window.location.replace(type.ADMIN_URL_DEV)
+    }
+
+  }, [authenticated])
+
+  useEffect(() => {
+    getUserInfo()
+  }, [user])
+
   return (
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
       <Flex
@@ -81,7 +208,7 @@ function SignIn() {
         px={{ base: "25px", md: "0px" }}
         mt={{ base: "40px", md: "14vh" }}
         flexDirection='column'>
-        <Box me='auto'>
+        <Box me='auto' onClick={() => handleSignIn()}>
           <Heading color={textColor} fontSize='36px' mb='10px'>
             Sign In
           </Heading>
@@ -116,6 +243,7 @@ function SignIn() {
             fontWeight='500'
             _hover={googleHover}
             _active={googleActive}
+            onClick={() => handleSignInGoogle()}
             _focus={googleActive}>
             <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
             Sign in with Google
@@ -134,8 +262,9 @@ function SignIn() {
               fontSize='sm'
               fontWeight='500'
               color={textColor}
-              mb='8px'>
-              Email<Text color={brandStars}>*</Text>
+              mb='8px'
+            >
+              Username<Text color={brandStars}>*</Text>
             </FormLabel>
             <Input
               isRequired={true}
@@ -147,6 +276,8 @@ function SignIn() {
               mb='24px'
               fontWeight='500'
               size='lg'
+              value={username}
+              onChange={e => setUsername(e.target.value)}
             />
             <FormLabel
               ms='4px'
@@ -165,6 +296,8 @@ function SignIn() {
                 size='lg'
                 type={show ? "text" : "password"}
                 variant='auth'
+                value={password}
+                onChange={e => setPassword(e.target.value)} onKeyPress={(e) => handleSignInKeyPressed(e)}
               />
               <InputRightElement display='flex' alignItems='center' mt='4px'>
                 <Icon
@@ -175,7 +308,7 @@ function SignIn() {
                 />
               </InputRightElement>
             </InputGroup>
-            <Flex justifyContent='space-between' align='center' mb='24px'>
+            {/* <Flex justifyContent='space-between' align='center' mb='24px'>
               <FormControl display='flex' alignItems='center'>
                 <Checkbox
                   id='remember-login'
@@ -189,7 +322,7 @@ function SignIn() {
                   color={textColor}
                   fontSize='sm'>
                   Keep me logged in
-                </FormLabel>
+                </FormLabel> 
               </FormControl>
               <NavLink to='/auth/forgot-password'>
                 <Text
@@ -200,7 +333,7 @@ function SignIn() {
                   Forgot password?
                 </Text>
               </NavLink>
-            </Flex>
+            </Flex>  */}
             <Button
               fontSize='sm'
               variant='brand'
@@ -211,7 +344,7 @@ function SignIn() {
               Sign In
             </Button>
           </FormControl>
-          <Flex
+          {/* <Flex
             flexDirection='column'
             justifyContent='center'
             alignItems='start'
@@ -229,10 +362,10 @@ function SignIn() {
                 </Text>
               </NavLink>
             </Text>
-          </Flex>
+          </Flex> */}
         </Flex>
       </Flex>
-    </DefaultAuth>
+    </DefaultAuth >
   );
 }
 

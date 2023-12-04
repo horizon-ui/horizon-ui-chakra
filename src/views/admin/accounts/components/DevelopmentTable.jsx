@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "@chakra-ui/react";
 import {
   MdEdit,
@@ -27,21 +27,44 @@ import Loading from "components/loading/Loading";
 import { useEffect } from "react";
 import { getAccounts } from "redux/actions/account";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
-
-export default function DevelopmentTable() {
+const DevelopmentTable = () => {
   const dispatch = useDispatch()
   const accounts = useSelector(state => state.accounts.accounts)
   const isLoading = useSelector(state => state.accounts.loading)
+  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
 
-  console.log("accounts:", accounts)
+
+  const [searchValue, setSearchValue] = useState("")
+  const [accountList, setAccountList] = useState(null)
+  const [reload, setReload] = useState(0)
+  const handleValueChange = (value) => {
+    setSearchValue(value)
+    console.log("accountList", accountList)
+    const result = accountList.filter((account) => {
+      return account._id?.includes(searchValue) ||
+        account.displayName?.toLowerCase().includes(searchValue) ||
+        account.email?.toLowerCase().includes(searchValue) ||
+        account.phoneNumber?.includes(searchValue)
+    })
+    setAccountList(result)
+    if (value === "") {
+      setAccountList(accounts)
+    }
+  }
+
+  useEffect(() => {
+    if (accounts) {
+      setAccountList(accounts)
+    }
+  }, [accounts])
+
+
   useEffect(() => {
     dispatch(getAccounts())
   }, [dispatch])
 
 
-
-  const textColor = useColorModeValue("secondaryGray.900", "white");
-  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
   return (
     <Card
       direction="column"
@@ -51,9 +74,9 @@ export default function DevelopmentTable() {
       overflowY={{ sm: "scroll" }}
     >
 
-      <SearchBar mx="20px" mb="10px" />
+      <SearchBar mx="20px" mb="10px" onValueChange={handleValueChange} />
 
-      {isLoading ? <Loading />
+      {!accountList ? <Loading />
         : <>
           <Flex px="25px" justify="space-between" mb="20px" align="center">
             <Text
@@ -138,7 +161,7 @@ export default function DevelopmentTable() {
 
             <Tbody>
               {
-                accounts.map((acct) => (
+                accountList.map((acct) => (
                   <Tr>
                     <Td>
                       <Avatar
@@ -182,3 +205,4 @@ export default function DevelopmentTable() {
 
   );
 }
+export default DevelopmentTable

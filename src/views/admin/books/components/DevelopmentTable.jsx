@@ -85,6 +85,29 @@ export default function DevelopmentTable() {
   }, [reload])
 
 
+  const [bookList, setBookList] = useState(null)
+  const [searchValue, setSearchValue] = useState("")
+  const handleValueChange = (value) => {
+    setSearchValue(value)
+    const result = bookList.filter((book) => {
+      return book.name?.toLowerCase().includes(value) ||
+        book.author?.toLowerCase().includes(value) ||
+        book._id?.includes(value)
+    })
+    setBookList(result)
+    console.log("bookList", bookList)
+    if (value === "") {
+      setBookList(books)
+    }
+  }
+
+  useEffect(() => {
+    if (books) {
+      setBookList(books)
+    }
+  }, [books])
+
+
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
@@ -97,8 +120,8 @@ export default function DevelopmentTable() {
         overflowX={{ sm: "scroll" }}
         overflowY={{ sm: "scroll" }}
       >
-        <SearchBar mx="20px" mb="10px" />
-        {isLoading ? <Loading />
+        <SearchBar mx="20px" mb="10px" onValueChange={handleValueChange} />
+        {!bookList ? <Loading />
           : <>
             <Flex px="25px" justify="space-between" mb="20px" align="center">
               <Text
@@ -182,7 +205,7 @@ export default function DevelopmentTable() {
 
               <Tbody>
                 {
-                  books.map((book) => (
+                  bookList.map((book) => (
                     <Tr>
                       <Td>
                         <img src={book.image} alt="img" width={60} height={60} />

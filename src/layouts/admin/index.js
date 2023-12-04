@@ -23,10 +23,6 @@ export default function Dashboard(props) {
   // states and functions
   const [fixed] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const [authenticated, setAuthenticated] = useState(
-    localStorage.getItem("authenticated")
-  );
-  const history = useHistory();
 
   // functions for changing the states from components
   const getRoute = () => {
@@ -122,11 +118,7 @@ export default function Dashboard(props) {
       }
     });
   };
-  useEffect(() => {
-    if (authenticated) {
-      history.replace("/");
-    }
-  }, []);
+
   document.documentElement.dir = "ltr";
   const { onOpen } = useDisclosure();
   document.documentElement.dir = "ltr";
