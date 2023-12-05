@@ -87,6 +87,29 @@ export default function DevelopmentTable() {
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+
+  const [cateList, setCateList] = useState(null)
+  const [searchValue, setSearchValue] = useState("")
+  const handleValueChange = (value) => {
+    setSearchValue(value)
+    const result = cateList.filter((cate) => {
+      return cate.name?.toLowerCase().includes(value) ||
+        cate.author?.toLowerCase().includes(value) ||
+        cate._id?.includes(value)
+    })
+    setCateList(result)
+    console.log("cateList", cateList)
+    if (value === "") {
+      setCateList(bookCategories)
+    }
+  }
+
+  useEffect(() => {
+    if (bookCategories) {
+      setCateList(bookCategories)
+    }
+  }, [bookCategories])
+
   return (
     <>
       <Card
@@ -96,8 +119,8 @@ export default function DevelopmentTable() {
         overflowX={{ sm: "scroll" }}
         overflowY={{ sm: "scroll" }}
       >
-        <SearchBar mx="20px" mb="10px" />
-        {isLoading ? (
+        <SearchBar mx="20px" mb="10px" onValueChange={handleValueChange} />
+        {!cateList ? (
           <Loading />
         ) : (
           <>
@@ -150,7 +173,7 @@ export default function DevelopmentTable() {
               </Thead>
 
               <Tbody>
-                {bookCategories.map((bookCategory) => (
+                {cateList.map((bookCategory) => (
                   <Tr>
                     <Td>{bookCategory.tag}</Td>
                     <Td>{bookCategory.name}</Td>
