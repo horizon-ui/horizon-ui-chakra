@@ -20,6 +20,9 @@ import {
   Spinner,
   ModalFooter,
   useDisclosure,
+  UnorderedList,
+  ListItem,
+  Link,
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, { useState } from "react";
@@ -35,6 +38,9 @@ import { getAllTagsRequest } from "redux/saga/requests/tag";
 import { uploadBookPdfRequest } from "redux/saga/requests/book";
 import { updateBookRequest } from "redux/saga/requests/book";
 import { uploadBookImageRequest } from "redux/saga/requests/book";
+import { uploadBookAudioRequest } from "redux/saga/requests/book";
+import books from "redux/reducers/book";
+import { addNewChapterRequest } from "redux/saga/requests/book";
 
 const ModifyBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -53,11 +59,16 @@ const ModifyBook = () => {
   const [tagList, setTagList] = useState(null)
   const [uploadedPdf, setUploadedPdf] = useState("")
   const [uploadedImage, setUploadedImage] = useState("")
+  const [uploadedAudio, setUploadedAudio] = useState("")
   const [currentPdf, setCurrentPdf] = useState("")
   const [currentImage, setCurrentImage] = useState("")
+  const [currentAudio, setCurrentAudio] = useState("")
+  const [audioName, setAudioName] = useState("")
+  const [bookChapters, setBookChapters] = useState([])
   const { isOpen: isOpenTag, onOpen: onOpenTag, onClose: onCloseTag } = useDisclosure()
   const { isOpen: isOpenPdf, onOpen: onOpenPdf, onClose: onClosePdf } = useDisclosure()
   const { isOpen: isOpenImage, onOpen: onOpenImage, onClose: onCloseImage } = useDisclosure()
+  const { isOpen: isOpenAudio, onOpen: onOpenAudio, onClose: onCloseAudio } = useDisclosure()
 
 
   const handleAddNewTag = () => {
@@ -89,7 +100,7 @@ const ModifyBook = () => {
 
       }),
       {
-        loading: "Processing...",
+        loading: "Uploading to Cloud Storage...",
         success: (message) => message,
         error: (error) => error.message,
       }
@@ -112,12 +123,70 @@ const ModifyBook = () => {
 
       }),
       {
-        loading: "Processing...",
+        loading: "Uploading to Cloud Storage...",
         success: (message) => message,
         error: (error) => error.message,
       }
     );
 
+  }
+  const handleUploadAudio = async () => {
+    if (audioName === "" || uploadedAudio == "") {
+      toast.error("Please enter full information!")
+    }
+    else {
+      bookChapters.push({
+        name: audioName,
+        audio: uploadedAudio
+      })
+      toast.promise(
+        new Promise((resolve, reject) => {
+          uploadBookAudioRequest(uploadedAudio)
+            .then((resp) => {
+              if (resp.message) {
+                resolve(resp.message)
+                setCurrentAudio(resp.blobUrl)
+              }
+              else {
+                reject("Upload error!");
+              }
+            })
+
+        }),
+        {
+          loading: "Uploading to Cloud Storage...",
+          success: (message) => message,
+          error: (error) => error.message,
+        }
+      );
+
+      const newChapter = {
+        book_id: book._id,
+        name: audioName,
+        audio: currentAudio
+      }
+      toast.promise(
+        new Promise((resolve, reject) => {
+          addNewChapterRequest(newChapter)
+            .then((resp) => {
+              console.log("newChapter", newChapter)
+              console.log("res", resp)
+              if (resp.book_id) {
+                resolve("Uploaded successfully!")
+              }
+              else {
+                reject("Upload error!");
+              }
+            })
+
+        }),
+        {
+          loading: "Uploading new chapter...",
+          success: (message) => message,
+          error: (error) => error.message,
+        }
+      );
+    }
   }
   const handleUpdateBook = async () => {
     const request = {
@@ -128,7 +197,8 @@ const ModifyBook = () => {
         image: currentImage,
         intro: intro,
         tags: tagList,
-        access_level: accessLevel
+        access_level: accessLevel,
+        chapters: bookChapters
       }
     }
     console.log("request:", request)
@@ -171,6 +241,7 @@ const ModifyBook = () => {
       setCurrentPdf(book.pdf)
       setCurrentImage(book.image)
       setAccessLevel(book.access_level)
+      setBookChapters(book.chapters)
     }
   }, [book])
 
@@ -375,6 +446,38 @@ const ModifyBook = () => {
               </Button>
             </Flex>
           </Flex>
+          <Flex
+            mx="25px"
+            my="5px"
+            paddingBottom={"30px"}
+            flexDirection="row"
+            alignItems="center"
+          >
+            <FormLabel w="148px">Audio</FormLabel>
+            <Flex w="100%" justifyContent={"space-between"}>
+              <Flex flexWrap={"wrap"} w="90%" marginRight={"10px"}>
+                <UnorderedList>
+                  {
+                    bookChapters.length != 0 ?
+                      bookChapters.map((chapter) => (
+                        <ListItem>
+                          <a href={chapter.audio}>{chapter.name}</a></ListItem>
+                      ))
+                      :
+                      <></>
+                  }
+                </UnorderedList>
+              </Flex>
+              <Button
+                width="auto"
+                colorScheme="blue"
+                variant='outline'
+                onClick={() => { onOpenAudio() }}
+              >
+                Upload audio
+              </Button>
+            </Flex>
+          </Flex>
           <Button
             width="100px"
             colorScheme="blue"
@@ -448,6 +551,36 @@ const ModifyBook = () => {
               Close
             </Button>
             <Button colorScheme='blue' onClick={handleUploadImage}>Upload</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpenAudio} onClose={onCloseAudio}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Upload Audio:</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Flex
+              mx="25px"
+              my="5px"
+              justifyContent="center"
+              flexDirection="row"
+              alignItems="center"
+            >
+              <FormLabel w="150px">Audio name:</FormLabel>
+              <Input value={audioName} onChange={(e) => setAudioName(e.target.value)} />
+            </Flex>
+            <input type="file" name="file"
+              onChange={(e) => {
+                setUploadedAudio(e.target.files[0]);
+              }}
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='red' mr={3} onClick={onCloseAudio}>
+              Close
+            </Button>
+            <Button colorScheme='blue' onClick={handleUploadAudio}>Upload</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

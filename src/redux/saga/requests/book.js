@@ -51,6 +51,20 @@ export const addNewBookRequest = async (request) => {
     });
 };
 
+export const addNewChapterRequest = async (request) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/chapter/add-chapter`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
+
 export const updateBookRequest = async (id, request) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/book/${id}`, {
     method: "PATCH",
@@ -69,6 +83,18 @@ export const uploadBookPdfRequest = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
   return fetch(`${type.BACKEND_URL_DEV}/api/azure/upload/book-pdf`, {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
+export const uploadBookAudioRequest = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  return fetch(`${type.BACKEND_URL_DEV}/api/azure/upload/book-audio`, {
     method: "POST",
     body: formData,
   })
