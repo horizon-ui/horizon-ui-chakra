@@ -76,7 +76,6 @@ export default function DevelopmentTable() {
     setReload((i) => i + 1);
   };
 
-  console.log("bookCategories:", bookCategories);
   useEffect(() => {
     dispatch(getBookCategories());
   }, [dispatch]);
@@ -98,7 +97,6 @@ export default function DevelopmentTable() {
         cate._id?.includes(value)
     })
     setCateList(result)
-    console.log("cateList", cateList)
     if (value === "") {
       setCateList(bookCategories)
     }

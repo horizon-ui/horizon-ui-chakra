@@ -187,7 +187,7 @@ const DevelopmentTable = () => {
                         />
                       </Link>
                     </Td>
-                    <Td>
+                    {/* <Td>
                       <Icon
                         as={MdRemoveCircle}
                         width="20px"
@@ -195,7 +195,7 @@ const DevelopmentTable = () => {
                         color="inherit"
                         cursor="pointer"
                       />
-                    </Td>
+                    </Td> */}
                   </Tr>
                 ))}
             </Tbody>
