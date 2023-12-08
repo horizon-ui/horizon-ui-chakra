@@ -54,6 +54,7 @@ import { createAccountRequest } from "redux/saga/requests/account";
 import { getCurrentAccountRequest } from "redux/saga/requests/account";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as type from '../../../redux/types'
+import toast, { Toaster } from "react-hot-toast";
 
 function SignIn() {
   // Chakra color mode
@@ -124,22 +125,26 @@ function SignIn() {
                 // trường hợp account không bị khóa
                 else {
                   //  trường hợp account là admin
-                  if (resp.user.role === 1) {
-                    resolve("Đăng nhập thành công!");
-                    localStorage.setItem("authenticated", true);
-                    localStorage.setItem("user", JSON.stringify({
-                      _id: resp.user._id,
-                      username: resp.user.username,
-                      email: resp.user.email,
-                      displayName: resp.user.displayName,
-                      phoneNumber: resp.user.phoneNumber,
-                      avatar: resp.user.avatar
-                    }));
-                    window.location.replace(type.ADMIN_URL_DEV);
-                    localStorage.setItem("authenticated", true);
+                  if (resp.user.role) {
+                    if (resp.user.role === 1) {
+                      resolve("Đăng nhập thành công!");
+                      localStorage.setItem("authenticated", true);
+                      localStorage.setItem("user", JSON.stringify({
+                        _id: resp.user._id,
+                        username: resp.user.username,
+                        email: resp.user.email,
+                        displayName: resp.user.displayName,
+                        phoneNumber: resp.user.phoneNumber,
+                        avatar: resp.user.avatar
+                      }));
+                      window.location.replace(type.ADMIN_URL_DEV);
+                      localStorage.setItem("authenticated", true);
+                    }
+                    else {
+                      toast.error("Account role is not admin!")
 
+                    }
                   }
-
                 }
               }
               else {
@@ -160,31 +165,46 @@ function SignIn() {
   const getUserInfo = useCallback(() => {
     console.log("callback")
     if (user) {
+      console.log("user", user)
       console.log("callback has user")
       let newAccount = {
         email: user.email,
         displayName: user.displayName,
         avatar: user.photoURL,
       };
+      console.log("newAccount", newAccount)
       createAccountRequest(newAccount)
         .then(() => {
           getCurrentAccountRequest(newAccount)
             .then(res => {
               console.log("currentAccount", res.account)
-              localStorage.setItem("user", JSON.stringify(res.account))
-              localStorage.setItem("authenticated", true);
-              setAuthenticated(localStorage.getItem("authenticated"))
+              if (res.account.role) {
+                if (res.account.role === 1) {
+                  localStorage.setItem("user", JSON.stringify(res.account))
+                  localStorage.setItem("authenticated", true);
+                  setAuthenticated(localStorage.getItem("authenticated"))
+                  toast.success("Login successfully!")
+                }
+                else {
+                  toast.error("Account role is not admin!")
+
+                }
+              }
+              else {
+                toast.error("Account role is not admin!")
+              }
             })
+            .catch((err) => console.log("err", err))
         })
     }
   }, [user])
 
-  useEffect(() => {
-    setAuthenticated(localStorage.getItem("authenticated"))
-  }, [])
+  // useEffect(() => {
+  //   setAuthenticated(localStorage.getItem("authenticated"))
+  // }, [])
 
   useEffect(() => {
-    if (authenticated) {
+    if (JSON.parse(localStorage.getItem("authenticated"))) {
       window.location.replace(type.ADMIN_URL_DEV)
     }
 
@@ -365,6 +385,7 @@ function SignIn() {
           </Flex> */}
         </Flex>
       </Flex>
+      <Toaster />
     </DefaultAuth >
   );
 }

@@ -1,6 +1,12 @@
 import React from "react";
 import { Icon } from "@chakra-ui/react";
-import { MdManageAccounts, MdBook, MdTag, MdLogout, MdCategory } from "react-icons/md";
+import {
+  MdManageAccounts,
+  MdBook,
+  MdTag,
+  MdLogout,
+  MdCategory,
+} from "react-icons/md";
 
 import AccountManage from "views/admin/accounts";
 import BookManage from "views/admin/books";
@@ -16,7 +22,7 @@ import SignInCentered from "views/auth/signIn";
 import NewAccountPage from "views/admin/accounts/NewAccountPage";
 import NewBookPage from "views/admin/books/NewBookPage";
 import NewTagPage from "views/admin/tags/NewTagPage";
-import NewBookCategoryPage from "views/admin/bookCategories/NewBookCategoryPage"
+import NewBookCategoryPage from "views/admin/bookCategories/NewBookCategoryPage";
 
 const routes = [
   {
@@ -112,6 +118,7 @@ const routes = [
   {
     name: "Log out",
     layout: "/auth",
+    feature: "logout",
     path: "/sign-in",
     icon: <Icon as={MdLogout} width="20px" height="20px" color="inherit" />,
     component: SignInCentered,
