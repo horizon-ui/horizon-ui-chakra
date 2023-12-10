@@ -41,6 +41,7 @@ import { uploadBookImageRequest } from "redux/saga/requests/book";
 import { uploadBookAudioRequest } from "redux/saga/requests/book";
 import books from "redux/reducers/book";
 import { addNewChapterRequest } from "redux/saga/requests/book";
+import { uploadBookEpubRequest } from "redux/saga/requests/book";
 
 const ModifyBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -60,15 +61,18 @@ const ModifyBook = () => {
   const [uploadedPdf, setUploadedPdf] = useState("")
   const [uploadedImage, setUploadedImage] = useState("")
   const [uploadedAudio, setUploadedAudio] = useState("")
+  const [uploadedEpub, setUploadedEpub] = useState("")
   const [currentPdf, setCurrentPdf] = useState("")
   const [currentImage, setCurrentImage] = useState("")
   const [currentAudio, setCurrentAudio] = useState("")
+  const [currentEpub, setCurrentEpub] = useState("")
   const [audioName, setAudioName] = useState("")
   const [bookChapters, setBookChapters] = useState([])
   const { isOpen: isOpenTag, onOpen: onOpenTag, onClose: onCloseTag } = useDisclosure()
   const { isOpen: isOpenPdf, onOpen: onOpenPdf, onClose: onClosePdf } = useDisclosure()
   const { isOpen: isOpenImage, onOpen: onOpenImage, onClose: onCloseImage } = useDisclosure()
   const { isOpen: isOpenAudio, onOpen: onOpenAudio, onClose: onCloseAudio } = useDisclosure()
+  const { isOpen: isOpenEpub, onOpen: onOpenEpub, onClose: onCloseEpub } = useDisclosure()
 
 
   const handleAddNewTag = () => {
@@ -100,7 +104,30 @@ const ModifyBook = () => {
 
       }),
       {
-        loading: "Uploading to Cloud Storage...",
+        loading: "Uploading...",
+        success: (message) => message,
+        error: (error) => error.message,
+      }
+    );
+
+  }
+  const handleUploadEpub = async () => {
+    toast.promise(
+      new Promise((resolve, reject) => {
+        uploadBookEpubRequest(uploadedEpub)
+          .then((resp) => {
+            if (resp.message) {
+              resolve(resp.message)
+              setCurrentEpub(resp.blobUrl)
+            }
+            else {
+              reject("Upload error!");
+            }
+          })
+
+      }),
+      {
+        loading: "Uploading...",
         success: (message) => message,
         error: (error) => error.message,
       }
@@ -123,7 +150,7 @@ const ModifyBook = () => {
 
       }),
       {
-        loading: "Uploading to Cloud Storage...",
+        loading: "Uploading...",
         success: (message) => message,
         error: (error) => error.message,
       }
@@ -154,7 +181,7 @@ const ModifyBook = () => {
 
         }),
         {
-          loading: "Uploading to Cloud Storage...",
+          loading: "Uploading...",
           success: (message) => message,
           error: (error) => error.message,
         }
@@ -195,6 +222,7 @@ const ModifyBook = () => {
         author: author,
         pdf: currentPdf,
         image: currentImage,
+        epub: currentEpub,
         intro: intro,
         tags: tagList,
         access_level: accessLevel,
@@ -431,6 +459,29 @@ const ModifyBook = () => {
             flexDirection="row"
             alignItems="center"
           >
+            <FormLabel w="148px">Epub</FormLabel>
+            <Flex w="100%" justifyContent={"space-between"}>
+              <Flex flexWrap={"wrap"} w="90%" marginRight={"10px"}>
+                <Input value={currentEpub} disabled />
+
+              </Flex>
+              <Button
+                width="auto"
+                colorScheme="blue"
+                variant='outline'
+                onClick={() => { onOpenEpub() }}
+              >
+                Upload epub
+              </Button>
+            </Flex>
+          </Flex>
+          <Flex
+            mx="25px"
+            my="5px"
+            paddingBottom={"30px"}
+            flexDirection="row"
+            alignItems="center"
+          >
             <FormLabel w="148px">Image</FormLabel>
             <Flex w="100%" justifyContent={"space-between"}>
               <Flex flexWrap={"wrap"} w="90%" marginRight={"10px"}>
@@ -531,6 +582,25 @@ const ModifyBook = () => {
               Close
             </Button>
             <Button colorScheme='blue' onClick={handleUploadPdf}>Upload</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpenEpub} onClose={onCloseEpub}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Upload epub file:</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <input type="file" name="file"
+              onChange={(e) => setUploadedEpub(e.target.files[0])}
+            />
+
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='red' mr={3} onClick={onCloseEpub}>
+              Close
+            </Button>
+            <Button colorScheme='blue' onClick={handleUploadEpub}>Upload</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -116,3 +116,16 @@ export const uploadBookImageRequest = async (file) => {
       throw error;
     });
 };
+
+export const uploadBookEpubRequest = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  return fetch(`${type.BACKEND_URL_DEV}/api/azure/upload/book-epub`, {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
