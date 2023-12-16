@@ -91,10 +91,12 @@ export const uploadBookPdfRequest = async (file) => {
       throw error;
     });
 };
-export const uploadBookAudioRequest = async (file) => {
+export const uploadNewChapterRequest = async (newChapter) => {
   const formData = new FormData();
-  formData.append("file", file);
-  return fetch(`${type.BACKEND_URL_DEV}/api/azure/upload/book-audio`, {
+  formData.append("audio", newChapter.audio);
+  formData.append("book_id", newChapter.book_id);
+
+  return fetch(`${type.BACKEND_URL_DEV}/api/azure/upload/chapter`, {
     method: "POST",
     body: formData,
   })
