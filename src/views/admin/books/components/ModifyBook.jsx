@@ -42,6 +42,7 @@ import { uploadBookAudioRequest } from "redux/saga/requests/book";
 import books from "redux/reducers/book";
 import { addNewChapterRequest } from "redux/saga/requests/book";
 import { uploadBookEpubRequest } from "redux/saga/requests/book";
+import { uploadNewChapterRequest } from "redux/saga/requests/book";
 
 const ModifyBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -74,7 +75,7 @@ const ModifyBook = () => {
   const { isOpen: isOpenImage, onOpen: onOpenImage, onClose: onCloseImage } = useDisclosure()
   const { isOpen: isOpenAudio, onOpen: onOpenAudio, onClose: onCloseAudio } = useDisclosure()
   const { isOpen: isOpenEpub, onOpen: onOpenEpub, onClose: onCloseEpub } = useDisclosure()
-
+  const [reload, setReload] = useState(0)
 
   const handleAddNewTag = () => {
     if (newTag !== "") {
@@ -159,57 +160,31 @@ const ModifyBook = () => {
 
   }
   const handleUploadAudio = async () => {
-    if (audioName === "" || uploadedAudio == "") {
-      toast.error("Please enter full information!")
+    if (uploadedAudio == "") {
+      toast.error("Please upload new audio chapter!")
     }
     else {
-      bookChapters.push({
-        name: audioName,
+      const newChapter = {
+        book_id: book._id,
         audio: uploadedAudio
-      })
+      }
+      console.log("newChapter", newChapter)
       toast.promise(
         new Promise((resolve, reject) => {
-          uploadBookAudioRequest(uploadedAudio)
+          uploadNewChapterRequest(newChapter)
             .then((resp) => {
-              if (resp.message) {
-                resolve(resp.message)
-                setCurrentAudio(resp.blobUrl)
+              if (resp.error) {
+                reject(resp.message)
               }
               else {
-                reject("Upload error!");
+                resolve(resp.message)
+                setReload(p => p + 1)
               }
             })
 
         }),
         {
           loading: "Uploading...",
-          success: (message) => message,
-          error: (error) => error.message,
-        }
-      );
-
-      const newChapter = {
-        book_id: book._id,
-        name: audioName,
-        audio: currentAudio
-      }
-      toast.promise(
-        new Promise((resolve, reject) => {
-          addNewChapterRequest(newChapter)
-            .then((resp) => {
-              console.log("newChapter", newChapter)
-              console.log("res", resp)
-              if (resp.book_id) {
-                resolve("Uploaded successfully!")
-              }
-              else {
-                reject("Upload error!");
-              }
-            })
-
-        }),
-        {
-          loading: "Uploading new chapter...",
           success: (message) => message,
           error: (error) => error.message,
         }
@@ -231,7 +206,7 @@ const ModifyBook = () => {
         chapters: bookChapters
       }
     }
-    console.log("request:", request)
+
     toast.promise(
       new Promise((resolve, reject) => {
         updateBookRequest(id, request)
@@ -262,6 +237,10 @@ const ModifyBook = () => {
     getBookByIdRequest(id)
       .then(res => setBook(res.book))
   }, [])
+  useEffect(() => {
+    getBookByIdRequest(id)
+      .then(res => setBook(res.book))
+  }, [reload])
   useEffect(() => {
     if (book) {
       setName(book.name)
