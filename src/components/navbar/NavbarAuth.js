@@ -92,18 +92,19 @@ export default function AuthNavbar(props) {
 
   let brand = (
     <Link
-      href={`${process.env.PUBLIC_URL}/#/`}
-      target='_blank'
-      display='flex'
-      lineHeight='100%'
-      fontWeight='bold'
-      justifyContent='center'
-      alignItems='center'
-      color={mainText}>
-      <Stack direction='row' spacing='12px' align='center' justify='center'>
-        <HorizonLogo h='26px' w='175px' color={logoColor} />
+      href={`${process.env.PUBLIC_URL}/`}
+      target="_blank"
+      display="flex"
+      lineHeight="100%"
+      fontWeight="bold"
+      justifyContent="center"
+      alignItems="center"
+      color={mainText}
+    >
+      <Stack direction="row" spacing="12px" align="center" justify="center">
+        <HorizonLogo h="26px" w="175px" color={logoColor} />
       </Stack>
-      <Text fontsize='sm' mt='3px'>
+      <Text fontsize="sm" mt="3px">
         {logoText}
       </Text>
     </Link>
@@ -111,16 +112,17 @@ export default function AuthNavbar(props) {
   if (props.secondary === true) {
     brand = (
       <Link
-        minW='175px'
-        href={`${process.env.PUBLIC_URL}/#/`}
-        target='_blank'
-        display='flex'
-        lineHeight='100%'
-        fontWeight='bold'
-        justifyContent='center'
-        alignItems='center'
-        color={mainText}>
-        <HorizonLogo h='26px' w='175px' my='32px' color={logoColor} />
+        minW="175px"
+        href={`${process.env.PUBLIC_URL}/`}
+        target="_blank"
+        display="flex"
+        lineHeight="100%"
+        fontWeight="bold"
+        justifyContent="center"
+        alignItems="center"
+        color={mainText}
+      >
+        <HorizonLogo h="26px" w="175px" my="32px" color={logoColor} />
       </Link>
     );
     // mainText = useColorModeValue("gray.700", "gray.200");
@@ -139,8 +141,9 @@ export default function AuthNavbar(props) {
         <NavLink
           key={key}
           to={link.layout + link.path}
-          style={{ maxWidth: "max-content", marginLeft: "40px" }}>
-          <Text color='gray.400' fontSize='sm' fontWeight='normal'>
+          style={{ maxWidth: "max-content", marginLeft: "40px" }}
+        >
+          <Text color="gray.400" fontSize="sm" fontWeight="normal">
             {link.name}
           </Text>
         </NavLink>
@@ -153,8 +156,9 @@ export default function AuthNavbar(props) {
         <NavLink
           key={key}
           to={link.layout + link.path}
-          style={{ maxWidth: "max-content", marginLeft: "40px" }}>
-          <Text color='gray.400' fontSize='sm' fontWeight='normal'>
+          style={{ maxWidth: "max-content", marginLeft: "40px" }}
+        >
+          <Text color="gray.400" fontSize="sm" fontWeight="normal">
             {link.name}
           </Text>
         </NavLink>
@@ -165,27 +169,28 @@ export default function AuthNavbar(props) {
     return routes.map((link, key) => {
       if (link.collapse === true) {
         return (
-          <Stack key={key} direction='column' maxW='max-content'>
+          <Stack key={key} direction="column" maxW="max-content">
             <Stack
-              direction='row'
-              spacing='0px'
-              align='center'
-              cursor='default'>
-              <IconBox bg='brand.500' h='30px' w='30px' me='10px'>
+              direction="row"
+              spacing="0px"
+              align="center"
+              cursor="default"
+            >
+              <IconBox bg="brand.500" h="30px" w="30px" me="10px">
                 {link.icon}
               </IconBox>
-              <Text fontWeight='bold' fontSize='md' me='auto' color={textColor}>
+              <Text fontWeight="bold" fontSize="md" me="auto" color={textColor}>
                 {link.name}
               </Text>
               <Icon
                 as={GoChevronRight}
                 color={mainText}
-                w='14px'
-                h='14px'
-                fontWeight='2000'
+                w="14px"
+                h="14px"
+                fontWeight="2000"
               />
             </Stack>
-            <Stack direction='column' bg={menuBg}>
+            <Stack direction="column" bg={menuBg}>
               {createMainLinks(link.items)}
             </Stack>
           </Stack>
@@ -195,8 +200,9 @@ export default function AuthNavbar(props) {
           <NavLink
             key={key}
             to={link.layout + link.path}
-            style={{ maxWidth: "max-content", marginLeft: "40px" }}>
-            <Text color='gray.400' fontSize='sm' fontWeight='normal'>
+            style={{ maxWidth: "max-content", marginLeft: "40px" }}
+          >
+            <Text color="gray.400" fontSize="sm" fontWeight="normal">
               {link.name}
             </Text>
           </NavLink>
@@ -208,28 +214,29 @@ export default function AuthNavbar(props) {
     return routes.map((link, key) => {
       if (link.collapse === true) {
         return (
-          <Stack key={key} direction='column' my='auto' maxW='max-content'>
+          <Stack key={key} direction="column" my="auto" maxW="max-content">
             <Stack
-              direction='row'
-              spacing='0px'
-              align='center'
-              cursor='default'
-              w='max-content'>
-              <IconBox bg='brand.500' h='30px' w='30px' me='10px'>
+              direction="row"
+              spacing="0px"
+              align="center"
+              cursor="default"
+              w="max-content"
+            >
+              <IconBox bg="brand.500" h="30px" w="30px" me="10px">
                 {link.icon}
               </IconBox>
-              <Text fontWeight='bold' fontSize='md' me='auto' color={textColor}>
+              <Text fontWeight="bold" fontSize="md" me="auto" color={textColor}>
                 {link.name}
               </Text>
               <Icon
                 as={GoChevronRight}
                 color={mainText}
-                w='14px'
-                h='14px'
-                fontWeight='2000'
+                w="14px"
+                h="14px"
+                fontWeight="2000"
               />
             </Stack>
-            <Stack direction='column' bg={menuBg}>
+            <Stack direction="column" bg={menuBg}>
               {createAuthLinks(link.items)}
             </Stack>
           </Stack>
@@ -239,8 +246,9 @@ export default function AuthNavbar(props) {
           <NavLink
             key={key}
             to={link.layout + link.path}
-            style={{ maxWidth: "max-content", marginLeft: "40px" }}>
-            <Text color='gray.400' fontSize='sm' fontWeight='normal'>
+            style={{ maxWidth: "max-content", marginLeft: "40px" }}
+          >
+            <Text color="gray.400" fontSize="sm" fontWeight="normal">
               {link.name}
             </Text>
           </NavLink>
@@ -249,79 +257,83 @@ export default function AuthNavbar(props) {
     });
   };
   const linksAuth = (
-    <HStack display={{ sm: "none", lg: "flex" }} spacing='12px'>
+    <HStack display={{ sm: "none", lg: "flex" }} spacing="12px">
       <Stack
-        direction='row'
-        spacing='4px'
-        align='center'
-        color='#fff'
-        fontWeight='bold'
+        direction="row"
+        spacing="4px"
+        align="center"
+        color="#fff"
+        fontWeight="bold"
         onMouseEnter={onOpenDashboards}
         onMouseLeave={onCloseDashboards}
-        cursor='pointer'
-        position='relative'>
-        <Text fontSize='sm' color={mainText}>
+        cursor="pointer"
+        position="relative"
+      >
+        <Text fontSize="sm" color={mainText}>
           Dashboards
         </Text>
         <Box>
           <Icon
-            mt='8px'
+            mt="8px"
             as={GoChevronDown}
             color={mainText}
-            w='14px'
-            h='14px'
-            fontWeight='2000'
+            w="14px"
+            h="14px"
+            fontWeight="2000"
           />
         </Box>
         <Menu isOpen={isOpenDashboards}>
           <MenuList
             bg={menuBg}
-            p='22px'
-            cursor='default'
-            borderRadius='15px'
-            position='absolute'
-            top='30px'
-            left='-10px'>
-            <Flex flexWrap='wrap' w='300px' gap='16px'>
+            p="22px"
+            cursor="default"
+            borderRadius="15px"
+            position="absolute"
+            top="30px"
+            left="-10px"
+          >
+            <Flex flexWrap="wrap" w="300px" gap="16px">
               {createDashboardsLinks(dashboardsObject)}
             </Flex>
           </MenuList>
         </Menu>
       </Stack>
       <Stack
-        direction='row'
-        spacing='4px'
-        align='center'
-        color='#fff'
-        fontWeight='bold'
+        direction="row"
+        spacing="4px"
+        align="center"
+        color="#fff"
+        fontWeight="bold"
         onMouseEnter={onOpenAuth}
         onMouseLeave={onCloseAuth}
-        cursor='pointer'
-        position='relative'>
-        <Text fontSize='sm' color={mainText}>
+        cursor="pointer"
+        position="relative"
+      >
+        <Text fontSize="sm" color={mainText}>
           Authentications
         </Text>
         <Box>
           <Icon
-            mt='8px'
+            mt="8px"
             as={GoChevronDown}
             color={mainText}
-            w='14px'
-            h='14px'
-            fontWeight='2000'
+            w="14px"
+            h="14px"
+            fontWeight="2000"
           />
         </Box>
         <Menu isOpen={isOpenAuth}>
           <MenuList
             bg={menuBg}
-            p='22px'
-            cursor='default'
-            borderRadius='15px'
-            position='absolute'
-            top='30px'
-            left='-10px'>
+            p="22px"
+            cursor="default"
+            borderRadius="15px"
+            position="absolute"
+            top="30px"
+            left="-10px"
+          >
             <Flex>
-              <SimpleGrid columns='3' gap='10px' minW='500px' me='20px'>
+              <SimpleGrid columns="3" gap="10px" minW="500px" me="20px">
                 {createAuthLinks(authObject)}
               </SimpleGrid>
               {/* <Flex
@@ -355,77 +367,81 @@ export default function AuthNavbar(props) {
         </Menu>
       </Stack>
       <Stack
-        direction='row'
-        spacing='4px'
-        align='center'
-        color='#fff'
-        fontWeight='bold'
+        direction="row"
+        spacing="4px"
+        align="center"
+        color="#fff"
+        fontWeight="bold"
         onMouseEnter={onOpenMain}
         onMouseLeave={onCloseMain}
-        cursor='pointer'
-        position='relative'>
-        <Text fontSize='sm' color={mainText}>
+        cursor="pointer"
+        position="relative"
+      >
+        <Text fontSize="sm" color={mainText}>
           Main Pages
         </Text>
         <Box>
           <Icon
-            mt='8px'
+            mt="8px"
             as={GoChevronDown}
             color={mainText}
-            w='14px'
-            h='14px'
-            fontWeight='2000'
+            w="14px"
+            h="14px"
+            fontWeight="2000"
           />
         </Box>
         <Menu isOpen={isOpenMain}>
           <MenuList
             bg={menuBg}
-            p='22px'
-            cursor='default'
-            borderRadius='15px'
-            position='absolute'
-            top='30px'
-            left='-10px'>
-            <Flex flexWrap='wrap' align='start' w='500px' gap='16px'>
+            p="22px"
+            cursor="default"
+            borderRadius="15px"
+            position="absolute"
+            top="30px"
+            left="-10px"
+          >
+            <Flex flexWrap="wrap" align="start" w="500px" gap="16px">
               {createMainLinks(mainObject)}
             </Flex>
           </MenuList>
         </Menu>
       </Stack>
       <Stack
-        direction='row'
-        spacing='4px'
-        align='center'
-        color='#fff'
-        fontWeight='bold'
+        direction="row"
+        spacing="4px"
+        align="center"
+        color="#fff"
+        fontWeight="bold"
         onMouseEnter={onOpenNft}
         onMouseLeave={onCloseNft}
-        cursor='pointer'
-        position='relative'>
-        <Text fontSize='sm' color={mainText}>
+        cursor="pointer"
+        position="relative"
+      >
+        <Text fontSize="sm" color={mainText}>
           NFTs
         </Text>
         <Box>
           <Icon
-            mt='8px'
+            mt="8px"
             as={GoChevronDown}
             color={mainText}
-            w='14px'
-            h='14px'
-            fontWeight='2000'
+            w="14px"
+            h="14px"
+            fontWeight="2000"
           />
         </Box>
         <Menu isOpen={isOpenNft}>
           <MenuList
             bg={menuBg}
-            p='22px'
-            minW='350px'
-            cursor='default'
-            borderRadius='15px'
-            position='absolute'
-            top='30px'
-            left='-10px'>
-            <Grid templateColumns='repeat(2, 1fr)' gap='16px'>
+            p="22px"
+            minW="350px"
+            cursor="default"
+            borderRadius="15px"
+            position="absolute"
+            top="30px"
+            left="-10px"
+          >
+            <Grid templateColumns="repeat(2, 1fr)" gap="16px">
               {createNftsLinks(nftsObject)}
             </Grid>
           </MenuList>
@@ -438,36 +454,39 @@ export default function AuthNavbar(props) {
     <SidebarContext.Provider value={{ sidebarWidth }}>
       <Flex
         position={navbarPosition}
-        top='16px'
-        left='50%'
-        transform='translate(-50%, 0px)'
+        top="16px"
+        left="50%"
+        transform="translate(-50%, 0px)"
         background={navbarBg}
         boxShadow={navbarShadow}
-        borderRadius='15px'
-        px='16px'
-        py='22px'
-        mx='auto'
-        width='1044px'
-        maxW='90%'
-        alignItems='center'
-        zIndex='3'>
-        <Flex w='100%' justifyContent={{ sm: "start", lg: "space-between" }}>
+        borderRadius="15px"
+        px="16px"
+        py="22px"
+        mx="auto"
+        width="1044px"
+        maxW="90%"
+        alignItems="center"
+        zIndex="3"
+      >
+        <Flex w="100%" justifyContent={{ sm: "start", lg: "space-between" }}>
           {brand}
           <Box
             ms={{ base: "auto", lg: "0px" }}
             display={{ base: "flex", lg: "none" }}
-            justifyContent='center'
-            alignItems='center'>
+            justifyContent="center"
+            alignItems="center"
+          >
             <SidebarResponsive
               logo={
                 <Stack
-                  direction='row'
-                  spacing='12px'
-                  align='center'
-                  justify='center'>
+                  direction="row"
+                  spacing="12px"
+                  align="center"
+                  justify="center"
+                >
                   <Box
-                    w='1px'
-                    h='20px'
+                    w="1px"
+                    h="20px"
                     bg={colorMode === "dark" ? "white" : "gray.700"}
                   />
                 </Stack>
@@ -479,18 +498,19 @@ export default function AuthNavbar(props) {
             />
           </Box>
           {linksAuth}
-          <Link href='https://www.horizon-ui.com/pro'>
+          <Link href="https://www.horizon-ui.com/pro">
             <Button
               bg={bgButton}
               color={colorButton}
-              fontSize='xs'
-              variant='no-effects'
-              borderRadius='50px'
-              px='45px'
+              fontSize="xs"
+              variant="no-effects"
+              borderRadius="50px"
+              px="45px"
               display={{
                 sm: "none",
                 lg: "flex",
-              }}>
+              }}
+            >
               Buy Now
             </Button>
           </Link>

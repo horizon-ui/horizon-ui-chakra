@@ -124,7 +124,7 @@ export default function DevelopmentTable() {
             >
               Tag Manage
             </Text>
-            <Link href="/#/admin/tag/new">
+            <Link href="/admin/tag/new">
               <Button>
                 <Icon
                   as={MdAdd}
@@ -169,7 +169,7 @@ export default function DevelopmentTable() {
                     <Td>{tag.name}</Td>
                     <Td>{tag.description}</Td>
                     <Td>
-                      <Link href={`/#/admin/tag/edit/${tag._id}`}>
+                      <Link href={`/admin/tag/edit/${tag._id}`}>
                         <Icon
                           as={MdEdit}
                           width="20px"

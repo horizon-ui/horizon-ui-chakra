@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export function SidebarLinks(props) {
   //   Chakra color mode
-  
+
   // const navigate = useNavigate();
   let location = useLocation();
   let activeColor = useColorModeValue("gray.700", "white");
@@ -42,8 +42,8 @@ export function SidebarLinks(props) {
       localStorage.removeItem("authenticated");
       localStorage.removeItem("user");
       setAuthenticated("false");
-      // window.location.replace(`${type.ADMIN_URL_DEV}/#/auth/sign-in`);
-      history.push('/');
+      // window.location.replace(`${type.ADMIN_URL_DEV}/auth/sign-in`);
+      history.push("/");
     } catch (err) {
       console.log(err);
     }

@@ -132,7 +132,7 @@ export default function DevelopmentTable() {
               >
                 Book Manage
               </Text>
-              <Link href="/#/admin/book/new">
+              <Link href="/admin/book/new">
                 <Button>
                   <Icon
                     as={MdAdd}
@@ -216,7 +216,7 @@ export default function DevelopmentTable() {
                       <Td>{book.totalRead}</Td>
                       <Td>{book.rating}</Td>
                       <Td>
-                        <Link href={`/#/admin/book/edit/${book._id}`}>
+                        <Link href={`/admin/book/edit/${book._id}`}>
                           <Icon
                             as={MdEdit}
                             width="20px"

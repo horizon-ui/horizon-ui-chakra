@@ -87,7 +87,7 @@ const DevelopmentTable = () => {
             >
               Account Manage
             </Text>
-            <Link href="/#/admin/account/new">
+            <Link href="/admin/account/new">
               <Button>
                 <Icon
                   as={MdAdd}
@@ -177,7 +177,7 @@ const DevelopmentTable = () => {
                     <Td>{acct.role}</Td>
                     <Td>{acct.is_blocked ? "true" : "false"}</Td>
                     <Td>
-                      <Link href={`/#/admin/account/edit/${acct._id}`}>
+                      <Link href={`/admin/account/edit/${acct._id}`}>
                         <Icon
                           as={MdEdit}
                           width="20px"

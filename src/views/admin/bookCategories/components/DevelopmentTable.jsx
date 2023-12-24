@@ -131,7 +131,7 @@ export default function DevelopmentTable() {
               >
                 BookCategories Manage
               </Text>
-              <Link href="/#/admin/bookCategory/new">
+              <Link href="/admin/bookCategory/new">
                 <Button>
                   <Icon
                     as={MdAdd}
@@ -177,7 +177,7 @@ export default function DevelopmentTable() {
                     <Td>{bookCategory.name}</Td>
                     <Td>
                       <Link
-                        href={`/#/admin/bookCategory/edit/${bookCategory._id}`}
+                        href={`/admin/bookCategory/edit/${bookCategory._id}`}
                       >
                         <Icon
                           as={MdEdit}
