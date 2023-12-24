@@ -12,6 +12,7 @@ import MofifyAccountPage from "views/admin/accounts/ModifyAccountPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { AuthContextProvider } from "contexts/AuthContext";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -19,15 +20,14 @@ ReactDOM.render(
       <ChakraProvider theme={theme}>
         <React.StrictMode>
           <ThemeEditorProvider>
-            <HashRouter>
+            <BrowserRouter>
               <Switch>
                 <Route path={`/auth`} component={AuthLayout} />
-
                 <Route path={`/admin`} component={AdminLayout} />
                 <Route path={`/rtl`} component={RtlLayout} />
                 <Redirect from="/" to="/admin" />
               </Switch>
-            </HashRouter>
+            </BrowserRouter>
           </ThemeEditorProvider>
         </React.StrictMode>
       </ChakraProvider>
