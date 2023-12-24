@@ -55,9 +55,12 @@ import { getCurrentAccountRequest } from "redux/saga/requests/account";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as type from '../../../redux/types'
 import toast, { Toaster } from "react-hot-toast";
+// import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
   // Chakra color mode
+  // const navigate = useRouter();
+  const history = useHistory();
   const textColor = useColorModeValue("navy.700", "white");
   const textColorSecondary = "gray.400";
   const textColorDetails = useColorModeValue("navy.700", "secondaryGray.600");
@@ -137,7 +140,8 @@ function SignIn() {
                         phoneNumber: resp.user.phoneNumber,
                         avatar: resp.user.avatar
                       }));
-                      window.location.replace(type.ADMIN_URL_DEV);
+                      // window.location.replace(type.ADMIN_URL_DEV);
+                      history.push('/')
                       localStorage.setItem("authenticated", true);
                     }
                     else {
@@ -205,7 +209,8 @@ function SignIn() {
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("authenticated"))) {
-      window.location.replace(type.ADMIN_URL_DEV)
+      // window.location.replace(type.ADMIN_URL_DEV)
+      history.push('/')
     }
 
   }, [authenticated])
