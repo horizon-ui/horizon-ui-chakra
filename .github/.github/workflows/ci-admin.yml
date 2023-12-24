@@ -1,8 +1,9 @@
 name: CI - admin
 on:
-  pull_request:
-    paths:
-      - "**/*"
+  push:
+    branches:
+      - main
+
 jobs:
   ci-admin:
     runs-on: ubuntu-latest
