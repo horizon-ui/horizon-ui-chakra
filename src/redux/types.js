@@ -1,6 +1,6 @@
-export const BACKEND_URL_DEV = process.env.REACT_APP_BACKEND_URL;
-export const FRONTEND_URL_DEV = process.env.REACT_APP_FRONTEND_URL;
-export const ADMIN_URL_DEV = process.env.REACT_APP_ADMIN_URL;
+export const BACKEND_URL_DEV = process.env.REACT_APP_BACKEND_URL ?? "";
+export const FRONTEND_URL_DEV = process.env.REACT_APP_FRONTEND_URL ?? "";
+export const ADMIN_URL_DEV = process.env.REACT_APP_ADMIN_URL ?? "";
 export const PORT = process.env.PORT;
 
 // *Accounts
@@ -29,7 +29,6 @@ export const GET_BOOKCATEGORIES_FAILED = "GET_BOOKCATEGORIES_FAILED";
 export const GET_BOOKCATEGORY_REQUESTED = "GET_BOOKCATEGORY_REQUESTED";
 export const GET_BOOKCATEGORY_SUCCESS = "GET_BOOKCATEGORY_SUCCESS";
 export const GET_BOOKCATEGORY_FAILED = "GET_BOOKCATEGORY_FAILED";
-
 
 // * Tags
 export const GET_TAGS_REQUESTED = "GET_TAGS_REQUESTED";
