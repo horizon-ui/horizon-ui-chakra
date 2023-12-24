@@ -38,13 +38,13 @@ export const updateAccountRequest = async (id, request) => {
     });
 };
 
-export const createAccountRequest = async (request) => {
-  return fetch(`${type.BACKEND_URL_DEV}/auth/register`, {
+export const createAccountRequest = async (account) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/account/add-account`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(request),
+    body: JSON.stringify(account),
   })
     .then((response) => response.json())
     .catch((error) => {

@@ -43,7 +43,7 @@ export function SidebarLinks(props) {
       localStorage.removeItem("user");
       setAuthenticated("false");
       // window.location.replace(`${type.ADMIN_URL_DEV}/auth/sign-in`);
-      history.push("/");
+      history.push("/auth/sign-in");
     } catch (err) {
       console.log(err);
     }

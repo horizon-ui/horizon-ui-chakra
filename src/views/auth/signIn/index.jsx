@@ -167,21 +167,18 @@ function SignIn() {
     }
   }
   const getUserInfo = useCallback(() => {
-    console.log("callback")
     if (user) {
       console.log("user", user)
-      console.log("callback has user")
       let newAccount = {
         email: user.email,
         displayName: user.displayName,
         avatar: user.photoURL,
       };
-      console.log("newAccount", newAccount)
       createAccountRequest(newAccount)
         .then(() => {
           getCurrentAccountRequest(newAccount)
             .then(res => {
-              console.log("currentAccount", res.account)
+              console.log("181:", res)
               if (res.account.role) {
                 if (res.account.role === 1) {
                   localStorage.setItem("user", JSON.stringify(res.account))
@@ -210,7 +207,7 @@ function SignIn() {
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("authenticated"))) {
       // window.location.replace(type.ADMIN_URL_DEV)
-      history.push('/')
+      history.replace('/')
     }
 
   }, [authenticated])
