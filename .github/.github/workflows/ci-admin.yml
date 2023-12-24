@@ -1,8 +1,8 @@
 name: CI - admin
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    paths:
+      - "**/*"
 
 jobs:
   ci-admin:
