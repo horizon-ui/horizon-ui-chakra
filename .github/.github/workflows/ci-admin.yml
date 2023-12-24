@@ -1,0 +1,19 @@
+name: CI - admin
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci-admin:
+    runs-on: ubuntu-latest
+    container:
+      image: docker:dind
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login docker
+        run: docker login -u nguyenlien -p C!gtnH7yWyM24uX
+      - name: Build admin
+        run: docker build -t nguyenlien/mori-admin .
+      - name: Push image
+        run: docker push nguyenlien/mori-admin

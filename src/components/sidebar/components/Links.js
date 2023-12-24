@@ -6,9 +6,12 @@ import { Box, Flex, HStack, Text, useColorModeValue } from "@chakra-ui/react";
 import * as type from "../../../redux/types";
 import { UserAuth } from "contexts/AuthContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import { useNavigate } from 'react-router-dom';
 
 export function SidebarLinks(props) {
   //   Chakra color mode
+  
+  // const navigate = useNavigate();
   let location = useLocation();
   let activeColor = useColorModeValue("gray.700", "white");
   let inactiveColor = useColorModeValue(
@@ -39,7 +42,8 @@ export function SidebarLinks(props) {
       localStorage.removeItem("authenticated");
       localStorage.removeItem("user");
       setAuthenticated("false");
-      window.location.replace(`${type.ADMIN_URL_DEV}/#/auth/sign-in`);
+      // window.location.replace(`${type.ADMIN_URL_DEV}/#/auth/sign-in`);
+      history.push('/');
     } catch (err) {
       console.log(err);
     }

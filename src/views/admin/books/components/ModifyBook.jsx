@@ -63,6 +63,7 @@ const ModifyBook = () => {
   const [uploadedImage, setUploadedImage] = useState("")
   const [uploadedAudio, setUploadedAudio] = useState("")
   const [uploadedEpub, setUploadedEpub] = useState("")
+  const [totalPages, setTotalPages] = useState("")
   const [currentPdf, setCurrentPdf] = useState("")
   const [currentImage, setCurrentImage] = useState("")
   const [currentAudio, setCurrentAudio] = useState("")
@@ -197,6 +198,7 @@ const ModifyBook = () => {
         pdf: currentPdf,
         image: currentImage,
         epub: currentEpub,
+        totalPages: totalPages,
         intro: intro,
         tags: tagList,
         access_level: accessLevel,
@@ -245,6 +247,8 @@ const ModifyBook = () => {
       setIntro(book.intro)
       setTagList(book.tags)
       setCurrentPdf(book.pdf)
+      setCurrentEpub(book.epub)
+      setTotalPages(book.totalPages)
       setCurrentImage(book.image)
       setAccessLevel(book.access_level)
       setBookChapters(book.chapters)
@@ -322,7 +326,7 @@ const ModifyBook = () => {
             alignItems="center"
           >
             <FormLabel w="150px">Total pages</FormLabel>
-            <Input value={book.totalPages} disabled />
+            <Input value={totalPages}  onChange={(e) => setTotalPages(e.target.value)}  />
           </Flex>
           <Flex
             mx="25px"
