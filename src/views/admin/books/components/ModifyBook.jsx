@@ -133,7 +133,6 @@ const ModifyBook = () => {
         error: (error) => error.message,
       }
     );
-
   }
   const handleUploadImage = async () => {
     toast.promise(
