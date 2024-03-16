@@ -3,9 +3,7 @@ import * as type from "../../types";
 export const getBookCategoriesRequest = async () => {
   return fetch(`${type.BACKEND_URL_DEV}/api/bookCategory/get-categories`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: type.requestHeader,
   })
     .then((response) => response.json())
     .catch((error) => {
@@ -15,9 +13,7 @@ export const getBookCategoriesRequest = async () => {
 export const getBookCategoryByIdRequest = async (id) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/bookCategory/get-category/${id}`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: type.requestHeader,
   })
     .then((response) => response.json())
     .catch((error) => {
@@ -28,9 +24,7 @@ export const getBookCategoryByIdRequest = async (id) => {
 export const addNewBookCategoryRequest = async (request) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/bookCategory/add-category`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: type.requestHeader,
     body: JSON.stringify(request),
   })
     .then((response) => response.json())
@@ -41,9 +35,7 @@ export const addNewBookCategoryRequest = async (request) => {
 export const updateBookCategoryRequest = async (id, request) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/bookCategory/update/${id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: type.requestHeader,
     body: JSON.stringify(request),
   })
     .then((response) => response.json())
@@ -54,9 +46,7 @@ export const updateBookCategoryRequest = async (id, request) => {
 export const deleteBookCategoryByIdRequest = async (id) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/bookCategory/delete/${id}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: type.requestHeader,
   })
     .then((response) => response.json())
     .catch((error) => {

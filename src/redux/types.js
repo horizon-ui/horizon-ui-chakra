@@ -1,7 +1,18 @@
+import process from "process";
+import jwt from "jsonwebtoken";
+
 export const BACKEND_URL_DEV = process.env.REACT_APP_BACKEND_URL ?? "";
 export const FRONTEND_URL_DEV = process.env.REACT_APP_FRONTEND_URL ?? "";
 export const ADMIN_URL_DEV = process.env.REACT_APP_ADMIN_URL ?? "";
 export const PORT = process.env.PORT;
+export const ALLOW_ORIGIN_TOKEN = process.env.REACT_APP_ALLOW_ORIGIN_TOKEN;
+export const JWT_SECRET = process.env.REACT_APP_JWT_SECRET;
+const token = jwt.sign(ALLOW_ORIGIN_TOKEN, JWT_SECRET);
+export const requestHeader = {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${token}`,
+  Origin: FRONTEND_URL_DEV,
+};
 
 // *Accounts
 export const GET_ACCOUNTS_REQUESTED = "GET_ACCOUNTS_REQUESTED";

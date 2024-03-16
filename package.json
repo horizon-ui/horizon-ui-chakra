@@ -20,11 +20,15 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
+    "buffer": "^6.0.3",
+    "crypto": "npm:crypto-browserify",
     "dotenv": "^16.3.1",
     "dotenv-webpack": "^8.0.1",
     "firebase": "^10.7.0",
     "framer-motion": "^4.1.17",
+    "jsonwebtoken": "^9.0.2",
     "node-env-file": "^0.1.8",
+    "process": "^0.11.10",
     "react": "17.0.2",
     "react-apexcharts": "1.4.0",
     "react-calendar": "^3.7.0",
@@ -42,8 +46,10 @@
     "redux-saga": "^1.2.3",
     "sass": "^1.69.5",
     "scss": "^0.2.4",
+    "stream": "npm:stream-browserify",
     "stylis": "^4.1.1",
     "stylis-plugin-rtl": "2.0.2",
+    "util": "^0.12.5",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -62,7 +68,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    }
   },
   "browserslist": {
     "production": [
