@@ -2,7 +2,9 @@ import * as type from "../../types";
 export const getAllBooksRequest = async () => {
   return fetch(`${type.BACKEND_URL_DEV}/api/book/get-book`, {
     method: "GET",
-    headers: type.requestHeader,
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
     .then((response) => response.json())
     .catch((error) => {
@@ -13,7 +15,9 @@ export const getAllBooksRequest = async () => {
 export const getBookByIdRequest = async (id) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/book/get-book/${id}`, {
     method: "GET",
-    headers: type.requestHeader,
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
     .then((response) => response.json())
     .catch((error) => {
@@ -23,7 +27,9 @@ export const getBookByIdRequest = async (id) => {
 export const deleteBookByIdRequest = async (id) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/book/${id}`, {
     method: "DELETE",
-    headers: type.requestHeader,
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
     .then((response) => response.json())
     .catch((error) => {
@@ -34,7 +40,9 @@ export const deleteBookByIdRequest = async (id) => {
 export const addNewBookRequest = async (request) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/book/add-book`, {
     method: "POST",
-    headers: type.requestHeader,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(request),
   })
     .then((response) => response.json())
@@ -46,7 +54,9 @@ export const addNewBookRequest = async (request) => {
 export const addNewChapterRequest = async (request) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/chapter/add-chapter`, {
     method: "POST",
-    headers: type.requestHeader,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(request),
   })
     .then((response) => response.json())
@@ -58,7 +68,9 @@ export const addNewChapterRequest = async (request) => {
 export const updateBookRequest = async (id, request) => {
   return fetch(`${type.BACKEND_URL_DEV}/api/book/${id}`, {
     method: "PATCH",
-    headers: type.requestHeader,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(request),
   })
     .then((response) => response.json())
