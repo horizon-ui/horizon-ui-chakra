@@ -8,12 +8,11 @@ import RtlLayout from "layouts/rtl";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "theme/theme";
 import { ThemeEditorProvider } from "@hypertheme-editor/chakra-ui";
-import MofifyAccountPage from "views/admin/accounts/ModifyAccountPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { AuthContextProvider } from "contexts/AuthContext";
 import { BrowserRouter } from "react-router-dom";
-
+// import jwt from "jsonwebtoken";
 ReactDOM.render(
   <Provider store={store}>
     <AuthContextProvider>
