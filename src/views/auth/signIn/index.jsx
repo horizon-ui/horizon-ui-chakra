@@ -55,9 +55,11 @@ import { getCurrentAccountRequest } from "redux/saga/requests/account";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as type from '../../../redux/types'
 import toast, { Toaster } from "react-hot-toast";
+import { loginAccountRequest } from "redux/saga/requests/account";
 // import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
+
   // Chakra color mode
   // const navigate = useRouter();
   const history = useHistory();
@@ -105,6 +107,7 @@ function SignIn() {
   }
 
   const handleSignIn = () => {
+
     if (username == "" || password == "") {
       toast.error("Vui lòng nhập đủ thông tin!", {
         duration: 2000, position: 'top-center',
@@ -119,7 +122,7 @@ function SignIn() {
         new Promise((resolve, reject) => {
           loginAccountRequest(account)
             .then((resp) => {
-              if (resp.msg) {
+              if (resp.message) {
                 // Kiểm tra account có bị khóa không
                 if (resp.user.is_blocked) {
                   reject(new Error("Tài khoản này đã bị khóa!"));
@@ -153,14 +156,14 @@ function SignIn() {
               }
               else {
                 console.log("resp:", resp)
-                reject(new Error(resp));
+                reject(resp.error);
               }
             })
         }),
         {
           loading: "Processing...",
           success: (message) => message,
-          error: (error) => error.message,
+          error: (error) => error,
         }
       );
 
@@ -231,7 +234,7 @@ function SignIn() {
         mt={{ base: "40px", md: "14vh" }}
         flexDirection='column'>
         <Box me='auto' onClick={() => handleSignIn()}>
-          <Heading color={textColor} fontSize='36px' mb='10px'>
+          <Heading color={textColor} fontSize='36px' mb='10px' onClick={handleSignIn}>
             Sign In
           </Heading>
           <Text
@@ -362,7 +365,8 @@ function SignIn() {
               fontWeight='500'
               w='100%'
               h='50'
-              mb='24px'>
+              mb='24px'
+              onClick={handleSignIn}>
               Sign In
             </Button>
           </FormControl>

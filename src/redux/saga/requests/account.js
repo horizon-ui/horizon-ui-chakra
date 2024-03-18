@@ -1,5 +1,16 @@
 import * as type from "../../types";
+export const loginAccountRequest = async (account) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/auth/login`, {
+    method: "POST",
+    headers: type.requestHeader,
 
+    body: JSON.stringify(account),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
 export const getAccountsRequest = async () => {
   return fetch(`${type.BACKEND_URL_DEV}/api/account/get-account`, {
     method: "GET",
