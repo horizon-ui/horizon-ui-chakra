@@ -8,6 +8,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import Footer from "components/footer/FooterAdmin.js";
+import { WindowsLogo } from "components/icons/Icons";
 // Layout components
 import Navbar from "components/navbar/NavbarAdmin.js";
 import Sidebar from "components/sidebar/Sidebar.js";
@@ -19,6 +20,13 @@ import routes from "routes.js";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
+  const isAuthenticated = JSON.parse(localStorage.getItem("authenticated"));
+  useEffect(() => {
+    if (!isAuthenticated) {
+      window.location.replace("/login");
+    }
+  }, []);
+
   const { ...rest } = props;
   // states and functions
   const [fixed] = useState(false);
