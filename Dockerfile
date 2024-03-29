@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install --no-frozen-lockfile && npm run build
+RUN npm install --force --no-frozen-lockfile && npm run build
 
 FROM nginx:1.18-alpine as deploy-env
 

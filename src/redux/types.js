@@ -1,11 +1,10 @@
 export const BACKEND_URL_DEV = process.env.REACT_APP_BACKEND_URL ?? "";
 export const FRONTEND_URL_DEV = process.env.REACT_APP_FRONTEND_URL ?? "";
 export const ADMIN_URL_DEV = process.env.REACT_APP_ADMIN_URL ?? "";
-export const ALLOW_ORIGIN_TOKEN = process.env.REACT_APP_ALLOW_ORIGIN_TOKEN;
 
-console.log("ALLOW_ORIGIN_TOKEN", ALLOW_ORIGIN_TOKEN);
 export const requestHeader = {
   "Content-Type": "application/json",
+  "Origin": FRONTEND_URL_DEV
 };
 
 // *Accounts
