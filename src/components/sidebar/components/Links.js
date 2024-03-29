@@ -42,8 +42,7 @@ export function SidebarLinks(props) {
       localStorage.removeItem("authenticated");
       localStorage.removeItem("user");
       setAuthenticated("false");
-      // window.location.replace(`${type.ADMIN_URL_DEV}/auth/sign-in`);
-      history.push("/auth/sign-in");
+      window.location.replace("/login");
     } catch (err) {
       console.log(err);
     }

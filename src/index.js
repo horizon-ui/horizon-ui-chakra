@@ -12,25 +12,28 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { AuthContextProvider } from "contexts/AuthContext";
 import { BrowserRouter } from "react-router-dom";
-// import jwt from "jsonwebtoken";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 ReactDOM.render(
   <Provider store={store}>
-    <AuthContextProvider>
-      <ChakraProvider theme={theme}>
-        <React.StrictMode>
-          <ThemeEditorProvider>
-            <BrowserRouter>
-              <Switch>
-                <Route path={`/auth`} component={AuthLayout} />
-                <Route path={`/admin`} component={AdminLayout} />
-                <Route path={`/rtl`} component={RtlLayout} />
-                <Redirect from="/" to="/admin" />
-              </Switch>
-            </BrowserRouter>
-          </ThemeEditorProvider>
-        </React.StrictMode>
-      </ChakraProvider>
-    </AuthContextProvider>
+    <GoogleOAuthProvider>
+      <AuthContextProvider>
+        <ChakraProvider theme={theme}>
+          <React.StrictMode>
+            <ThemeEditorProvider>
+              <BrowserRouter>
+                <Switch>
+                  {/* <Route path={`/auth`} component={AuthLayout} /> */}
+                  <Route path={`/admin`} component={AdminLayout} />
+                  {/* <Route path={`/rtl`} component={RtlLayout} /> */}
+                  {/* <Redirect from="/" to="/admin" /> */}
+                </Switch>
+              </BrowserRouter>
+            </ThemeEditorProvider>
+          </React.StrictMode>
+        </ChakraProvider>
+      </AuthContextProvider>
+    </GoogleOAuthProvider>
   </Provider>,
   document.getElementById("root")
 );

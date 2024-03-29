@@ -143,7 +143,6 @@ function SignIn() {
                         phoneNumber: resp.user.phoneNumber,
                         avatar: resp.user.avatar
                       }));
-                      // window.location.replace(type.ADMIN_URL_DEV);
                       history.push('/')
                       localStorage.setItem("authenticated", true);
                     }
@@ -171,7 +170,6 @@ function SignIn() {
   }
   const getUserInfo = useCallback(() => {
     if (user) {
-      console.log("user", user)
       let newAccount = {
         email: user.email,
         displayName: user.displayName,
@@ -181,7 +179,6 @@ function SignIn() {
         .then(() => {
           getCurrentAccountRequest(newAccount)
             .then(res => {
-              console.log("181:", res)
               if (res.account.role) {
                 if (res.account.role === 1) {
                   localStorage.setItem("user", JSON.stringify(res.account))
@@ -204,16 +201,11 @@ function SignIn() {
   }, [user])
 
   // useEffect(() => {
-  //   setAuthenticated(localStorage.getItem("authenticated"))
+  //   if (JSON.parse(localStorage.getItem("authenticated"))) {
+  //     window.location.replace('/')
+  //   }
+
   // }, [])
-
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem("authenticated"))) {
-      // window.location.replace(type.ADMIN_URL_DEV)
-      history.replace('/')
-    }
-
-  }, [authenticated])
 
   useEffect(() => {
     getUserInfo()

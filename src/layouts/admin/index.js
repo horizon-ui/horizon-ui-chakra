@@ -24,6 +24,7 @@ export default function Dashboard(props) {
   useEffect(() => {
     if (!isAuthenticated) {
       window.location.replace("/login");
+      // window.location.replace("http://localhost:3000/login");
     }
   }, []);
 
