@@ -1,0 +1,66 @@
+image: docker:20.10.14
+
+services:
+  - docker:20.10.14-dind
+
+variables:
+  DOCKER_IMAGE: "qhuong1008/mori-admin"
+  DOCKER_USER: "qhuong1008"
+  DOCKER_PASSWORD: "Huong560045@"
+  REMOTE_SERVER: "hcmute@103.130.211.150"
+  REMOTE_PORT: 10038
+  SSH_SERVER_IP: "103.130.211.150"
+  MORI_SSH_PRIVATE_KEY: $MORI_SSH_PRIVATE_KEY
+  ID_RSA: "~/.ssh/id_rsa"
+  PATH_TO_PROJECT: "project/MoriApp_20110141_20110335/mori-app-deploy"
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+    - docker build -t admin .
+    - docker tag admin "$DOCKER_IMAGE"
+    - docker push "$DOCKER_IMAGE"
+
+deploy:
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  before_script:
+    - apk update && apk add openssh-client bash
+  script:
+    - eval $(ssh-agent -s)
+
+    # thêm nội dung của biến SSH_PRIVATE_KEY vào agent store
+    - bash -c 'ssh-add <(echo "$MORI_SSH_PRIVATE_KEY")'
+    
+    # tạo folder ~/.ssh
+    - mkdir -p ~/.ssh
+    
+    # Scan lấy SSH Host key cho địa chỉ IP server
+    # Được kết quả bao nhiêu thì thêm vào file known_hosts
+    - ssh-keyscan -p $REMOTE_PORT -H $SSH_SERVER_IP >> ~/.ssh/known_hosts
+    
+    # Sửa lại quyền của file known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    
+    # Thực hiện SSH vào server, login vào Registry, chuyển tới folder project
+    # Down project, pull image về, up project và xoá đi image cũ
+    - ssh $REMOTE_SERVER -p $REMOTE_PORT
+    - cat << EOF > deploy.sh
+    - cd $PATH_TO_PROJECT
+    - docker-compose down
+    - docker-compose pull
+    - docker-compose up -d
+    - EOF
+    # Make the script executable
+    - chmod +x deploy.sh
+    - ssh $REMOTE_SERVER -p $REMOTE_PORT < deploy.sh
+
+
+  only:
+    - main
