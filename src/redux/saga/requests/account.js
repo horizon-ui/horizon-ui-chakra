@@ -50,7 +50,7 @@ export const updateAccountRequest = async (id, request) => {
 };
 
 export const createAccountRequest = async (account) => {
-  return fetch(`${type.BACKEND_URL_DEV}/api/account/add-account`, {
+  return fetch(`${type.BACKEND_URL_DEV}/api/account/add-manual-account`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
