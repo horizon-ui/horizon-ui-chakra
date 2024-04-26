@@ -61,7 +61,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && sed 's/\\/static/\\/admin\\/static/g' ./build/index.html > temp && mv temp ./build/index.html && mkdir -p ./build/admin/static && mv ./build/static/* ./build/admin/static",
+    "build": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
