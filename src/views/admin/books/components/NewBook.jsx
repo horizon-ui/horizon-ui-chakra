@@ -26,9 +26,9 @@ import {
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, { useState } from "react";
-import { getAllTagsRequest } from "redux/saga/requests/tag";
+import { getAllTagsRequest } from "../../../../redux/saga/requests/tag";
 import { Toaster, toast } from "react-hot-toast";
-import { addNewBookRequest } from "redux/saga/requests/book";
+import { addNewBookRequest } from "../../../../redux/saga/requests/book";
 
 const NewBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");

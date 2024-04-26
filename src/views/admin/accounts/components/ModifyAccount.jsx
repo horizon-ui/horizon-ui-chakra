@@ -13,10 +13,9 @@ import Loading from "components/loading/Loading";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { getAccountById } from "redux/actions/account";
-import { getAccountByIdRequest } from "redux/saga/requests/account";
+import { getAccountByIdRequest } from "../../../../redux/saga/requests/account";
 import { Toaster, toast } from "react-hot-toast";
-import { updateAccountRequest } from "redux/saga/requests/account";
+import { updateAccountRequest } from "../../../../redux/saga/requests/account";
 
 
 const ModifyAccount = () => {

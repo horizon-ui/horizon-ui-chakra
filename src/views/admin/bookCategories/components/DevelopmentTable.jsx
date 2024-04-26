@@ -29,10 +29,8 @@ import Loading from "components/loading/Loading";
 import { useEffect } from "react";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { Toaster, toast } from "react-hot-toast";
-
-import { getBookCategories } from "redux/actions/bookCategories";
-
-import { deleteBookCategoryByIdRequest } from "redux/saga/requests/bookCategories";
+import { getBookCategories } from "../../../../redux/actions/bookCategories";
+import { deleteBookCategoryByIdRequest } from "../../../../redux/saga/requests/bookCategories";
 
 export default function DevelopmentTable() {
   const dispatch = useDispatch();

@@ -22,27 +22,21 @@ import {
   useDisclosure,
   UnorderedList,
   ListItem,
-  Link,
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, { useState } from "react";
 import Loading from "components/loading/Loading";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { getAccountById } from "redux/actions/account";
-import { getBookById } from "redux/actions/book";
-import { getBookByIdRequest } from "redux/saga/requests/book";
+import { getBookByIdRequest } from "../../../../redux/saga/requests/book";
 import { Toaster, toast } from "react-hot-toast";
-import { getAllTagsRequest } from "redux/saga/requests/tag";
-import { uploadBookPdfRequest } from "redux/saga/requests/book";
-import { updateBookRequest } from "redux/saga/requests/book";
-import { uploadBookImageRequest } from "redux/saga/requests/book";
-import { uploadBookAudioRequest } from "redux/saga/requests/book";
-import books from "redux/reducers/book";
-import { addNewChapterRequest } from "redux/saga/requests/book";
-import { uploadBookEpubRequest } from "redux/saga/requests/book";
-import { uploadNewChapterRequest } from "redux/saga/requests/book";
+import { getAllTagsRequest } from "../../../../redux/saga/requests/tag";
+import { uploadBookPdfRequest } from "../../../../redux/saga/requests/book";
+import { updateBookRequest } from "../../../../redux/saga/requests/book";
+import { uploadBookImageRequest } from "../../../../redux/saga/requests/book";
+import { uploadBookEpubRequest } from "../../../../redux/saga/requests/book";
+import { uploadNewChapterRequest } from "../../../../redux/saga/requests/book";
 
 const ModifyBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -326,7 +320,7 @@ const ModifyBook = () => {
             alignItems="center"
           >
             <FormLabel w="150px">Total pages</FormLabel>
-            <Input value={totalPages}  onChange={(e) => setTotalPages(e.target.value)}  />
+            <Input value={totalPages} onChange={(e) => setTotalPages(e.target.value)} />
           </Flex>
           <Flex
             mx="25px"

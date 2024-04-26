@@ -22,11 +22,11 @@ import {
   MdAdd,
 } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { getBooks } from "redux/actions/book";
 import Loading from "components/loading/Loading";
 import { useEffect } from "react";
-import { getAccounts } from "redux/actions/account";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
+import { getAccounts } from "../../../../redux/actions/account";
+
 const DevelopmentTable = () => {
   const dispatch = useDispatch()
   const accounts = useSelector(state => state.accounts.accounts)

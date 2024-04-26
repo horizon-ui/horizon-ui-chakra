@@ -29,9 +29,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "components/loading/Loading";
 import { useEffect } from "react";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
-import { getTags } from "redux/actions/tag";
+import { getTags } from "../../../../redux/actions/tag";
 import { Toaster, toast } from "react-hot-toast";
-import { deleteTagByIdRequest } from "redux/saga/requests/tag";
+import { deleteTagByIdRequest } from "../../../../redux/saga/requests/tag";
 
 
 export default function DevelopmentTable() {

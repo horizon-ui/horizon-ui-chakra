@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, { useState } from "react";
-import { addNewBookCategoryRequest } from "redux/saga/requests/bookCategories";
+import { addNewBookCategoryRequest } from "../../../../redux/saga/requests/bookCategories";
 import { Toaster, toast } from "react-hot-toast";
 
 const NewBookCategory = () => {

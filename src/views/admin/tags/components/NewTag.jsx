@@ -4,22 +4,16 @@ import {
   Text,
   FormLabel,
   Input,
-  Avatar,
-  Select,
   Button,
-  Image,
-  Textarea,
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { createTagRequest } from "redux/saga/requests/tag";
+import { createTagRequest } from "../../../../redux/saga/requests/tag";
 
 
 const NewTag = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
-  const iconColor = useColorModeValue("secondaryGray.500", "white");
-  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
 
@@ -28,7 +22,6 @@ const NewTag = () => {
       name: name,
       description: description,
     }
-    console.log("request:", request)
     toast.promise(
       new Promise((resolve, reject) => {
         createTagRequest(request)

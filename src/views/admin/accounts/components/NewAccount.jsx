@@ -11,7 +11,7 @@ import {
 import Card from "components/card/Card";
 import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { createAccountRequest } from "redux/saga/requests/account";
+import { createAccountRequest } from "../../../../redux/saga/requests/account";
 
 
 const NewAccount = () => {

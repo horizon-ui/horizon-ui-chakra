@@ -30,11 +30,11 @@ import {
   MdAdd,
 } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { getBooks } from "redux/actions/book";
+import { getBooks } from "../../../../redux/actions/book";
 import Loading from "components/loading/Loading";
 import { useEffect } from "react";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
-import { deleteBookByIdRequest } from "redux/saga/requests/book";
+import { deleteBookByIdRequest } from "../../../../redux/saga/requests/book";
 import { Toaster, toast } from "react-hot-toast";
 import * as type from '../../../../redux/types'
 

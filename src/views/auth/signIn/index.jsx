@@ -1,29 +1,5 @@
-/* eslint-disable */
-/*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
-=========================================================
-* Horizon UI - v1.1.0
-=========================================================
-
-* Product Page: https://www.horizon-ui.com/
-* Copyright 2023 Horizon UI (https://www.horizon-ui.com/)
-
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
 import React, { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-// Chakra imports
 import {
   Box,
   Button,
@@ -40,28 +16,21 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-// Custom components
 import { HSeparator } from "components/separator/Separator";
 import DefaultAuth from "layouts/auth/Default";
-// Assets
 import illustration from "assets/img/auth/auth.png";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { UserAuth } from "contexts/AuthContext";
 import { useDispatch } from "react-redux";
-import { createAccountRequest } from "redux/saga/requests/account";
-import { getCurrentAccountRequest } from "redux/saga/requests/account";
+import { createAccountRequest } from "../../../redux/saga/requests/account";
+import { getCurrentAccountRequest } from "../../../redux/saga/requests/account";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import * as type from '../../../redux/types'
 import toast, { Toaster } from "react-hot-toast";
-import { loginAccountRequest } from "redux/saga/requests/account";
-// import { useNavigate } from 'react-router-dom';
+import { loginAccountRequest } from "../../../redux/saga/requests/account";
 
 function SignIn() {
-
-  // Chakra color mode
-  // const navigate = useRouter();
   const history = useHistory();
   const textColor = useColorModeValue("navy.700", "white");
   const textColorSecondary = "gray.400";

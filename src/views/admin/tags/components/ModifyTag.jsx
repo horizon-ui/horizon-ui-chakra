@@ -11,9 +11,9 @@ import Loading from "components/loading/Loading";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { getTagById } from "redux/actions/tag";
+import { getTagById } from "../../../../redux/actions/tag";
 import { Toaster, toast } from "react-hot-toast";
-import { updateTagByIdRequest } from "redux/saga/requests/tag";
+import { updateTagByIdRequest } from "../../../../redux/saga/requests/tag";
 
 
 const ModifyTag = () => {

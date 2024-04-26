@@ -19,11 +19,11 @@ import Card from "components/card/Card";
 import Loading from "components/loading/Loading";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { updateBookCategoryRequest } from "redux/saga/requests/bookCategories";
+import { updateBookCategoryRequest } from "../../../../redux/saga/requests/bookCategories";
 import { Toaster, toast } from "react-hot-toast";
-import { getBookCategoryByIdRequest } from "redux/saga/requests/bookCategories";
+import { getBookCategoryByIdRequest } from "../../../../redux/saga/requests/bookCategories";
 
 const ModifyBookCategory = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
