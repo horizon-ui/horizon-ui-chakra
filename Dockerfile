@@ -2,6 +2,8 @@
 FROM node:18-alpine as build-env
 
 WORKDIR /app
+ 
+RUN rm -rf node_modules
 
 COPY . .
 
