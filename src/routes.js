@@ -6,6 +6,7 @@ import {
   MdTag,
   MdLogout,
   MdCategory,
+  MdMoney,
 } from "react-icons/md";
 
 import AccountManage from "views/admin/accounts";
@@ -23,6 +24,7 @@ import NewAccountPage from "views/admin/accounts/NewAccountPage";
 import NewBookPage from "views/admin/books/NewBookPage";
 import NewTagPage from "views/admin/tags/NewTagPage";
 import NewBookCategoryPage from "views/admin/bookCategories/NewBookCategoryPage";
+import TransactionsPage from "views/admin/transactions/index";
 
 const routes = [
   {
@@ -114,6 +116,14 @@ const routes = [
     path: "/tag/new",
     display: "false",
     component: NewTagPage,
+  },
+  {
+    name: "Transactions",
+    layout: "/admin",
+    path: "/transactions",
+    display: "true",
+    icon: <Icon as={MdMoney} width="20px" height="20px" color="inherit" />,
+    component: TransactionsPage,
   },
   {
     name: "Log out",
