@@ -119,7 +119,7 @@ const routes = [
     name: "Log out",
     layout: "/auth",
     feature: "logout",
-    path: "/sign-in",
+    path: "/login",
     icon: <Icon as={MdLogout} width="20px" height="20px" color="inherit" />,
     component: SignInCentered,
     display: "true",
