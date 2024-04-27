@@ -68,18 +68,6 @@ export const updateBookRequest = async (id, request) => {
     });
 };
 
-export const uploadBookPdfRequest = async (file) => {
-  const formData = new FormData();
-  formData.append("file", file);
-  return fetch(`${type.BACKEND_URL_DEV}/api/azure/upload/book-pdf`, {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response.json())
-    .catch((error) => {
-      throw error;
-    });
-};
 export const uploadNewChapterRequest = async (newChapter) => {
   const formData = new FormData();
   formData.append("audio", newChapter.audio);
@@ -95,14 +83,20 @@ export const uploadNewChapterRequest = async (newChapter) => {
     });
 };
 
-export const uploadBookImageRequest = async (file) => {
+export const uploadBookImageRequest = async (image) => {
   const formData = new FormData();
-  formData.append("file", file);
-  return fetch(`${type.BACKEND_URL_DEV}/api/azure/upload/book-img`, {
+  formData.append("image", image);
+  return fetch(`${type.BACKEND_URL_DEV}/api/book/upload-image`, {
     method: "POST",
+    headers: {
+      Origin: type.BACKEND_URL_DEV,
+    },
+
     body: formData,
   })
-    .then((response) => response.json())
+    .then((response) => {
+      return response.json();
+    })
     .catch((error) => {
       throw error;
     });
@@ -111,11 +105,17 @@ export const uploadBookImageRequest = async (file) => {
 export const uploadBookEpubRequest = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
-  return fetch(`${type.BACKEND_URL_DEV}/api/azure/upload/book-epub`, {
+  return fetch(`${type.BACKEND_URL_DEV}/api/book/upload-epub`, {
     method: "POST",
+    headers: {
+      Origin: type.BACKEND_URL_DEV,
+    },
+
     body: formData,
   })
-    .then((response) => response.json())
+    .then((response) => {
+      return response.json();
+    })
     .catch((error) => {
       throw error;
     });

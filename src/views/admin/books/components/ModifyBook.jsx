@@ -31,12 +31,12 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getBookByIdRequest } from "../../../../redux/saga/requests/book";
 import { Toaster, toast } from "react-hot-toast";
-import { getAllTagsRequest } from "../../../../redux/saga/requests/tag";
-import { uploadBookPdfRequest } from "../../../../redux/saga/requests/book";
-import { updateBookRequest } from "../../../../redux/saga/requests/book";
+import { getAllTagsRequest } from "../../../../redux/saga/requests/tag"; import { updateBookRequest } from "../../../../redux/saga/requests/book";
 import { uploadBookImageRequest } from "../../../../redux/saga/requests/book";
 import { uploadBookEpubRequest } from "../../../../redux/saga/requests/book";
 import { uploadNewChapterRequest } from "../../../../redux/saga/requests/book";
+import * as type from '../../../../redux/types'
+
 
 const ModifyBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -84,29 +84,7 @@ const ModifyBook = () => {
         setTagList(res.allTags)
       })
   }
-  const handleUploadPdf = async () => {
-    toast.promise(
-      new Promise((resolve, reject) => {
-        uploadBookPdfRequest(uploadedPdf)
-          .then((resp) => {
-            if (resp.message) {
-              resolve(resp.message)
-              setCurrentPdf(resp.blobUrl)
-            }
-            else {
-              reject("Upload error!");
-            }
-          })
 
-      }),
-      {
-        loading: "Uploading...",
-        success: (message) => message,
-        error: (error) => error.message,
-      }
-    );
-
-  }
   const handleUploadEpub = async () => {
     toast.promise(
       new Promise((resolve, reject) => {
@@ -114,7 +92,8 @@ const ModifyBook = () => {
           .then((resp) => {
             if (resp.message) {
               resolve(resp.message)
-              setCurrentEpub(resp.blobUrl)
+              setCurrentEpub(resp.filename)
+              onCloseEpub()
             }
             else {
               reject("Upload error!");
@@ -134,9 +113,13 @@ const ModifyBook = () => {
       new Promise((resolve, reject) => {
         uploadBookImageRequest(uploadedImage)
           .then((resp) => {
+            if (resp.error) {
+              reject(resp.error)
+            }
             if (resp.message) {
               resolve(resp.message)
-              setCurrentImage(resp.blobUrl)
+              setCurrentImage(resp.filename)
+              onCloseImage()
             }
             else {
               reject("Upload error!");
@@ -271,7 +254,7 @@ const ModifyBook = () => {
             alignItems="center"
           >
             <Image
-              src={book.image}
+              src={`${type.BACKEND_URL_DEV}/api/bookimg/${book.image}`}
               width="120px"
               height="auto"
               alt="img"
@@ -405,29 +388,7 @@ const ModifyBook = () => {
             alignItems="center"
           >
           </Flex>
-          <Flex
-            mx="25px"
-            my="5px"
-            paddingBottom={"30px"}
-            flexDirection="row"
-            alignItems="center"
-          >
-            <FormLabel w="148px">Pdf</FormLabel>
-            <Flex w="100%" justifyContent={"space-between"}>
-              <Flex flexWrap={"wrap"} w="90%" marginRight={"10px"}>
-                <Input value={currentPdf} disabled />
 
-              </Flex>
-              <Button
-                width="auto"
-                colorScheme="blue"
-                variant='outline'
-                onClick={() => { onOpenPdf() }}
-              >
-                Upload pdf
-              </Button>
-            </Flex>
-          </Flex>
           <Flex
             mx="25px"
             my="5px"
@@ -542,32 +503,14 @@ const ModifyBook = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Modal isOpen={isOpenPdf} onClose={onClosePdf}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Upload PDF file:</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <input type="file" name="file"
-              onChange={(e) => setUploadedPdf(e.target.files[0])}
-            />
 
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme='red' mr={3} onClick={onCloseTag}>
-              Close
-            </Button>
-            <Button colorScheme='blue' onClick={handleUploadPdf}>Upload</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
       <Modal isOpen={isOpenEpub} onClose={onCloseEpub}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Upload epub file:</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <input type="file" name="file"
+            <input type="file"
               onChange={(e) => setUploadedEpub(e.target.files[0])}
             />
 
@@ -586,7 +529,7 @@ const ModifyBook = () => {
           <ModalHeader>Upload Image:</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <input type="file" name="file"
+            <input type="file"
               onChange={(e) => {
                 setUploadedImage(e.target.files[0]);
               }}

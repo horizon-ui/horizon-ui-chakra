@@ -208,7 +208,7 @@ export default function DevelopmentTable() {
                   bookList.map((book) => (
                     <Tr>
                       <Td>
-                        <img src={book.image} alt="img" width={60} height={60} />
+                        <img src={`${type.BACKEND_URL_DEV}/api/bookimg/${book.image}`} alt="img" width={60} height={60} />
                       </Td>
                       <Td>{book.name}</Td>
                       <Td>{book.author}</Td>
