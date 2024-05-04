@@ -10,6 +10,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Skeleton,
   Spinner,
   Table,
   Tbody,
@@ -205,7 +206,7 @@ export default function DevelopmentTable() {
 
               <Tbody>
                 {
-                  bookList.map((book) => (
+                  bookList.length != 0 ? bookList.map((book) => (
                     <Tr>
                       <Td>
                         <img src={`${type.BACKEND_URL_DEV}/api/bookimg/${book.image}`} alt="img" width={60} height={60} />
@@ -238,7 +239,27 @@ export default function DevelopmentTable() {
                         />
                       </Td>
                     </Tr>
-                  ))}
+
+
+                  ))
+                    :
+                    <Tr>
+                      <Td>
+                        <Skeleton height='10px' />
+                      </Td>
+                      <Td><Skeleton height='10px' /></Td>
+                      <Td><Skeleton height='10px' /></Td>
+                      <Td><Skeleton height='10px' /></Td>
+                      <Td><Skeleton height='10px' /></Td>
+                      <Td><Skeleton height='10px' /></Td>
+                      <Td>
+                        <Skeleton height='10px' />
+                      </Td>
+                      <Td>
+                        <Skeleton height='10px' />
+                      </Td>
+                    </Tr>
+                }
               </Tbody>
             </Table>
           </>}

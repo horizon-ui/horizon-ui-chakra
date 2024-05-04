@@ -4,6 +4,7 @@ import {
   Button,
   Flex,
   Link,
+  Skeleton,
   Table,
   Tbody,
   Td,
@@ -161,43 +162,50 @@ const DevelopmentTable = () => {
 
             <Tbody>
               {
-                accountList.map((acct) => (
+                accountList.length != 0 ?
+                  accountList.map((acct) => (
+                    <Tr>
+                      <Td>
+                        <Avatar
+                          name={acct.name}
+                          src={acct.avatar}
+                          marginRight="20px"
+                        />
+
+                      </Td>
+                      <Td>{acct.email}</Td>
+                      <Td>{acct.displayName}</Td>
+                      <Td>{acct.phoneNumber}</Td>
+                      <Td>{acct.role}</Td>
+                      <Td>{acct.is_blocked ? "true" : "false"}</Td>
+                      <Td>
+                        <Link href={`/admin/account/edit/${acct._id}`}>
+                          <Icon
+                            as={MdEdit}
+                            width="20px"
+                            height="20px"
+                            color="inherit"
+                            cursor="pointer"
+                          />
+                        </Link>
+                      </Td>
+                    </Tr>
+                  ))
+                  :
                   <Tr>
                     <Td>
-                      <Avatar
-                        name={acct.name}
-                        src={acct.avatar}
-                        marginRight="20px"
-                      />
-
+                      <Skeleton height='10px' />
                     </Td>
-                    <Td>{acct.email}</Td>
-                    <Td>{acct.displayName}</Td>
-                    <Td>{acct.phoneNumber}</Td>
-                    <Td>{acct.role}</Td>
-                    <Td>{acct.is_blocked ? "true" : "false"}</Td>
+                    <Td><Skeleton height='10px' /></Td>
+                    <Td><Skeleton height='10px' /></Td>
+                    <Td><Skeleton height='10px' /></Td>
+                    <Td><Skeleton height='10px' /></Td>
+                    <Td><Skeleton height='10px' /></Td>
                     <Td>
-                      <Link href={`/admin/account/edit/${acct._id}`}>
-                        <Icon
-                          as={MdEdit}
-                          width="20px"
-                          height="20px"
-                          color="inherit"
-                          cursor="pointer"
-                        />
-                      </Link>
+                      <Skeleton height='10px' />
                     </Td>
-                    {/* <Td>
-                      <Icon
-                        as={MdRemoveCircle}
-                        width="20px"
-                        height="20px"
-                        color="inherit"
-                        cursor="pointer"
-                      />
-                    </Td> */}
                   </Tr>
-                ))}
+              }
             </Tbody>
           </Table>
         </>}
