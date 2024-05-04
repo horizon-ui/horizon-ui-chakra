@@ -19,8 +19,8 @@ import routes from "routes.js";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
-  // const isAuthenticated = JSON.parse(localStorage.getItem("authenticated"));
-  const isAuthenticated = true;
+  const isAuthenticated = JSON.parse(localStorage.getItem("authenticated"));
+  // const isAuthenticated = true;
   useEffect(() => {
     if (!isAuthenticated) {
       window.location.replace("/login");
