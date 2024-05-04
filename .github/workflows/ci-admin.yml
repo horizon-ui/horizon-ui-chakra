@@ -1,8 +1,8 @@
 name: CI - admin
 on:
-  pull_request:
-    paths:
-      - "**/*"
+  push:
+    branches:
+      - lien
 
 jobs:
   ci-admin:
