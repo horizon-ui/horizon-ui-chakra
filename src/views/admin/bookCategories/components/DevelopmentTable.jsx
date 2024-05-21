@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Skeleton,
   Spinner,
   Table,
   Tbody,
@@ -169,38 +170,50 @@ export default function DevelopmentTable() {
               </Thead>
 
               <Tbody>
-                {cateList.map((bookCategory) => (
-                  <Tr>
-                    <Td>{bookCategory.tag}</Td>
-                    <Td>{bookCategory.name}</Td>
-                    <Td>
-                      <Link
-                        href={`/admin/bookCategory/edit/${bookCategory._id}`}
-                      >
+                {
+                  cateList.length != 0 ? cateList.map((bookCategory) => (
+                    <Tr>
+                      <Td>{bookCategory.tag}</Td>
+                      <Td>{bookCategory.name}</Td>
+                      <Td>
+                        <Link
+                          href={`/admin/bookCategory/edit/${bookCategory._id}`}
+                        >
+                          <Icon
+                            as={MdEdit}
+                            width="20px"
+                            height="20px"
+                            color="inherit"
+                            cursor="pointer"
+                          />
+                        </Link>
+                      </Td>
+                      <Td>
                         <Icon
-                          as={MdEdit}
+                          as={MdRemoveCircle}
                           width="20px"
                           height="20px"
                           color="inherit"
                           cursor="pointer"
+                          onClick={() => {
+                            onOpenDelete();
+                            setDelete(bookCategory);
+                          }}
                         />
-                      </Link>
-                    </Td>
-                    <Td>
-                      <Icon
-                        as={MdRemoveCircle}
-                        width="20px"
-                        height="20px"
-                        color="inherit"
-                        cursor="pointer"
-                        onClick={() => {
-                          onOpenDelete();
-                          setDelete(bookCategory);
-                        }}
-                      />
-                    </Td>
-                  </Tr>
-                ))}
+                      </Td>
+                    </Tr>
+                  ))
+                    :
+                    <Tr>
+                      <Td>
+                        <Skeleton height='10px' />
+                      </Td>
+                      <Td><Skeleton height='10px' /></Td>
+                      <Td><Skeleton height='10px' /></Td>
+                      <Td><Skeleton height='10px' /></Td>
+
+                    </Tr>
+                }
               </Tbody>
             </Table>
           </>

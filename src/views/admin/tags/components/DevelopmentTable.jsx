@@ -15,7 +15,8 @@ import {
   Tr,
   useColorModeValue,
   useDisclosure,
-  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton
+  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton,
+  Skeleton
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, { useState } from "react";
@@ -164,7 +165,7 @@ export default function DevelopmentTable() {
 
             <Tbody>
               {
-                tagList.map((tag) => (
+                tagList.length != 0 ? tagList.map((tag) => (
                   <Tr>
                     <Td>{tag.name}</Td>
                     <Td>{tag.description}</Td>
@@ -190,7 +191,18 @@ export default function DevelopmentTable() {
                       />
                     </Td>
                   </Tr>
-                ))}
+                ))
+                  :
+                  <Tr>
+                    <Td>
+                      <Skeleton height='10px' />
+                    </Td>
+                    <Td><Skeleton height='10px' /></Td>
+                    <Td><Skeleton height='10px' /></Td>
+                    <Td><Skeleton height='10px' /></Td>
+
+                  </Tr>
+              }
             </Tbody>
           </Table>
         </>}

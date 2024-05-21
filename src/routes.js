@@ -127,7 +127,8 @@ const routes = [
   },
   {
     name: "Log out",
-    layout: "/auth",
+    // layout: "/auth",
+
     feature: "logout",
     path: "/login",
     icon: <Icon as={MdLogout} width="20px" height="20px" color="inherit" />,
