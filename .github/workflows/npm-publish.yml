@@ -1,0 +1,65 @@
+name: mori admin deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx (optional)
+        uses: docker/setup-buildx-action@v2 # Optional for multi-platform builds
+
+      - name: Login to Docker Hub
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }} # Use secrets for credentials
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE }}
+        run: |
+          docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+
+      - name: Build and push Docker image
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }} # Use secrets for credentials
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE }}
+        run: |
+          docker build -t admin .
+          docker tag admin "$DOCKER_IMAGE"
+          docker push "$DOCKER_IMAGE"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-push # Run this job after build-and-push
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH (optional)
+        env:
+          PATH_TO_PROJECT: project/MoriApp_20110141_20110335/mori-app-deploy
+          MORI_SSH_PRIVATE_KEY: ${{ secrets.MORI_SSH_PRIVATE_KEY }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          SSH_SERVER_IP: ${{ secrets.SSH_SERVER_IP }}
+          REMOTE_SERVER: ${{ secrets.REMOTE_SERVER }}
+        run: |
+          apk update && apk add openssh-client bash
+          eval $(ssh-agent -s)
+          bash -c 'ssh-add <(echo "$MORI_SSH_PRIVATE_KEY")'
+          mkdir -p ~/.ssh 
+          ssh-keyscan -p $REMOTE_PORT -H $SSH_SERVER_IP >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          ssh $REMOTE_SERVER -p $REMOTE_PORT
+          cat << EOF > deploy.sh
+          cd "$PATH_TO_PROJECT"
+          docker-compose down
+          docker-compose pull
+          docker-compose up -d
+          EOF
+          chmod +x deploy.sh
+          ssh $REMOTE_SERVER -p $REMOTE_PORT < deploy.sh
