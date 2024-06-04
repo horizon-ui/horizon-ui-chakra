@@ -49,6 +49,7 @@ const ModifyAccount = () => {
           .then((resp) => {
             if (resp.updatedAccount) {
               resolve("Cập nhật thành công!")
+              window.location.replace("/admin/accounts");
               console.log("resp", resp)
             }
             else {

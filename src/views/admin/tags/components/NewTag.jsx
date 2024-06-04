@@ -28,6 +28,7 @@ const NewTag = () => {
           .then((resp) => {
             if (resp.newTag) {
               resolve("Thêm tag thành công!")
+              window.location.replace("/admin/tags");
               console.log("resp", resp)
             }
             else {

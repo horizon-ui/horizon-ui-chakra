@@ -21,6 +21,7 @@ import {
   Tr,
   useColorModeValue,
   useDisclosure,
+  Input
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import React, { useState } from "react";
@@ -46,9 +47,17 @@ export default function DevelopmentTable() {
   const isLoading = useSelector(state => state.books.loading)
   const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
   const [deleteBook, setDeleteBook] = useState(null)
-  const [reload, setReload] = useState(0)
+  const [reload, setReload] = useState(0);
+  const [password, setPassword] = useState("");
   const handleDeleteBook = async () => {
     console.log("id:", deleteBook)
+
+    // Kiểm tra mật khẩu
+    if (password !== "03350141") {
+      toast.error("Wrong password, cannot delete book");
+      return;
+    }
+
     toast.promise(
       new Promise((resolve, reject) => {
         deleteBookByIdRequest(deleteBook._id)
@@ -270,7 +279,13 @@ export default function DevelopmentTable() {
           <ModalHeader>Confirmation:</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            Delete book {deleteBook ? deleteBook.name : <Spinner />}?
+            Delete book {deleteBook ? deleteBook.name : <Spinner />}? Please enter password to delete
+            <Input
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           </ModalBody>
           <ModalFooter>
             <Button colorScheme='red' mr={3} onClick={onCloseDelete}>

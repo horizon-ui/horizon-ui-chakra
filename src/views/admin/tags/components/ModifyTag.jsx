@@ -41,6 +41,7 @@ const ModifyTag = () => {
           .then((resp) => {
             if (resp.updatedTag) {
               resolve("Cập nhật thành công!")
+              window.location.replace("/admin/tags");
               console.log("resp", resp)
             }
             else {

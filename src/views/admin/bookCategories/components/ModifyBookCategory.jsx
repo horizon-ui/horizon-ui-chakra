@@ -52,6 +52,7 @@ const ModifyBookCategory = () => {
               console.log("updatedBookCategory: ", resp.updatedBookCategory);
               if (resp.updatedBookCategory) {
                 resolve("Cập nhật thành công!");
+                window.location.replace("/admin/bookCategories");
               } else if (resp.message == "BookCategory not found") {
                 reject("Không tìm thấy BookCategory!");
               }

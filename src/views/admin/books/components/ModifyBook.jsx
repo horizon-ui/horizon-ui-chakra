@@ -11,6 +11,7 @@ import {
   Textarea,
   Tag,
   TagLabel,
+  TagCloseButton,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -72,11 +73,16 @@ const ModifyBook = () => {
   const [reload, setReload] = useState(0)
 
   const handleAddNewTag = () => {
-    if (newTag !== "") {
-      tags.push(newTag)
+    if (newTag !== '') {
+      setTags([...tags, newTag]);
     }
-    onCloseTag()
-  }
+    onCloseTag();
+  };
+
+  const handleRemoveTag = (tag) => {
+    const updatedTags = tags.filter((t) => t !== tag);
+    setTags(updatedTags);
+  };
 
   const handleGetAllTags = async () => {
     await getAllTagsRequest()
@@ -177,7 +183,7 @@ const ModifyBook = () => {
         epub: currentEpub,
         totalPages: totalPages,
         intro: intro,
-        tags: tagList,
+        tags: tags,
         access_level: accessLevel,
         chapters: bookChapters
       }
@@ -189,6 +195,7 @@ const ModifyBook = () => {
           .then((resp) => {
             if (resp.updatedBook) {
               resolve("Cập nhật thành công!")
+              window.location.replace("/admin/books");
               console.log("resp", resp)
             }
             else {
@@ -222,7 +229,7 @@ const ModifyBook = () => {
       setName(book.name)
       setAuthor(book.author)
       setIntro(book.intro)
-      setTagList(book.tags)
+      setTags(book.tags)
       setCurrentPdf(book.pdf)
       setCurrentEpub(book.epub)
       setTotalPages(book.totalPages)
@@ -344,24 +351,27 @@ const ModifyBook = () => {
             alignItems="center"
           >
             <FormLabel w="148px">Tags</FormLabel>
-            <Flex w="100%" justifyContent={"space-between"}>
-              <Flex flexWrap={"wrap"} w="90%">
-                {
-                  tags.map(tag => (
-                    <Tag size="md" borderRadius='full'
-                      variant='solid'
-                      colorScheme='blue' marginRight={"10px"}>
-                      <TagLabel>{tag}</TagLabel>
-                    </Tag>
-                  ))
-                }
-
+            <Flex w="100%" justifyContent="space-between">
+              <Flex flexWrap="wrap" w="100%">
+                {tags.map((tag) => (
+                  <Tag
+                    key={tag}
+                    size="md"
+                    borderRadius="full"
+                    variant="solid"
+                    colorScheme="blue"
+                    marginRight="10px"
+                  >
+                    <TagLabel>{tag}</TagLabel>
+                    <TagCloseButton onClick={() => handleRemoveTag(tag)} />
+                  </Tag>
+                ))}
               </Flex>
               <Button
                 width="50px"
-                variant='outline'
+                variant="outline"
                 colorScheme="blue"
-                onClick={() => { onOpenTag(); setNewTag(""); handleGetAllTags() }}
+                onClick={() => onOpenTag()}
               >
                 +
               </Button>
@@ -378,6 +388,7 @@ const ModifyBook = () => {
             <Select value={accessLevel} onChange={(e) => setAccessLevel(e.target.value)}>
               <option value="0">0 (For free user)</option>
               <option value="1">1 (For member)</option>
+              <option value="2">2 (For purchase)</option>
             </Select>
           </Flex>
           <Flex

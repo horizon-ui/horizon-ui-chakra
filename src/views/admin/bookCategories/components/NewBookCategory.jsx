@@ -41,6 +41,7 @@ const NewBookCategory = () => {
               console.log(resp.message);
               if (resp.message == "Book category added successfully!") {
                 resolve("Thêm book category thành công!");
+                window.location.replace("/admin/bookCategories");
               } else if (resp.message == "BookCategory already exist!") {
                 reject("Book category  đã tồn tại!");
               }

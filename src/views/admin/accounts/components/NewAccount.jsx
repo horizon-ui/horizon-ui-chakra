@@ -49,6 +49,7 @@ const NewAccount = () => {
               else {
                 console.log("vao thanh cong")
                 resolve("Tạo tài khoản thành công!")
+                window.location.replace("/admin/accounts");
               }
 
             })

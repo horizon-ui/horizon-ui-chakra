@@ -29,6 +29,7 @@ import React, { useState } from "react";
 import { getAllTagsRequest } from "../../../../redux/saga/requests/tag";
 import { Toaster, toast } from "react-hot-toast";
 import { addNewBookRequest } from "../../../../redux/saga/requests/book";
+import { replace } from "stylis";
 
 const NewBook = () => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -55,6 +56,7 @@ const NewBook = () => {
           addNewBookRequest(request).then((resp) => {
             if (resp.message) {
               resolve("Thêm sách thành công!");
+              window.location.replace("/admin/books");
             } else {
               reject("Sách đã tồn tại!");
             }
