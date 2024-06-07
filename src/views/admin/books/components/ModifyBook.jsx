@@ -371,7 +371,10 @@ const ModifyBook = () => {
                 width="50px"
                 variant="outline"
                 colorScheme="blue"
-                onClick={() => onOpenTag()}
+                onClick={() => {
+                  onOpenTag();
+                  handleGetAllTags();
+                }}
               >
                 +
               </Button>
