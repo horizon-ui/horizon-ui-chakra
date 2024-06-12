@@ -1,0 +1,20 @@
+.positive-tag {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(124, 224, 177);
+  color: rgb(19, 137, 82);
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.negative-tag {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(249, 190, 186);
+  color: rgb(236, 39, 25);
+  font-weight: 600;
+}
