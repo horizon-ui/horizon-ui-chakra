@@ -1,13 +1,31 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from "components/card/Card";
 import { useColorModeValue } from '@chakra-ui/system';
 import { Text, Flex } from '@chakra-ui/react';
 
 
-const InfoTransaction = () => {
+const InfoTransaction = (props) => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
+  const transactions = props.transactions;
+  const isLoading = props.isLoading;
+  const fromMonth = props.fromMonth;
+  const fromYear = props.fromYear;
+  const toMonth = props.toMonth;
+  const toYear = props.toYear;
+  const [totalRevenue, setTotalRevenue] = useState(0)
 
+  function calculateTotalRevenueVnd(transactions) {
+    let t = 0
+    for (const transaction of transactions) {
+      t = t + transaction.amount
+    }
+    return t
+  }
+
+  useEffect(() => {
+    setTotalRevenue(calculateTotalRevenueVnd(transactions))
+  }, [transactions])
   return (
     <Card
       direction="column"
@@ -35,7 +53,7 @@ const InfoTransaction = () => {
           fontWeight="500"
           lineHeight="100%"
         >
-          220,000,000 vnd
+          {totalRevenue} vnd
         </Text>
       </Flex>
       <Flex
@@ -50,7 +68,7 @@ const InfoTransaction = () => {
           fontWeight="500"
           lineHeight="100%"
         >
-          Tháng 4/2024 - Tháng 5/2024
+          Tháng {fromMonth}/{fromYear} - Tháng {toMonth}/{toYear}
         </Text>
       </Flex>
       <Flex
@@ -65,7 +83,7 @@ const InfoTransaction = () => {
           fontWeight="500"
           lineHeight="100%"
         >
-          72
+          {transactions.length}
         </Text>
       </Flex>
       <Flex
@@ -80,7 +98,7 @@ const InfoTransaction = () => {
           fontWeight="500"
           lineHeight="100%"
         >
-          21
+          {transactions.filter(t => t.productType === "Membership").length}
         </Text>
       </Flex>
       <Flex
@@ -95,7 +113,7 @@ const InfoTransaction = () => {
           fontWeight="500"
           lineHeight="100%"
         >
-          48
+          {transactions.filter(t => t.productType !== "Membership").length}
         </Text>
       </Flex>
     </Card>

@@ -26,22 +26,35 @@ import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { Toaster } from "react-hot-toast";
 import { getAllTransactionsRequest } from "../../../../redux/saga/requests/transaction";
 import * as utils from '../../../../utils/utils'
-const TransactionTable = () => {
+const TransactionTable = (props) => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
-  const [transactions, setTransactions] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const getTransactionData = () => {
-    setIsLoading(true)
-    getAllTransactionsRequest().then(resp => {
-      console.log("resp", resp.data)
-      setTransactions(resp.data)
-      setIsLoading(false)
-    })
-  }
+  const isLoading = props.isLoading;
+  const transactions = props.transactions;
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredList, setFilteredList] = useState([])
   useEffect(() => {
-    getTransactionData()
-  }, [])
+    const filteredList = transactions.filter((transaction) => {
+      // Implement your search logic here
+      // For example, search by account name, product details, etc.
+      const searchTextLower = searchTerm.toLowerCase();
+      const accountNameLower = transaction.account.displayName?.toLowerCase(); // Assuming account has a name property
+      const transactionIdLower = transaction._id?.toLowerCase(); // Assuming account has a name property
+      const productTypeLower = transaction.productType?.toLowerCase(); // Assuming account has a name property
+      const amountLower = transaction.amount?.toString().toLowerCase(); // Assuming account has a name property
+
+      return accountNameLower?.includes(searchTextLower) ||
+        transactionIdLower?.includes(searchTextLower) ||
+        productTypeLower?.includes(searchTextLower) ||
+        amountLower?.includes(searchTextLower)
+    });
+
+    setFilteredList(filteredList);
+  }, [searchTerm, transactions]);
+
+  useEffect(() => {
+    setFilteredList(transactions)
+  }, [transactions])
   return (
     <Card
       direction="column"
@@ -50,7 +63,8 @@ const TransactionTable = () => {
       overflowX={{ sm: "scroll" }}
       overflowY={{ sm: "scroll" }}
     >
-      <SearchBar mx="20px" mb="10px" />
+      <SearchBar mx="20px" mb="10px" value={searchTerm} // Pass current search term
+        onValueChange={(value) => setSearchTerm(value)} />
 
       <Flex px="25px" justify="space-between" mb="20px" align="center">
         <Text
@@ -142,7 +156,7 @@ const TransactionTable = () => {
                 <Td><Skeleton height='10px' /></Td>
                 <Td><Skeleton height='10px' /></Td>
               </Tr> :
-              transactions.map(transactionItem => (
+              filteredList.map(transactionItem => (
                 <Tr>
                   <Td>{transactionItem._id}</Td>
                   <Td>{transactionItem.account.displayName}</Td>

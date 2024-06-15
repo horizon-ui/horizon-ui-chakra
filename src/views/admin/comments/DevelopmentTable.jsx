@@ -52,6 +52,7 @@ export default function DevelopmentTable() {
   const [selectedOneComment, setSelectedOneComment] = useState(null);
   const [selectedCommentList, setSelectedCommentList] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
 
   const {
@@ -160,6 +161,23 @@ export default function DevelopmentTable() {
     getCommentsData()
   }, [])
 
+  useEffect(() => {
+    const filteredList = filteredComments.filter((comment) => {
+      const searchTextLower = searchTerm.toLowerCase();
+      const commentId = comment._id?.toLowerCase();
+      const content = comment.content?.toLowerCase();
+      const postId = comment.post?.toLowerCase();
+      return commentId?.includes(searchTextLower) ||
+        postId?.includes(searchTextLower) ||
+        content?.includes(searchTextLower)
+    });
+
+    setFilteredComments(filteredList);
+
+    if (searchTerm === "") {
+      setFilteredComments(comments)
+    }
+  }, [searchTerm])
 
   return (
     <>
@@ -170,7 +188,7 @@ export default function DevelopmentTable() {
         overflowX={{ sm: "scroll" }}
         overflowY={{ sm: "scroll" }}
       >
-        <SearchBar mx="20px" mb="10px" />
+        <SearchBar mx="20px" mb="10px" onValueChange={(value) => setSearchTerm(value)} />
         <>
           <Flex style={{
             paddingLeft: "25px",
