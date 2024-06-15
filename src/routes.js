@@ -7,6 +7,7 @@ import {
   MdLogout,
   MdCategory,
   MdMoney,
+  MdComment,
 } from "react-icons/md";
 
 import AccountManage from "views/admin/accounts";
@@ -25,6 +26,7 @@ import NewBookPage from "views/admin/books/NewBookPage";
 import NewTagPage from "views/admin/tags/NewTagPage";
 import NewBookCategoryPage from "views/admin/bookCategories/NewBookCategoryPage";
 import TransactionsPage from "views/admin/transactions/index";
+import CommentsPage from "views/admin/comments";
 
 const routes = [
   {
@@ -124,6 +126,14 @@ const routes = [
     display: "true",
     icon: <Icon as={MdMoney} width="20px" height="20px" color="inherit" />,
     component: TransactionsPage,
+  },
+  {
+    name: "Comments",
+    layout: "/admin",
+    path: "/comments",
+    display: "true",
+    icon: <Icon as={MdComment} width="20px" height="20px" color="inherit" />,
+    component: CommentsPage,
   },
   {
     name: "Log out",

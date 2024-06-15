@@ -16,15 +16,21 @@ import { SidebarContext } from "contexts/SidebarContext";
 import React, { useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "routes.js";
+import { useHistory } from "react-router-dom";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
-  const isAuthenticated = JSON.parse(localStorage.getItem("authenticated"));
+  // const isAuthenticated = JSON.parse(localStorage.getItem("authenticated"));
   // const isAuthenticated = true;
+  const history = useHistory();
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
-    if (!isAuthenticated) {
-      window.location.replace("/login");
-      // window.location.replace("http://localhost:3000/login");
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      if (user.role !== 1) {
+        history.push("/login");
+      }
     }
   }, []);
 
