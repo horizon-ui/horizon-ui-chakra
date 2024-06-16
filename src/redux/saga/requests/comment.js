@@ -39,3 +39,30 @@ export const deleteManyComments = async (commentIds) => {
       throw error;
     });
 };
+
+export const approveCommentRequest = async (commentId) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/comment/${commentId}/approve`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const approveManyCommentRequest = async (commentIds) => {
+  return fetch(`${type.BACKEND_URL_DEV}/api/comment/approve-many`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(commentIds),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw error;
+    });
+};
