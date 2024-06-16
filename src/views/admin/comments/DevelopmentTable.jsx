@@ -43,7 +43,7 @@ import { useEffect } from "react";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { Toaster, toast } from "react-hot-toast";
 import * as type from '../../../redux/types'
-import { approveCommentRequest, deleteManyComments, deleteOneCommentById, getAllCommentsRequest } from "../../../redux/saga/requests/comment";
+import { approveCommentRequest, approveManyCommentRequest, deleteManyComments, deleteOneCommentById, getAllCommentsRequest } from "../../../redux/saga/requests/comment";
 import * as utils from '../../../utils/utils'
 import styles from './style.scss'
 
@@ -140,7 +140,7 @@ export default function DevelopmentTable() {
         error: (error) => error.message,
       }
     );
-    onCloseDelete();
+    onCloseApprove();
   }
   const handleDeleteSelectedCommentList = () => {
     toast.promise(
@@ -167,13 +167,14 @@ export default function DevelopmentTable() {
         error: (error) => error.message,
       }
     );
+    setSelectedCommentList([])
     onCloseDeleteCommentList();
   }
 
   const handleApproveSelectedCommentList = () => {
     toast.promise(
       new Promise((resolve, reject) => {
-        deleteManyComments({
+        approveManyCommentRequest({
           commentIds: selectedCommentList
         })
           .then((resp) => {
@@ -195,7 +196,8 @@ export default function DevelopmentTable() {
         error: (error) => error.message,
       }
     );
-    onCloseDeleteCommentList();
+    setSelectedCommentList([])
+    onCloseApproveCommentList();
   }
 
 
