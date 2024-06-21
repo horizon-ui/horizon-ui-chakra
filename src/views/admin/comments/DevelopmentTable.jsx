@@ -31,6 +31,11 @@ import {
   MdRemoveCircle,
   MdAdd,
   MdLink,
+  MdApproval,
+  MdCheck,
+  MdCallToAction,
+  MdKebabDining,
+  MdMenu,
 } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "components/loading/Loading";
@@ -38,7 +43,7 @@ import { useEffect } from "react";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { Toaster, toast } from "react-hot-toast";
 import * as type from '../../../redux/types'
-import { deleteManyComments, deleteOneCommentById, getAllCommentsRequest } from "../../../redux/saga/requests/comment";
+import { approveCommentRequest, approveManyCommentRequest, deleteManyComments, deleteOneCommentById, getAllCommentsRequest } from "../../../redux/saga/requests/comment";
 import * as utils from '../../../utils/utils'
 import styles from './style.scss'
 
@@ -53,7 +58,8 @@ export default function DevelopmentTable() {
   const [selectedCommentList, setSelectedCommentList] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [toxicFilterStatus, setToxicFilterStatus] = useState("all")
+  const [approveFilterStatus, setApproveFilterStatus] = useState("all")
 
   const {
     isOpen: isOpenDelete,
@@ -65,6 +71,18 @@ export default function DevelopmentTable() {
     isOpen: isOpenDeleteCommentList,
     onOpen: onOpenDeleteCommentList,
     onClose: onCloseDeleteCommentList,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenApprove,
+    onOpen: onOpenApprove,
+    onClose: onCloseApprove,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenApproveCommentList,
+    onOpen: onOpenApproveCommentList,
+    onClose: onCloseApproveCommentList,
   } = useDisclosure();
 
   const getCommentsData = () => {
@@ -100,7 +118,30 @@ export default function DevelopmentTable() {
     );
     onCloseDelete();
   }
-
+  const handleApprove = () => {
+    toast.promise(
+      new Promise((resolve, reject) => {
+        approveCommentRequest(selectedOneComment._id)
+          .then((resp) => {
+            if (resp.message) {
+              resolve("Duyệt bình luận thành công!");
+              getCommentsData();
+            } else {
+              reject("Duyệt bình luận thất bại!");
+            }
+          })
+          .catch((err) => {
+            console.log("err", err);
+          });
+      }),
+      {
+        loading: "Processing...",
+        success: (message) => message,
+        error: (error) => error.message,
+      }
+    );
+    onCloseApprove();
+  }
   const handleDeleteSelectedCommentList = () => {
     toast.promise(
       new Promise((resolve, reject) => {
@@ -126,23 +167,71 @@ export default function DevelopmentTable() {
         error: (error) => error.message,
       }
     );
+    setSelectedCommentList([])
     onCloseDeleteCommentList();
   }
 
+  const handleApproveSelectedCommentList = () => {
+    toast.promise(
+      new Promise((resolve, reject) => {
+        approveManyCommentRequest({
+          commentIds: selectedCommentList
+        })
+          .then((resp) => {
+            if (resp.message) {
+              resolve("Duyệt bình luận thành công!");
+              console.log("resp", resp);
+              getCommentsData();
+            } else {
+              reject("Duyệt bình luận thất bại!");
+            }
+          })
+          .catch((err) => {
+            console.log("err", err);
+          });
+      }),
+      {
+        loading: "Processing...",
+        success: (message) => message,
+        error: (error) => error.message,
+      }
+    );
+    setSelectedCommentList([])
+    onCloseApproveCommentList();
+  }
+
+
   const onFilterChange = (isToxic) => {
+    setToxicFilterStatus(isToxic)
     if (isToxic === "true") {
-      setFilteredComments(comments.filter(c => c.is_toxic === true))
+      setFilteredComments(comments.filter(c => c.is_toxic === true && (approveFilterStatus !== "all" ? c.is_approved.toString() === approveFilterStatus : true)))
     }
     if (isToxic === "false") {
-      setFilteredComments(comments.filter(c => c.is_toxic === false))
+      setFilteredComments(comments.filter(c => c.is_toxic === false && (approveFilterStatus !== "all" ? c.is_approved.toString() === approveFilterStatus : true)))
     }
     if (isToxic === "all") {
-      setFilteredComments(comments)
+      setFilteredComments(comments.filter(c => (approveFilterStatus !== "all" ? c.is_approved === approveFilterStatus : true)))
     }
   }
 
+  console.log("toxicFilterStatus", toxicFilterStatus)
+  console.log("approveFilterStatus", approveFilterStatus)
+
+  const onApprovalFilterChange = (isApproved) => {
+    setApproveFilterStatus(isApproved)
+    if (isApproved === "true") {
+      setFilteredComments(comments.filter(c => c.is_approved === true && (toxicFilterStatus !== "all" ? c.is_toxic.toString() === toxicFilterStatus : true)))
+    }
+    if (isApproved === "false") {
+      setFilteredComments(comments.filter(c => c.is_approved === false && (toxicFilterStatus !== "all" ? c.is_toxic.toString() === toxicFilterStatus : true)))
+    }
+    if (isApproved === "all") {
+      setFilteredComments(comments.filter(c => (toxicFilterStatus !== "all" ? c.is_toxic === toxicFilterStatus : true)))
+    }
+  }
+
+
   const handleCheckboxChange = (commentId, isChecked) => {
-    console.log("selectedCommentList", selectedCommentList)
     const updatedSelectedComments = isChecked
       ? [...selectedCommentList, commentId] // Add comment ID if checked
       : selectedCommentList.filter(id => id !== commentId); // Remove comment ID if unchecked
@@ -152,8 +241,6 @@ export default function DevelopmentTable() {
   const handleSelectAllChange = (isChecked) => {
     const updatedSelectedComments = isChecked ? filteredComments.map(comment => comment._id) : [];
     setSelectedCommentList(updatedSelectedComments);
-    console.log("updatedSelectedComments", updatedSelectedComments)
-    console.log(updatedSelectedComments.includes(filteredComments[0]._id))
     setSelectAll(isChecked);
   };
 
@@ -203,31 +290,52 @@ export default function DevelopmentTable() {
               Comments Manage
             </Text>
             <Flex justify="space-between" align="center">
-              <Select width={"200px"} style={{ cursor: "pointer" }} placeholder='Lọc theo kết quả'
+              <Select width={"150px"} style={{ cursor: "pointer" }} placeholder='Lọc theo kết quả'
                 onChange={(e) => onFilterChange(e.target.value)}
               >
                 <option value='true'>Negative</option>
                 <option value='false'>Positive</option>
-                <option value='all'>All</option>
+                <option value='all'>Tất cả</option>
               </Select>
-              <Button marginLeft={"10px"} colorScheme='blue'
-                onClick={() => {
-                  if (selectedCommentList.length > 0) {
-                    onOpenDeleteCommentList();
-                  }
-                  else {
-                    toast.error("Vui lòng chọn bình luận cần xóa!")
-                  }
-                }}
-              >Delete selected comments</Button>
+              <Select width={"180px"} style={{ cursor: "pointer" }} placeholder='Lọc theo trạng thái' marginLeft={"10px"}
+                onChange={(e) => onApprovalFilterChange(e.target.value)}
+              >
+                <option value='true'>Đã duyệt</option>
+                <option value='false'>Chưa duyệt</option>
+                <option value='all'>Tất cả</option>
+              </Select>
             </Flex>
+          </Flex>
+          <Flex justify={"end"} direction={"row"}>
+            <Button marginLeft={"10px"} colorScheme='blue'
+              onClick={() => {
+                if (selectedCommentList.length > 0) {
+                  onOpenDeleteCommentList();
+                }
+                else {
+                  toast.error("Vui lòng chọn bình luận cần xóa!")
+                }
+              }}
+            >Delete selected comments</Button>
+            <Button marginLeft={"10px"} colorScheme='blue'
+              onClick={() => {
+                if (selectedCommentList.length > 0) {
+                  onOpenApproveCommentList();
+                }
+                else {
+                  toast.error("Vui lòng chọn bình luận cần xóa!")
+                }
+              }}
+            >Approve selected comments</Button>
           </Flex>
           <Checkbox
             style={{ marginLeft: "auto" }}
             checked={selectAll}
             onChange={(e) => handleSelectAllChange(e.target.checked)}
           >Chọn tất cả</Checkbox>
-          <Table variant="simple" color="gray.500" mb="24px">
+          <Table variant="simple" color="gray.500" mb="24px"
+            display={"block"} maxHeight={"400px"} overflowY={"scroll"}
+          >
             <Thead>
               <Tr>
                 <Th></Th>
@@ -279,13 +387,31 @@ export default function DevelopmentTable() {
                     align="center"
                     fontSize={{ sm: "10px", lg: "12px" }}
                     color="gray.400"
+                  >Trạng thái</Flex>
+                </Th>
+                <Th pe="10px" borderColor={borderColor}>
+                  <Flex
+                    justify="space-between"
+                    align="center"
+                    fontSize={{ sm: "10px", lg: "12px" }}
+                    color="gray.400"
                   >Action</Flex>
+                </Th>
+                <Th pe="10px" borderColor={borderColor}>
+                  <Flex
+                    justify="space-between"
+                    align="center"
+                    fontSize={{ sm: "10px", lg: "12px" }}
+                    color="gray.400"
+                  ></Flex>
                 </Th>
               </Tr>
 
             </Thead>
 
-            <Tbody overflowY={"scroll"} maxHeight={"200px"}>
+            <Tbody style={{
+              overflowY: "scroll", maxHeight: "200px"
+            }}>
               {
                 !isLoading ?
                   filteredComments.map(c => (
@@ -321,7 +447,14 @@ export default function DevelopmentTable() {
                             <div className="positive-tag" >Positive</div>
                         }
                       </Td>
-
+                      <Td>
+                        {
+                          c.is_approved ?
+                            <div className="approve-tag" >Đã duyệt</div>
+                            :
+                            <div className="not-approve-tag" >Chưa duyệt</div>
+                        }
+                      </Td>
                       <Td onClick={() => {
                         setSelectedOneComment(c)
                         onOpenDelete()
@@ -334,6 +467,19 @@ export default function DevelopmentTable() {
                           cursor="pointer"
                         />
                       </Td>
+                      <Td onClick={() => {
+                        setSelectedOneComment(c)
+                        onOpenApprove()
+                      }}>
+                        {!c.is_approved &&
+                          < Icon
+                            as={MdCheck}
+                            width="20px"
+                            height="20px"
+                            color="inherit"
+                            cursor="pointer"
+                          />}
+                      </Td>
                     </Tr>
                   )) :
                   skeletons.map((_, index) => (
@@ -341,6 +487,8 @@ export default function DevelopmentTable() {
                       <Td>
                         <Skeleton height='10px' />
                       </Td>
+                      <Td><Skeleton height='10px' /></Td>
+                      <Td><Skeleton height='10px' /></Td>
                       <Td><Skeleton height='10px' /></Td>
                       <Td><Skeleton height='10px' /></Td>
                       <Td><Skeleton height='10px' /></Td>
@@ -394,6 +542,48 @@ export default function DevelopmentTable() {
             </Button>
             <Button colorScheme="blue" onClick={handleDeleteSelectedCommentList}>
               Delete
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpenApprove} onClose={onCloseApprove}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Confirmation:</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Bạn muốn duyệt bình luận này?
+            <div>
+              {selectedOneComment?.content}
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mr={3} onClick={onCloseDelete}>
+              Close
+            </Button>
+            <Button colorScheme="blue" onClick={handleApprove}>
+              Approve
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpenApproveCommentList} onClose={onCloseApproveCommentList}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Confirmation:</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Bạn muốn duyệt {selectedCommentList.length} bình luận được chọn?
+            <div>
+              {selectedOneComment?.content}
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mr={3} onClick={onCloseApproveCommentList}>
+              Close
+            </Button>
+            <Button colorScheme="blue" onClick={handleApproveSelectedCommentList}>
+              Approve
             </Button>
           </ModalFooter>
         </ModalContent>

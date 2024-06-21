@@ -18,3 +18,23 @@
   color: rgb(236, 39, 25);
   font-weight: 600;
 }
+
+.approve-tag {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(186, 209, 249);
+  color: rgb(19, 98, 235);
+  font-weight: 600;
+}
+
+.not-approve-tag {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(206, 203, 203);
+  color: rgb(91, 86, 85);
+  font-weight: 600;
+}
