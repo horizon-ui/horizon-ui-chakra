@@ -8,6 +8,7 @@ import {
   MdCategory,
   MdMoney,
   MdComment,
+  MdDiscount,
 } from "react-icons/md";
 
 import AccountManage from "views/admin/accounts";
@@ -27,6 +28,9 @@ import NewTagPage from "views/admin/tags/NewTagPage";
 import NewBookCategoryPage from "views/admin/bookCategories/NewBookCategoryPage";
 import TransactionsPage from "views/admin/transactions/index";
 import CommentsPage from "views/admin/comments";
+import VouchersPage from "views/admin/vouchers";
+import NewVoucherPage from "views/admin/vouchers/NewVoucherPage";
+import EditVoucherPage from "views/admin/vouchers/EditVoucherPage";
 
 const routes = [
   {
@@ -134,6 +138,30 @@ const routes = [
     display: "true",
     icon: <Icon as={MdComment} width="20px" height="20px" color="inherit" />,
     component: CommentsPage,
+  },
+  {
+    name: "Vouchers",
+    layout: "/admin",
+    path: "/vouchers",
+    display: "true",
+    icon: <Icon as={MdDiscount} width="20px" height="20px" color="inherit" />,
+    component: VouchersPage,
+  },
+  {
+    name: "Vouchers",
+    layout: "/admin",
+    path: "/voucher/new",
+    display: "false",
+    icon: <Icon as={MdDiscount} width="20px" height="20px" color="inherit" />,
+    component: NewVoucherPage,
+  },
+  {
+    name: "Vouchers",
+    layout: "/admin",
+    path: "/voucher/edit/:id",
+    display: "false",
+    icon: <Icon as={MdDiscount} width="20px" height="20px" color="inherit" />,
+    component: EditVoucherPage,
   },
   {
     name: "Log out",
