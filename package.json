@@ -29,7 +29,7 @@
     "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.0",
     "stylis": "^4.3.2",
-    "stylis-plugin-rtl": "^2.0.2",
+    "stylis-plugin-rtl": "^2.1.1",
     "web-vitals": "^4.2.2"
   },
   "scripts": {
