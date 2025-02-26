@@ -15,6 +15,7 @@ import NFTMarketplace from 'views/admin/marketplace';
 import Profile from 'views/admin/profile';
 import DataTables from 'views/admin/dataTables';
 import RTL from 'views/admin/rtl';
+import UsersTable from 'views/admin/usersTable/UsersTable'; 
 
 // Auth Imports
 import SignInCentered from 'views/auth/signIn';
@@ -69,6 +70,13 @@ const routes = [
     path: '/rtl-default',
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
     component: <RTL />,
+  },
+  {
+    name: 'Users', // Added UsersTable Route
+    layout: '/admin',
+    path: '/users-table',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+    component: <UsersTable />,
   },
 ];
 

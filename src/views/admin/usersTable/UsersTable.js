@@ -12,7 +12,9 @@ import {
   Thead,
   Tr,
   useColorModeValue,
+  SimpleGrid
 } from '@chakra-ui/react';
+
 import {
   createColumnHelper,
   flexRender,
@@ -26,13 +28,13 @@ import { useEffect, useState } from 'react';
 
 const columnHelper = createColumnHelper();
 
-export default function Users() {
+export default function UserTable() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const textColor = useColorModeValue('secondaryGray.900', 'white');
+  const [loading, setLoading] = useState(false);
   const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((res) => res.json())
       .then((data) => {
@@ -45,9 +47,9 @@ export default function Users() {
           createdAt: '2025-02-26', // Placeholder date
         }));
         setUsers(formattedData);
-        setLoading(false);
       })
-      .catch((err) => console.error('Error fetching users:', err));
+      .catch((err) => console.error('Error fetching users:', err))
+      .finally(() => setLoading(false)); // Ensures `setLoading(false)` runs regardless of success or failure
   }, []);
 
   const columns = [
@@ -94,9 +96,17 @@ export default function Users() {
     getSortedRowModel: getSortedRowModel(),
   });
 
-  if (loading) return <Text textAlign='center'>Loading...</Text>;
+  if (loading) {
+    return <Text textAlign="center" fontSize="xl" fontWeight="bold">Loading...</Text>;
+  }
+  
 
   return (
+     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
+          <SimpleGrid
+            mb='20px'
+            columns={1}
+            spacing={{ base: "20px", xl: "20px" }}>
     <Card flexDirection='column' w='100%' px='0px' overflowX='scroll'>
       <Flex px='25px' mb='8px' justifyContent='space-between' align='center'>
         <Text fontSize='22px' fontWeight='700'>User Listing Table</Text>
@@ -129,5 +139,8 @@ export default function Users() {
         </Table>
       </Box>
     </Card>
+    </SimpleGrid>  
+    </Box>
+   
   );
 }
