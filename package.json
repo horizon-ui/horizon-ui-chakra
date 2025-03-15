@@ -15,6 +15,7 @@
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
+    "ajv": "^8.17.1",
     "apexcharts": "3.50.0",
     "framer-motion": "^11.3.7",
     "npm-force-resolutions": "^0.0.10",
