@@ -57,7 +57,7 @@ const routes = [
     component: <Profile />,
   },
   {
-    name: 'Sign In',
+    name: 'Log out',
     layout: '/auth',
     path: '/sign-in',
     icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
