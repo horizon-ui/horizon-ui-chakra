@@ -1,0 +1,101 @@
+[debug] [2025-11-25T01:17:27.762Z] ----------------------------------------------------------------------
+[debug] [2025-11-25T01:17:27.763Z] Command:       /opt/homebrew/Cellar/node/24.3.0/bin/node /opt/homebrew/bin/firebase functions:shell
+[debug] [2025-11-25T01:17:27.763Z] CLI Version:   14.26.0
+[debug] [2025-11-25T01:17:27.764Z] Platform:      darwin
+[debug] [2025-11-25T01:17:27.764Z] Node Version:  v24.3.0
+[debug] [2025-11-25T01:17:27.764Z] Time:          Tue Nov 25 2025 08:17:27 GMT+0700 (Indochina Time)
+[debug] [2025-11-25T01:17:27.764Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-11-25T01:17:27.852Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-11-25T01:17:27.852Z] > authorizing via signed-in user (ngocquynh23042005@gmail.com)
+[debug] [2025-11-25T01:17:27.852Z] [iam] checking project learningenglishvocab-89721 for permissions ["firebase.projects.get"]
+[debug] [2025-11-25T01:17:27.853Z] Checked if tokens are valid: true, expires at: 1764034468840
+[debug] [2025-11-25T01:17:27.853Z] Checked if tokens are valid: true, expires at: 1764034468840
+[debug] [2025-11-25T01:17:27.853Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/learningenglishvocab-89721:testIamPermissions [none]
+[debug] [2025-11-25T01:17:27.853Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/learningenglishvocab-89721:testIamPermissions x-goog-quota-user=projects/learningenglishvocab-89721
+[debug] [2025-11-25T01:17:27.853Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/learningenglishvocab-89721:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-11-25T01:17:28.922Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/learningenglishvocab-89721:testIamPermissions 200
+[debug] [2025-11-25T01:17:28.923Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/learningenglishvocab-89721:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-11-25T01:17:28.923Z] Emulator locator file path: /var/folders/yv/m6xg0wq90m5d6836mffnz9300000gn/T/hub-learningenglishvocab-89721.json
+[warn] ⚠  functions: Functions Emulator unable to start on port 5000, starting on 5001 instead. {"metadata":{"emulator":{"name":"functions"},"message":"Functions Emulator unable to start on port 5000, starting on 5001 instead."}}
+[debug] [2025-11-25T01:17:29.063Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-11-25T01:17:29.121Z] defaultcredentials: writing to file /Users/admin/.config/firebase/ngocquynh23042005_gmail_com_application_default_credentials.json
+[debug] [2025-11-25T01:17:29.122Z] DEBUG: Setting GAC to /Users/admin/.config/firebase/ngocquynh23042005_gmail_com_application_default_credentials.json
+[debug] [2025-11-25T01:17:29.122Z] Checked if tokens are valid: true, expires at: 1764034468840
+[debug] [2025-11-25T01:17:29.122Z] Checked if tokens are valid: true, expires at: 1764034468840
+[debug] [2025-11-25T01:17:29.122Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/learningenglishvocab-89721/adminSdkConfig [none]
+[debug] [2025-11-25T01:17:29.546Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/learningenglishvocab-89721/adminSdkConfig 200
+[debug] [2025-11-25T01:17:29.546Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/learningenglishvocab-89721/adminSdkConfig {"projectId":"learningenglishvocab-89721","storageBucket":"learningenglishvocab-89721.firebasestorage.app"}
+[debug] [2025-11-25T01:17:29.562Z] [functions] Watching "/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions" for Cloud Functions...
+[debug] [2025-11-25T01:17:29.564Z] Validating nodejs source
+[debug] [2025-11-25T01:17:30.160Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.4.1"
+  },
+  "private": true
+}
+[debug] [2025-11-25T01:17:30.160Z] Building nodejs source
+[debug] [2025-11-25T01:17:30.160Z] Failed to find version of module node: reached end of search path /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules
+[info] ✔  functions: Using node@24 from host. 
+[debug] [2025-11-25T01:17:30.162Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-11-25T01:17:30.166Z] Found firebase-functions binary at '/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8792
+
+[debug] [2025-11-25T01:17:31.148Z] Got response from /__/functions.yaml {"endpoints":{"getDataFromNeon":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"getDataFromNeon"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[debug] [2025-11-25T01:17:35.162Z] [functions] Loaded functions definitions from source: getDataFromNeon.
+[debug] [2025-11-25T01:17:35.162Z] [functions[us-central1-getDataFromNeon]] http function initialized (http://127.0.0.1:5001/learningenglishvocab-89721/us-central1/getDataFromNeon).
+[info] i  functions: Loaded functions: getDataFromNeon 
+[warn] ⚠  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub, storage, eventarc, tasks 
+[debug] [2025-11-25T01:18:56.215Z] >>> [apiv2][query] POST http://127.0.0.1:5001/learningenglishvocab-89721/us-central1/getDataFromNeon/ [none]
+[debug] [2025-11-25T01:18:56.216Z] >>> [apiv2][body] POST http://127.0.0.1:5001/learningenglishvocab-89721/us-central1/getDataFromNeon/ {}
+[debug] [2025-11-25T01:18:56.218Z] [work-queue] {"queuedWork":["/learningenglishvocab-89721/us-central1/getDataFromNeon/-2025-11-25T01:18:56.218Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2025-11-25T01:18:56.218Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/learningenglishvocab-89721/us-central1/getDataFromNeon/-2025-11-25T01:18:56.218Z"],"workRunningCount":1}
+[debug] [2025-11-25T01:18:56.219Z] Accepted request POST /learningenglishvocab-89721/us-central1/getDataFromNeon/ --> us-central1-getDataFromNeon
+[debug] [2025-11-25T01:18:56.226Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2025-11-25T01:18:56.226Z] DEBUG: [functions] Got req.url=/learningenglishvocab-89721/us-central1/getDataFromNeon/, mapping to path=/
+[debug] [2025-11-25T01:18:56.228Z] DEBUG: [worker-pool] addWorker(us-central1-getDataFromNeon)
+[debug] [2025-11-25T01:18:56.228Z] DEBUG: [worker-pool] Adding worker with key us-central1-getDataFromNeon, total=1
+[debug] [2025-11-25T01:18:56.712Z] DEBUG: [runtime-status] [53659] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.6.0","resolution":"/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2025-11-25T01:18:56.712Z] DEBUG: [runtime-status] [53659] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.0.0","resolution":"/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/v2/index.js"}
+[debug] [2025-11-25T01:18:56.712Z] DEBUG: [runtime-status] [53659] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2025-11-25T01:18:56.713Z] DEBUG: [runtime-status] [53659] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.0.0","resolution":"/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/v2/index.js"}
+[debug] [2025-11-25T01:18:56.713Z] DEBUG: [runtime-status] [53659] Detected firebase-functions v7+, skipping config helper.
+[debug] [2025-11-25T01:18:56.713Z] DEBUG: [runtime-status] [53659] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.0.0","resolution":"/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/v2/index.js"}
+[debug] [2025-11-25T01:18:56.713Z] DEBUG: [runtime-status] [53659] Detected firebase-functions v7+, skipping legacy stubs.
+[debug] [2025-11-25T01:18:56.713Z] DEBUG: [runtime-status] [53659] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.6.0","resolution":"/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2025-11-25T01:18:56.749Z] DEBUG: [runtime-status] [53659] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.0.0","resolution":"/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/v2/index.js"}
+[debug] [2025-11-25T01:18:56.888Z] DEBUG: [runtime-status] [53659] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"13.6.0","resolution":"/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2025-11-25T01:18:56.899Z] DEBUG: [runtime-status] [53659] Functions runtime initialized. {"cwd":"/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions","node_version":"24.3.0"}
+[debug] [2025-11-25T01:18:56.899Z] DEBUG: [runtime-status] [53659] Listening to port: /var/folders/yv/m6xg0wq90m5d6836mffnz9300000gn/T/fire_emu_80e1e1aaad852f8a.sock
+[debug] [2025-11-25T01:18:56.940Z] DEBUG: [worker-us-central1-getDataFromNeon-1264a3c5-d449-47f2-b6c2-ddc1eee99770]: IDLE
+[debug] [2025-11-25T01:18:56.940Z] DEBUG: [worker-pool] submitRequest(triggerId=us-central1-getDataFromNeon)
+[debug] [2025-11-25T01:18:56.940Z] [functions] Beginning execution of "us-central1-getDataFromNeon"
+[debug] [2025-11-25T01:18:56.940Z] DEBUG: [worker-us-central1-getDataFromNeon-1264a3c5-d449-47f2-b6c2-ddc1eee99770]: BUSY
+[info] >  {"severity":"WARNING","message":"Request body is missing data."} {"user":{"severity":"WARNING","message":"Request body is missing data."},"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getDataFromNeon"},"extension":{},"message":"\u001b[90m> \u001b[39m {\"severity\":\"WARNING\",\"message\":\"Request body is missing data.\"}"}}
+[info] >  {"severity":"ERROR","message":"Error: Invalid request, unable to process.\n    at entryFromArgs (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/logger/index.js:120:13)\n    at Object.error (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/logger/index.js:109:8)\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/common/providers/https.js:420:26\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/common/providers/https.js:383:13\n    at cors (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:188:7)\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:224:17\n    at originCallback (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:214:15)\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:219:13\n    at optionsCallback (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:199:9)\n    at corsMiddleware (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:204:7)"} {"user":{"severity":"ERROR","message":"Error: Invalid request, unable to process.\n    at entryFromArgs (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/logger/index.js:120:13)\n    at Object.error (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/logger/index.js:109:8)\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/common/providers/https.js:420:26\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/common/providers/https.js:383:13\n    at cors (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:188:7)\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:224:17\n    at originCallback (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:214:15)\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:219:13\n    at optionsCallback (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:199:9)\n    at corsMiddleware (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:204:7)"},"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getDataFromNeon"},"extension":{},"message":"\u001b[90m> \u001b[39m {\"severity\":\"ERROR\",\"message\":\"Error: Invalid request, unable to process.\\n    at entryFromArgs (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/logger/index.js:120:13)\\n    at Object.error (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/logger/index.js:109:8)\\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/common/providers/https.js:420:26\\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/firebase-functions/lib/common/providers/https.js:383:13\\n    at cors (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:188:7)\\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:224:17\\n    at originCallback (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:214:15)\\n    at /Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:219:13\\n    at optionsCallback (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:199:9)\\n    at corsMiddleware (/Users/admin/Desktop/VKU/kì 5/Đồ án cơ sở 4/EAPP_Admin_Web/EAPP-admin-web/functions/node_modules/cors/lib/index.js:204:7)\"}"}}
+[debug] [2025-11-25T01:18:56.948Z] DEBUG: Finishing up request with event=pause
+[debug] [2025-11-25T01:18:56.948Z] [functions] Finished "us-central1-getDataFromNeon" in 7.957458ms
+[debug] [2025-11-25T01:18:56.948Z] DEBUG: [worker-us-central1-getDataFromNeon-1264a3c5-d449-47f2-b6c2-ddc1eee99770]: IDLE
+[debug] [2025-11-25T01:18:56.948Z] DEBUG: Finishing up request with event=finish
+[debug] [2025-11-25T01:18:56.948Z] DEBUG: Finishing up request with event=close
+[debug] [2025-11-25T01:18:56.948Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-11-25T01:18:56.949Z] <<< [apiv2][status] POST http://127.0.0.1:5001/learningenglishvocab-89721/us-central1/getDataFromNeon/ 400
+[debug] [2025-11-25T01:18:56.949Z] <<< [apiv2][body] POST http://127.0.0.1:5001/learningenglishvocab-89721/us-central1/getDataFromNeon/ {"error":{"message":"Bad Request","status":"INVALID_ARGUMENT"}}
