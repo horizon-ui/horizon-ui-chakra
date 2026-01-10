@@ -29,6 +29,7 @@ export default function Default(props) {
 
         <Stat my='auto' ms={startContent ? "18px" : "0px"}>
           <StatLabel
+            data-testid={`${name.toLowerCase().replaceAll(' ', '-')}-metric-header`}
             lineHeight='100%'
             color={textColorSecondary}
             fontSize={{
@@ -37,6 +38,7 @@ export default function Default(props) {
             {name}
           </StatLabel>
           <StatNumber
+            data-testid={`${name.toLowerCase().replaceAll(' ', '-')}-metric-value`}
             color={textColor}
             fontSize={{
               base: "2xl",

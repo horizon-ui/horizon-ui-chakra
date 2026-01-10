@@ -103,6 +103,7 @@ export default function AdminNavbar(props) {
 					</Breadcrumb>
 					{/* Here we create navbar brand, based on route name */}
 					<Link
+						data-testid={'page-header-1'}
 						color={mainText}
 						href='#'
 						bg='inherit'
