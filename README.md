@@ -112,3 +112,7 @@ new people that already use Horizon UI!
 ⭐️ [Copyright 2023 Simmmple ](https://www.simmmple.com/?ref=readme-horizon)
 
 📄 [Horizon UI License](https://www.simmmple.com/licenses?ref=readme-horizon)
+
+## Deployment
+
+[![Deploy on Hostinger](https://assets.hostinger.com/vps/deploy.svg)](https://www.hostinger.com/web-apps-hosting)
